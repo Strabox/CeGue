@@ -14,6 +14,9 @@ public:
 	double getX(){ return _x; }
 	double getY(){ return _y; }
 	double getZ(){ return _z; }
+	void setX(double x){ _x = x; }
+	void setY(double y){ _y = y; }
+	void setZ(double z){ _z = z; }
 	void set(double x, double y, double z){ _x = x; _y = y; _z = z; }
 	
 };

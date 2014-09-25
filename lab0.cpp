@@ -3,6 +3,8 @@
 #include <glut.h>
 #include "Frog.h"
 int rotate_y, rotate_x;
+
+Frog* sapo;
 void display(void)
 {
 	/*  clear all pixels  */
@@ -16,7 +18,10 @@ void display(void)
 	/*  draw white polygon (rectangle) with corners at
 	*  (0.25, 0.25, 0.0) and (0.75, 0.75, 0.0)
 	*/
-	glColor3f(0.0, 1.0, 0.0);
+	/*glColor3f(0.0, 1.0, 0.0);
+	*/
+	sapo->draw();
+
 	/*glBegin(GL_POLYGON);
 	glVertex3f(0.25, 0.25, 0.0);
 	glVertex3f(0.5, 0.25, 0.0);
@@ -50,7 +55,7 @@ void display(void)
 	glColor3f(0.0f, 0.0f, 1.0f); glVertex3f(1.0f, -1.0f, 1.0f);
 
 	glEnd();*/
-	glPushMatrix();
+	/*glPushMatrix();
 	glColor3f(0.5, 1.0, 0.0);
 	glTranslatef(0.0, -0.1, -0.1);
 	glutSolidSphere(0.3, 16, 16);
@@ -61,7 +66,7 @@ void display(void)
 	glColor3f(0.0, 1.0, 0.5);
 	glTranslatef(0.0, 0.2, -0.2);
 	glutSolidSphere(0.2, 12, 12);
-	glPopMatrix();
+	glPopMatrix();*/
 	/*  don't wait!
 	*  start processing buffered OpenGL routines
 	*/
@@ -117,6 +122,14 @@ void specialKeys(int key, int x, int y) {
 
 }
 
+void regularKeys(unsigned char key, int x, int y){
+	if ((key == 'a') || (key == 'A')) sapo->moveDown();
+	else if ((key == 'q') || (key == 'Q')) sapo->moveUp();
+	else if ((key == 'p') || (key == 'P')) sapo->moveRight();
+	else if ((key == 'o') || (key == 'O')) sapo->moveLeft();
+	glutPostRedisplay();
+}
+
 void init(void)
 {
 	/*  select clearing (background) color       */
@@ -126,6 +139,10 @@ void init(void)
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glOrtho(-3.0, 3.0, -3.0, 3.0, 0, -3.0);
+	sapo = new Frog();
+	sapo->setPosition(0.0, 0.0, 0.0);
+	sapo->setZRotation(0.0);
+
 }
 
 /*
@@ -146,6 +163,7 @@ int main(int argc, char** argv)
 /*	glutKeyboardFunc(myKeyboardAction);
 */	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
+	glutKeyboardFunc(regularKeys);
 	glutSpecialFunc(specialKeys);
 	glutMainLoop();
 	return 0;   /* ISO C requires main to return int. */
