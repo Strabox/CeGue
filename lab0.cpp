@@ -2,9 +2,12 @@
 #define DYNAMICOBJECT_H
 #include <glut.h>
 #include "Frog.h"
+#include "Roadside.h"
 int rotate_y, rotate_x;
 
 Frog* sapo;
+Roadside* estrada;
+
 void display(void)
 {
 	/*  clear all pixels  */
@@ -142,6 +145,8 @@ void init(void)
 	sapo = new Frog();
 	sapo->setPosition(0.0, 0.0, 0.0);
 	sapo->setZRotation(0.0);
+	estrada = new Roadside();
+	estrada->setPosition(0.0, 0.0, 0.0);
 
 }
 
