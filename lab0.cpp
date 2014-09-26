@@ -3,10 +3,15 @@
 #include <glut.h>
 #include "Frog.h"
 #include "Roadside.h"
-int rotate_y, rotate_x;
 
-Frog* sapo;
-Roadside* estrada;
+#define VPORTLEFT -5.0
+#define VPORTRIGHT 5.0
+#define VPORTBOTTOM -2.0
+#define VPORTTOP 12.0
+
+int rotate_y, rotate_x; //usado para rodar a câmara e assim ver se os modelos estão em ordem
+Frog* sapo; //sapo DUMMY
+Roadside* estradaborda; //estradaborda DUMMY
 
 void display(void)
 {
@@ -24,7 +29,7 @@ void display(void)
 	/*glColor3f(0.0, 1.0, 0.0);
 	*/
 	sapo->draw();
-
+	estradaborda->draw();
 	/*glBegin(GL_POLYGON);
 	glVertex3f(0.25, 0.25, 0.0);
 	glVertex3f(0.5, 0.25, 0.0);
@@ -78,7 +83,7 @@ void display(void)
 }
 
 void reshape(int w, int h) {
-	float xmin = -3., xmax = 3, ymin = -3., ymax = 3.;
+	float xmin = VPORTLEFT, xmax = VPORTRIGHT, ymin = VPORTBOTTOM, ymax = VPORTTOP;
 	float ratio = (xmax - xmin) / (ymax - ymin);
 	float aspect = (float)w / h;
 	glViewport(0, 0, w, h);
@@ -141,12 +146,12 @@ void init(void)
 	/*  initialize viewing values  */
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(-3.0, 3.0, -3.0, 3.0, 0, -3.0);
+	glOrtho(VPORTLEFT, VPORTRIGHT, VPORTBOTTOM, VPORTTOP, 3.0, -3.0);
 	sapo = new Frog();
 	sapo->setPosition(0.0, 0.0, 0.0);
 	sapo->setZRotation(0.0);
-	estrada = new Roadside();
-	estrada->setPosition(0.0, 0.0, 0.0);
+	estradaborda = new Roadside();
+	estradaborda->setPosition(0.0, 0.0, 0.0);
 
 }
 
