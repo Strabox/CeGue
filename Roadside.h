@@ -14,7 +14,8 @@ public:
 		glTranslatef(vector->getX(), vector->getY(), vector->getZ());
 
 		glPushMatrix();
-		glColor3f(0.5, 0.5, 0.5);
+		glTranslatef(0.0, 0.0, 0.0);
+		glColor3f(0.0, 0.25, 0.0);
 		glutSolidCube(1.0);
 		glPopMatrix();
 

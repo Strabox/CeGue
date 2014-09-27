@@ -21,7 +21,7 @@ void display(void)
 	glLoadIdentity();
 
 	// Rotate when user changes rotate_x and rotate_y
-	glRotatef(rotate_x, 0.0, 0.0, 1.0);
+	glRotatef(rotate_x, 1.0, 0.0, 0.0);
 	glRotatef(rotate_y, 0.0, 1.0, 0.0);
 	/*  draw white polygon (rectangle) with corners at
 	*  (0.25, 0.25, 0.0) and (0.75, 0.75, 0.0)
@@ -146,7 +146,7 @@ void init(void)
 	/*  initialize viewing values  */
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(VPORTLEFT, VPORTRIGHT, VPORTBOTTOM, VPORTTOP, 3.0, -3.0);
+	glOrtho(VPORTLEFT, VPORTRIGHT, VPORTBOTTOM, VPORTTOP, 5.0, -5.0);
 	sapo = new Frog();
 	sapo->setPosition(0.0, 0.0, 0.0);
 	sapo->setZRotation(0.0);
