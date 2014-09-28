@@ -1,5 +1,5 @@
-#ifndef DYNAMIC_OBJECT_H
-#define DYNAMIC_OBJECT_H
+#ifndef DYNAMICOBJECT_H
+#define DYNAMICOBJECT_H
 
 #include <glut.h>
 #include "GameObject.h"

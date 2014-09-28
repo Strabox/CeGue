@@ -80,15 +80,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="lab0.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bus.h" />
     <ClInclude Include="DynamicObject.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Frog.h" />
+    <ClInclude Include="River.h" />
+    <ClInclude Include="Riverside.h" />
+    <ClInclude Include="Road.h" />
     <ClInclude Include="Roadside.h" />
     <ClInclude Include="StaticObject.h" />
+    <ClInclude Include="Timberlog.h" />
     <ClInclude Include="Vector3.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

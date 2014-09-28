@@ -18,6 +18,9 @@
     <ClCompile Include="lab0.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DynamicObject.h">
@@ -39,6 +42,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Roadside.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Road.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="River.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Riverside.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Timberlog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
