@@ -1,6 +1,6 @@
 #ifndef FROG_H
 #define FROG_H
-#include <glut.h>
+#include "glut.h"
 #include <math.h>
 #include "DynamicObject.h"
 

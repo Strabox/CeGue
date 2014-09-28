@@ -1,7 +1,7 @@
 #ifndef DYNAMICOBJECT_H
 #define DYNAMICOBJECT_H
 
-#include <glut.h>
+#include "glut.h"
 #include "GameObject.h"
 #include "Vector3.h"
 

@@ -1,6 +1,6 @@
 #ifndef BUS_H
 #define BUS_H
-#include <glut.h>
+#include "glut.h"
 #include "DynamicObject.h"
 
 

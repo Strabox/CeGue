@@ -1,14 +1,14 @@
-﻿Build started 28-09-2014 04:17:07.
-     1>Project "C:\Users\Miguel\Documents\Visual Studio 2013\Projects\CG\CG1\CG1.vcxproj" on node 2 (Build target(s)).
+﻿Build started 28/09/2014 18:25:23.
+     1>Project "C:\Users\Miguel\Documents\GitHub\CeGue\CG1.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Iglut\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GameManager.cpp
-         GameManager.cpp
-     1>c:\users\miguel\documents\visual studio 2013\projects\cg\cg1\gamemanager.cpp(149): error C2664: 'void glutDisplayFunc(void (__cdecl *)(void))' : cannot convert argument 1 from 'void (__thiscall GameManager::* )(void)' to 'void (__cdecl *)(void)'
-                 There is no context in which this conversion is possible
-     1>c:\users\miguel\documents\visual studio 2013\projects\cg\cg1\gamemanager.cpp(150): error C2664: 'void glutReshapeFunc(void (__cdecl *)(int,int))' : cannot convert argument 1 from 'void (__thiscall GameManager::* )(int,int)' to 'void (__cdecl *)(int,int)'
-                 There is no context in which this conversion is possible
-     1>Done Building Project "C:\Users\Miguel\Documents\Visual Studio 2013\Projects\CG\CG1\CG1.vcxproj" (Build target(s)) -- FAILED.
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\Miguel\Documents\GitHub\CeGue\glut\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp
+         Main.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"c:\users\miguel\documents\visual studio 2013\Projects\CG\Debug\CG1.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\Users\Miguel\Documents\GitHub\CeGue\glut\lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"c:\users\miguel\documents\visual studio 2013\Projects\CG\Debug\CG1.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"c:\users\miguel\documents\visual studio 2013\Projects\CG\Debug\CG1.lib" /MACHINE:X86 Debug\Main.obj
+         Debug\lab0.obj
+         CG1.vcxproj -> c:\users\miguel\documents\visual studio 2013\Projects\CG\Debug\CG1.exe
+     1>Done Building Project "C:\Users\Miguel\Documents\GitHub\CeGue\CG1.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:00.29
+Time Elapsed 00:00:00.81

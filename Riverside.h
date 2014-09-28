@@ -1,6 +1,6 @@
 #ifndef RIVERSIDE_H
 #define RIVERSIDE_H
-#include <glut.h>
+#include "glut.h"
 #include "StaticObject.h"
 
 

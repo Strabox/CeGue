@@ -1,6 +1,6 @@
 #ifndef ROADSIDE_H
 #define ROADSIDE_H
-#include <glut.h>
+#include "glut.h"
 #include "StaticObject.h"
 
 

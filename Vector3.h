@@ -1,6 +1,6 @@
 #ifndef VECTOR3_H
 #define VECTOR3_H
-#include <glut.h>
+#include "glut.h"
 
 class Vector3 {
 protected:

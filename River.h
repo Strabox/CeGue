@@ -1,6 +1,6 @@
 #ifndef RIVER_H
 #define RIVER_H
-#include <glut.h>
+#include "glut.h"
 #include "StaticObject.h"
 
 

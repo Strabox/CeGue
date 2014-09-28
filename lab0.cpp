@@ -1,4 +1,4 @@
-#include <glut.h>
+/*#include "glut.h"
 #include "Frog.h"
 #include "Roadside.h"
 #include "Road.h"
@@ -24,28 +24,28 @@ Timberlog* tronco;
 Bus* bus;
 
 void display(void)
-{
+{*/
 	/*  clear all pixels  */
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	// Reset transformations
-	glLoadIdentity();
-	glTranslatef(movex, movey, 0);
+	//glLoadIdentity();
+	//glTranslatef(movex, movey, 0);
 	// Rotate when user changes rotate_x and rotate_y
-	glRotatef(rotate_x, 1.0, 0.0, 0.0);
-	glRotatef(rotate_y, 0.0, 1.0, 0.0);
+	//glRotatef(rotate_x, 1.0, 0.0, 0.0);
+	//glRotatef(rotate_y, 0.0, 1.0, 0.0);
 	/*  draw white polygon (rectangle) with corners at
 	*  (0.25, 0.25, 0.0) and (0.75, 0.75, 0.0)
 	*/
 	/*glColor3f(0.0, 1.0, 0.0);
 	*/
-	estradaborda->draw();
+	/*estradaborda->draw();
 	sapo->draw();
 	estrada->draw();
 	rio->draw();
 	rioborda->draw();
 	tronco->draw();
 	bus->draw();
-	/*glBegin(GL_POLYGON);
+	*//*glBegin(GL_POLYGON);
 	glVertex3f(0.25, 0.25, 0.0);
 	glVertex3f(0.5, 0.25, 0.0);
 	glVertex3f(0.5, 0.75, 0.0);
@@ -94,10 +94,10 @@ void display(void)
 	*  start processing buffered OpenGL routines
 	*/
 
-	glFlush();
-}
+//	glFlush();
+//}
 
-void reshape(int w, int h) {
+/*void reshape(int w, int h) {
 	float xmin = VPORTLEFT, xmax = VPORTRIGHT, ymin = VPORTBOTTOM, ymax = VPORTTOP;
 	float ratio = (xmax - xmin) / (ymax - ymin);
 	float aspect = (float)w / h;
@@ -116,14 +116,14 @@ void reshape(int w, int h) {
 		float delta = ((xmax - xmin) / aspect - (ymax - ymin)) / 2;
 		glOrtho(xmin, xmax, ymin - delta, ymax + delta, 0.0, 3.0);
 	}
-}
+}*/
 
 /*void myKeyboardAction(unsigned char key, int x, int y){
 	game->keyBoardAction(key, _largura, _altura);
 	glutPostRedisplay();
 }
 */
-
+/*
 void specialKeys(int key, int x, int y) {
 
 	//  Right arrow - increase rotation by 5 degree
@@ -143,8 +143,8 @@ void specialKeys(int key, int x, int y) {
 	//  Request display update
 	glutPostRedisplay();
 
-}
-
+}*/
+/*
 void regularKeys(unsigned char key, int x, int y){
 	if ((key == 'a') || (key == 'A')) sapo->moveDown();
 	else if ((key == 'q') || (key == 'Q')) sapo->moveUp();
@@ -156,18 +156,18 @@ void regularKeys(unsigned char key, int x, int y){
 	else if ((key == '6')) movex-=0.5;
 	glutPostRedisplay();
 }
-
+*//*
 void init(void)
-{
+{*/
 	/*  select clearing (background) color       */
-	glClearColor(0.0, 0.0, 0.0, 0.0);
-	glEnable(GL_DEPTH_TEST);
+	//glClearColor(0.0, 0.0, 0.0, 0.0);
+	//glEnable(GL_DEPTH_TEST);
 	/*  initialize viewing values  */
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
+	//glMatrixMode(GL_PROJECTION);
+	//glLoadIdentity();
 	//glMatrixMode(GL_MODELVIEW);
 	//glLoadIdentity();
-	glOrtho(VPORTLEFT, VPORTRIGHT, VPORTBOTTOM, VPORTTOP, 0.0, 3.0);
+	/*glOrtho(VPORTLEFT, VPORTRIGHT, VPORTBOTTOM, VPORTTOP, 0.0, 3.0);
 	sapo = new Frog();
 	sapo->setPosition(0.0, 0.0, 0.0);
 	sapo->setZRotation(0.0);
@@ -186,7 +186,7 @@ void init(void)
 
 
 }
-
+*/
 /*
 *  Declare initial window size, position, and display mode
 *  (single buffer and RGBA).  Open window with "hello"

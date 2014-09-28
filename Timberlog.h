@@ -1,6 +1,6 @@
 #ifndef TIMBERLOG_H
 #define TIMBERLOG_H
-#include <glut.h>
+#include "glut.h"
 #include "DynamicObject.h"
 
 

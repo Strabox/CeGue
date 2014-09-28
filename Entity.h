@@ -1,6 +1,6 @@
 #ifndef ENTITY_H
 #define ENTITY_H
-#include <glut.h>
+#include "glut.h"
 #include "Vector3.h"
 
 
