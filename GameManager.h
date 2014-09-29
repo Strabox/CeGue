@@ -1,6 +1,7 @@
 #ifndef GAMEMANAGER_H
 #define GAMEMANAGER_H
 
+#include <stdio.h>
 #include <vector>
 //#include <stdlib.h> //Main.cpp trata do erro do glut redefinir o exit do stdlib.
 #include "glut.h"
@@ -63,7 +64,10 @@ public:
 		std::vector<GameObject* >::iterator iter = _game_objects.begin();
 		for (iter; iter != _game_objects.end(); iter++){
 			(*iter)->draw();
+			printf("item drawn\n");
+			printf("pos:%f", (*iter)->getPosition()->getX());
 		}
+		glFlush();
 	}
 	void reshape(int w, int h) { //arranjar esta coisa
 		float xmin = VPORTLEFT, xmax = VPORTRIGHT, ymin = VPORTBOTTOM, ymax = VPORTTOP;
@@ -120,8 +124,8 @@ public:
 		/*  initialize viewing values  */
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		//glMatrixMode(GL_MODELVIEW);
-		//glLoadIdentity();
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
 		glOrtho(VPORTLEFT, VPORTRIGHT, VPORTBOTTOM, VPORTTOP, 0.0, 3.0);
 	}
 };
