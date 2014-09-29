@@ -60,12 +60,10 @@ public:
 		glTranslatef(movex, movey, 0);
 		// Rotate when user changes rotate_x and rotate_y
 		glRotatef(rotate_x, 1.0, 0.0, 0.0);
-		glRotatef(rotate_y, 0.0, 1.0, 0.0);
+		glRotatef(rotate_y, 0.0, 0.0, 1.0);
 		std::vector<GameObject* >::iterator iter = _game_objects.begin();
 		for (iter; iter != _game_objects.end(); iter++){
 			(*iter)->draw();
-			printf("item drawn\n");
-			printf("pos:%f", (*iter)->getPosition()->getX());
 		}
 		glFlush();
 	}
@@ -73,21 +71,15 @@ public:
 		float xmin = VPORTLEFT, xmax = VPORTRIGHT, ymin = VPORTBOTTOM, ymax = VPORTTOP;
 		float ratio = (xmax - xmin) / (ymax - ymin);
 		float aspect = (float)w / h;
-		glViewport(0, 0, w, h);
+		if (aspect > ratio)
+			glViewport((w - h*ratio) / 2, 0, h*ratio, h);
+		else
+			glViewport(0, (h - w / ratio) / 2, w, w / ratio);
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
-		if (ratio < aspect)
-		{
-			float delta = ((ymax - ymin) * aspect - (xmax - xmin)) / 2;
-			glOrtho(xmin - delta, xmax + delta, ymin, ymax, 0.0, 3.0);
-		}
-		else
-		{
-			float delta = ((xmax - xmin) / aspect - (ymax - ymin)) / 2;
-			glOrtho(xmin, xmax, ymin - delta, ymax + delta, 0.0, 3.0);
-		}
+		glOrtho(xmin, xmax, ymin, ymax , 3.0, 0.0);
 	}
 
 	void keyPressed(unsigned char key, int x, int y){
@@ -122,11 +114,9 @@ public:
 		glClearColor(0.0, 0.0, 0.0, 0.0);
 		glEnable(GL_DEPTH_TEST);
 		/*  initialize viewing values  */
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
-		glOrtho(VPORTLEFT, VPORTRIGHT, VPORTBOTTOM, VPORTTOP, 0.0, 3.0);
+		glOrtho(VPORTLEFT, VPORTRIGHT, VPORTBOTTOM, VPORTTOP, 3.0, 0.0);
 	}
 };
 

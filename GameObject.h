@@ -2,12 +2,15 @@
 #define GAMEOBJECT_H
 #include "glut.h"
 #include "Entity.h"
+#include "stdio.h"
 
 class GameObject : public Entity {
 public:
 	GameObject() : Entity(){}
 	~GameObject(){}
-	void draw(){}
+	virtual void draw(){
+		printf("bitch ass ho'\n");
+	}
 	void update(double delta_t){}
 };
 

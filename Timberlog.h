@@ -9,7 +9,6 @@ public:
 	Timberlog(){}
 	~Timberlog(){}
 	void draw(){
-		printf("lol");
 		GLUquadricObj* quadric = gluNewQuadric(); //isto é preciso para o 
 		Vector3* vector = getPosition();
 		glPushMatrix();
