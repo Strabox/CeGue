@@ -61,6 +61,8 @@ public:
 		// Rotate when user changes rotate_x and rotate_y
 		glRotatef(rotate_x, 1.0, 0.0, 0.0);
 		glRotatef(rotate_y, 0.0, 0.0, 1.0);
+		glRotatef(180, 0.0, 1.0, 0.0); //enquanto a rotação estranha (glOrtho?) não estiver arranjada, isto deixa tudo em ordem.
+		glScalef(0.2, 0.2, 0.2);
 		std::vector<GameObject* >::iterator iter = _game_objects.begin();
 		for (iter; iter != _game_objects.end(); iter++){
 			(*iter)->draw();
@@ -77,16 +79,17 @@ public:
 			glViewport(0, (h - w / ratio) / 2, w, w / ratio);
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		glMatrixMode(GL_MODELVIEW);
-		glLoadIdentity();
+		//glMatrixMode(GL_MODELVIEW);
+		//glLoadIdentity();
 		glOrtho(xmin, xmax, ymin, ymax , 3.0, 0.0);
+		//glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
 	}
 
 	void keyPressed(unsigned char key, int x, int y){
 		if ((key == 'a') || (key == 'A')) frog->moveDown();
 		else if ((key == 'q') || (key == 'Q')) frog->moveUp();
-		else if ((key == 'p') || (key == 'P')) frog->moveRight();
-		else if ((key == 'o') || (key == 'O')) frog->moveLeft();
+		else if ((key == 'p') || (key == 'P')) frog->moveLeft(); // trocar estas duas caso necessário: quando se arranjar a ortho.
+		else if ((key == 'o') || (key == 'O')) frog->moveRight();
 		else if ((key == '2')) movey += 0.5;
 		else if ((key == '4')) movex += 0.5;
 		else if ((key == '8')) movey -= 0.5;
@@ -114,9 +117,11 @@ public:
 		glClearColor(0.0, 0.0, 0.0, 0.0);
 		glEnable(GL_DEPTH_TEST);
 		/*  initialize viewing values  */
-		glMatrixMode(GL_MODELVIEW);
+		//glMatrixMode(GL_MODELVIEW);
+		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 		glOrtho(VPORTLEFT, VPORTRIGHT, VPORTBOTTOM, VPORTTOP, 3.0, 0.0);
+		//glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
 	}
 };
 

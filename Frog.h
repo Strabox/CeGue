@@ -6,7 +6,7 @@
 
 class Frog : public DynamicObject {
 private:
-	double zRotation;
+	double zRotation = 0;
 public:
 	Frog() : DynamicObject() {}
 	~Frog(){}

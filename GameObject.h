@@ -9,7 +9,7 @@ public:
 	GameObject() : Entity(){}
 	~GameObject(){}
 	virtual void draw(){
-		printf("bitch ass ho'\n");
+		printf("An empty instance of GameObject was created.\n");
 	}
 	void update(double delta_t){}
 };
