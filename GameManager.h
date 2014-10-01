@@ -18,7 +18,7 @@
 #define VPORTRIGHT 5.0
 #define VPORTBOTTOM -2.0
 #define VPORTTOP 12.0
-
+#define FRAMESTOMOVE 10
 
 
 Frog* sapo; //sapo DUMMY
@@ -39,17 +39,29 @@ public:
 	double movex = 0;
 	double movey = 0;
 	Frog* frog;
+	int frogQ = 0, frogA = 0, frogO = 0, frogP = 0, frogFrames = 0;
 
 	GameManager(){}
 	~GameManager();
 
 	void addGameObject(GameObject* obj){ _game_objects.push_back(obj); }
 	void setFrog(Frog* f){ frog = f; }
-	void update() {
+	
+	void update(int useless) {
 		std::vector<GameObject* >::iterator iter = _game_objects.begin();
+		if (frogFrames == 0){
+			if (frogQ){ frog->moveUp(); frogQ = 0;}
+			else if (frogA){ frog->moveDown(); frogA = 0; }
+			else if (frogO){ frog->moveRight(); frogO = 0; }
+			else if (frogP){ frog->moveLeft(); frogP = 0; }
+		}
+		frogFrames = (++frogFrames) % FRAMESTOMOVE;
+
 		for (iter; iter != _game_objects.end(); iter++){
 			//do things with positions
 		}
+
+		display();
 	};
 
 	void display(){ //vem do lab0.cpp
@@ -57,12 +69,14 @@ public:
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		// Reset transformations
 		glLoadIdentity();
-		glTranslatef(movex, movey, 0);
+		glScalef(0.2, 0.2 / 1.4, 0.2);
+		glTranslatef(movex-0.5, movey-6, 0);
 		// Rotate when user changes rotate_x and rotate_y
+		
 		glRotatef(rotate_x, 1.0, 0.0, 0.0);
 		glRotatef(rotate_y, 0.0, 0.0, 1.0);
 		glRotatef(180, 0.0, 1.0, 0.0); //enquanto a rotação estranha (glOrtho?) não estiver arranjada, isto deixa tudo em ordem.
-		glScalef(0.2, 0.2, 0.2);
+		
 		std::vector<GameObject* >::iterator iter = _game_objects.begin();
 		for (iter; iter != _game_objects.end(); iter++){
 			(*iter)->draw();
@@ -86,15 +100,15 @@ public:
 	}
 
 	void keyPressed(unsigned char key, int x, int y){
-		if ((key == 'a') || (key == 'A')) frog->moveDown();
-		else if ((key == 'q') || (key == 'Q')) frog->moveUp();
-		else if ((key == 'p') || (key == 'P')) frog->moveLeft(); // trocar estas duas caso necessário: quando se arranjar a ortho.
-		else if ((key == 'o') || (key == 'O')) frog->moveRight();
+		if ((key == 'a') || (key == 'A')) frogA = 1;
+		else if ((key == 'q') || (key == 'Q')) frogQ = 1;
+		else if ((key == 'p') || (key == 'P')) frogP = 1; // trocar estas duas caso necessário: quando se arranjar a ortho.
+		else if ((key == 'o') || (key == 'O')) frogO = 1;
 		else if ((key == '2')) movey += 0.5;
 		else if ((key == '4')) movex += 0.5;
 		else if ((key == '8')) movey -= 0.5;
 		else if ((key == '6')) movex -= 0.5;
-		glutPostRedisplay();
+		//glutPostRedisplay();
 	}
 
 	void specialKeyPressed(int key, int x, int y){
@@ -109,7 +123,7 @@ public:
 		else if (key == GLUT_KEY_DOWN)
 			rotate_x -= 5;
 		//  Request display update
-		glutPostRedisplay();
+		//glutPostRedisplay();
 	}
 
 	void init(void){

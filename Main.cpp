@@ -9,6 +9,8 @@
 #include "Timberlog.h"
 #include "Bus.h"
 
+#define MILISECONDS 17
+
 GameManager* man;
 
 void regularKeys(unsigned char key, int x, int y){
@@ -22,6 +24,11 @@ void specialKeys(int key, int x, int y) {
 void displayForward(){ man->display(); }
 
 void reshapeForward(int w, int h){ man->reshape(w, h); }
+
+void updateForward(int useless){
+	man->update(useless);
+	glutTimerFunc(MILISECONDS, updateForward, 0);
+}
 
 void spawnWorldObjects(){
 	double i = 0, j = 0;
@@ -119,7 +126,7 @@ int main(int argc, char** argv){
 	/*Bus* bus = new Bus();
 	bus->setPosition(0.0, -1.0, 0.0);
 	man->addGameObject(bus);*/
-
+	glutTimerFunc(17, updateForward, 0);
 	glutMainLoop();
 	return 0;
 }
