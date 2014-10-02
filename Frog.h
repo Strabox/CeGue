@@ -30,9 +30,10 @@ public:
 	void draw(){
 		Vector3* vector = getPosition();
 		glPushMatrix();
-		glTranslatef(vector->getX(), vector->getY(), vector->getZ());
+		glTranslatef(vector->getX(), vector->getY(), vector->getZ()-0.25);
 		glRotatef(zRotation, 0, 0, 1.0);
-		
+		glScalef(0.5, 0.5, 0.5);
+
 		glPushMatrix();		//front leg
 		glColor3f(0.0, 1.0, 0.0);
 		glTranslatef(0.3, 0.2, -0.45);
