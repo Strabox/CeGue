@@ -1,3 +1,10 @@
+/*
+VER MAIN.cpp e GAMEMANAGER.h
+
+*/
+
+
+
 /*#include "glut.h"
 #include "Frog.h"
 #include "Roadside.h"

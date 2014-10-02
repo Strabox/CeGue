@@ -18,7 +18,7 @@
 #define VPORTRIGHT 5.0
 #define VPORTBOTTOM -2.0
 #define VPORTTOP 12.0
-#define FRAMESTOMOVE 10
+#define FRAMESTOMOVE 6
 
 
 Frog* sapo; //sapo DUMMY
@@ -69,12 +69,13 @@ public:
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		// Reset transformations
 		glLoadIdentity();
-		glScalef(0.2, 0.2 / 1.4, 0.2);
-		glTranslatef(movex-0.5, movey-6, 0);
-		// Rotate when user changes rotate_x and rotate_y
-		
+		glScalef(2.0/11.0, 0.2 / 1.4, 2.0 / 11.0);
 		glRotatef(rotate_x, 1.0, 0.0, 0.0);
 		glRotatef(rotate_y, 0.0, 0.0, 1.0);
+		glTranslatef(movex, movey-6, 0);
+		// Rotate when user changes rotate_x and rotate_y
+		
+		
 		glRotatef(180, 0.0, 1.0, 0.0); //enquanto a rotação estranha (glOrtho?) não estiver arranjada, isto deixa tudo em ordem.
 		
 		std::vector<GameObject* >::iterator iter = _game_objects.begin();

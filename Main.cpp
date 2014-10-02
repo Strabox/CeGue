@@ -8,6 +8,7 @@
 #include "River.h"
 #include "Timberlog.h"
 #include "Bus.h"
+#include "Car.h"
 
 #define MILISECONDS 17
 
@@ -33,26 +34,26 @@ void updateForward(int useless){
 void spawnWorldObjects(){
 	double i = 0, j = 0;
 	Roadside* estradaborda;
-	for (i = 0.0; i < 10.0; i++){
+	for (i = 0.0; i < 11.0; i++){
 		estradaborda = new Roadside();
 		estradaborda->setPosition(-5.0 + i, 0.0, -1.0);
 		man->addGameObject(estradaborda);
 	}
 	Road* estrada;
-	for (i = 0.0; i < 10.0; i++){
+	for (i = 0.0; i < 11.0; i++){
 		for (j = 0.0; j < 5.0; j++){
 			estrada = new Road();
 			estrada->setPosition(-5.0 + i, 1.0 + j, -1.0);
 			man->addGameObject(estrada);
 		}
 	}
-	for (i = 0.0; i < 10.0; i++){
+	for (i = 0.0; i < 11.0; i++){
 		estradaborda = new Roadside();
 		estradaborda->setPosition(-5.0 + i, 6.0, -1.0);
 		man->addGameObject(estradaborda);
 	}
 	River* rio;
-	for (i = 0.0; i < 10.0; i++){
+	for (i = 0.0; i < 11.0; i++){
 		for (j = 0.0; j < 5.0; j++){
 			rio = new River();
 			rio->setPosition(-5.0 + i, 7.0 + j, -1.0);
@@ -60,7 +61,7 @@ void spawnWorldObjects(){
 		}
 	}
 	Riverside* rioborda;
-	for (i = 0.0; i < 10.0; i++){
+	for (i = 0.0; i < 11.0; i++){
 		rioborda = new Riverside();
 		rioborda->setPosition(-5.0 + i, 12.0, -1.0);
 		man->addGameObject(rioborda);
@@ -77,8 +78,12 @@ void spawnWorldObjects(){
 	bus->setPosition(-1.0, 2.0, 0.0);
 	man->addGameObject(bus);
 	bus = new Bus();
-	bus->setPosition(2.0, 4.0, 0.0);
+	bus->setPosition(4.0, 4.0, 0.0);
 	man->addGameObject(bus);
+	Car* car;
+	car = new Car();
+	car->setPosition(2.0, 2.0, 0.0);
+	man->addGameObject(car);
 }
 
 int main(int argc, char** argv){
