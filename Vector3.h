@@ -18,7 +18,17 @@ public:
 	void setY(double y){ _y = y; }
 	void setZ(double z){ _z = z; }
 	void set(double x, double y, double z){ _x = x; _y = y; _z = z; }
-	
+	void addVector3(Vector3* toAdd){
+		_x += toAdd->getX();
+		_y += toAdd->getY();
+		_z += toAdd->getZ();
+	}
+	void multiplyScale(double scale){
+		_x *= scale;
+		_y *= scale;
+		_z *= scale;
+	}
+
 };
 
 #endif

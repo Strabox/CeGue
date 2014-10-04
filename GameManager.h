@@ -34,14 +34,24 @@ protected:
 	std::vector < GameObject* > _game_objects;
 public:
 
-	int rotate_y = 0; //usado para rodar a câmara e assim ver se os modelos estão em ordem
-	int rotate_x = 0;
-	double movex = 0;
-	double movey = 0;
+	int rotate_y; //usado para rodar a câmara e assim ver se os modelos estão em ordem
+	int rotate_x;
+	double movex;
+	double movey;
 	Frog* frog;
-	int frogQ = 0, frogA = 0, frogO = 0, frogP = 0, frogFrames = 0;
+	int frogQ, frogA, frogO, frogP, frogFrames;
 
-	GameManager(){}
+	GameManager(){
+		rotate_x = 0;
+		rotate_y = 0;
+		movex = 0;
+		movey = 0;
+		frogQ = 0;
+		frogA = 0;
+		frogO = 0;
+		frogP = 0;
+		frogFrames = 0;
+	}
 	~GameManager();
 
 	void addGameObject(GameObject* obj){ _game_objects.push_back(obj); }
@@ -52,8 +62,8 @@ public:
 		if (frogFrames == 0){
 			if (frogQ){ frog->moveUp(); frogQ = 0;}
 			else if (frogA){ frog->moveDown(); frogA = 0; }
-			else if (frogO){ frog->moveRight(); frogO = 0; }
-			else if (frogP){ frog->moveLeft(); frogP = 0; }
+			else if (frogO){ frog->moveLeft(); frogO = 0; }
+			else if (frogP){ frog->moveRight(); frogP = 0; }
 		}
 		frogFrames = (++frogFrames) % FRAMESTOMOVE;
 
@@ -69,7 +79,7 @@ public:
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		// Reset transformations
 		glLoadIdentity();
-		glScalef(2.0/11.0, 0.2 / 1.4, 2.0 / 11.0);
+		glScalef(-2.0/11.0, 0.2 / 1.4, 2.0 / 11.0);
 		glRotatef(rotate_x, 1.0, 0.0, 0.0);
 		glRotatef(rotate_y, 0.0, 0.0, 1.0);
 		glTranslatef(movex, movey-6, 0);

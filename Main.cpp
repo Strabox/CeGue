@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <time.h>
 #include "glut.h"
 #include "GameManager.h"
 #include "Frog.h"
@@ -9,6 +10,7 @@
 #include "Timberlog.h"
 #include "Bus.h"
 #include "Car.h"
+#include "Turtle.h"
 
 #define MILISECONDS 17
 
@@ -55,7 +57,7 @@ void spawnWorldObjects(){
 	River* rio;
 	for (i = 0.0; i < 11.0; i++){
 		for (j = 0.0; j < 5.0; j++){
-			rio = new River();
+			rio = new River(rand() );						// RANDOM
 			rio->setPosition(-5.0 + i, 7.0 + j, -1.0);
 			man->addGameObject(rio);
 		}
@@ -84,9 +86,14 @@ void spawnWorldObjects(){
 	car = new Car();
 	car->setPosition(2.0, 2.0, 0.0);
 	man->addGameObject(car);
+	Turtle* turtle;
+	turtle = new Turtle();
+	turtle->setPosition(-2.0, 10.0, -1.0);
+	man->addGameObject(turtle);
 }
 
 int main(int argc, char** argv){
+	srand(time(NULL));
 	man = new GameManager();
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);

@@ -4,6 +4,11 @@
 #include <math.h>
 #include "DynamicObject.h"
 
+double myRound(double x)
+{
+	return x >= 0.0f ? floorf(x + 0.5f) : ceilf(x - 0.5f);
+}
+
 class Frog : public DynamicObject {
 private:
 	double zRotation = 0;
@@ -13,19 +18,19 @@ public:
 	void setZRotation(double z){ zRotation = z; }
 	void moveDown(){
 		setZRotation(180.0);
-		getPosition()->setY(round(getPosition()->getY() - 1.0));
+		getPosition()->addVector3(new Vector3(0.0, -1.0, 0.0));
 	}
 	void moveUp(){
 		setZRotation(0.0);
-		getPosition()->setY(round(getPosition()->getY() + 1.0));
+		getPosition()->addVector3(new Vector3(0.0, 1.0, 0.0));
 	}
 	void moveLeft(){
 		setZRotation(90.0);
-		getPosition()->setX(round(getPosition()->getX() - 1.0));
+		getPosition()->addVector3(new Vector3(-1.0, 0.0, 0.0));
 	}
 	void moveRight(){
 		setZRotation(-90.0);
-		getPosition()->setX(round(getPosition()->getX() + 1.0));
+		getPosition()->addVector3(new Vector3(+1.0, 0.0, 0.0));
 	}
 	void draw(){
 		Vector3* vector = getPosition();

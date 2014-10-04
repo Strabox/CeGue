@@ -97,6 +97,7 @@
     <ClInclude Include="Roadside.h" />
     <ClInclude Include="StaticObject.h" />
     <ClInclude Include="Timberlog.h" />
+    <ClInclude Include="Turtle.h" />
     <ClInclude Include="Vector3.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
