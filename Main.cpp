@@ -24,16 +24,16 @@ void specialKeys(int key, int x, int y) {
 	man->specialKeyPressed(key, x, y);
 }
 
-void displayForward(){ man->display(); }
+void displayForward(){ man->display(); }	// openGL + OOP = trouble. esta funcao reencaminha a chamada à display tornado possível a sua chamada.
 
-void reshapeForward(int w, int h){ man->reshape(w, h); }
+void reshapeForward(int w, int h){ man->reshape(w, h); }	// openGL + OOP = trouble. esta funcao reencaminha a chamada à reshape tornado possível a sua chamada.
 
-void updateForward(int useless){
-	man->update(useless);
+void updateForward(int useless){	// chama o update do gamemanager (que chama a display) a cada 17ms (quase 60fps).
+	man->update(useless);			// o argumento useless é inuntil, so serve para se conseguir invocar a update.
 	glutTimerFunc(MILISECONDS, updateForward, 0);
 }
 
-void spawnWorldObjects(){
+void spawnWorldObjects(){ // o mapa é 11 de largura por 13 de altura
 	double i = 0, j = 0;
 	Roadside* estradaborda;
 	for (i = 0.0; i < 11.0; i++){
@@ -57,8 +57,8 @@ void spawnWorldObjects(){
 	River* rio;
 	for (i = 0.0; i < 11.0; i++){
 		for (j = 0.0; j < 5.0; j++){
-			rio = new River(rand() );						// RANDOM
-			rio->setPosition(-5.0 + i, 7.0 + j, -1.0);
+			rio = new River( i+j );						// isto cria a textura de ondinhas todas nilas
+			rio->setPosition(-5.0 + i, 7.0 + j, -1.0);	// para remover as ondas, tirar o 'i+j' e ir a classe River tirar tudo o que envolve 'colorId'.
 			man->addGameObject(rio);
 		}
 	}
@@ -97,7 +97,7 @@ int main(int argc, char** argv){
 	man = new GameManager();
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-	glutInitWindowSize(400, 560);
+	glutInitWindowSize(440, 520);
 	glutInitWindowPosition(100, 100);
 	glutCreateWindow("CG Frogger - grupo 18");
 	man->init();
@@ -114,31 +114,7 @@ int main(int argc, char** argv){
 	frog->setZRotation(0.0);
 	man->setFrog(frog);
 	man->addGameObject(frog);
-	//borda da estrada
-	/*Roadside* estradaborda = new Roadside();
-	estradaborda->setPosition(0.0, 0.0, -1.0);
-	man->addGameObject(estradaborda);*/
-	//estrada
-	/*Road* estrada = new Road();
-	estrada->setPosition(0.0, 1.0, -1.0);
-	man->addGameObject(estrada);*/
-	//rio
-	/*River* rio = new River();
-	rio->setPosition(1.0, 0.0, -1.0);
-	man->addGameObject(rio);*/
-	//borda do rio
-	/*Riverside* rioborda = new Riverside();
-	rioborda->setPosition(1.0, 1.0, -1.0);
-	man->addGameObject(rioborda);*/
-	//tronco
-	/*Timberlog* tronco = new Timberlog();
-	tronco->setPosition(0.0, -1.0, -1.0);
-	man->addGameObject(tronco);*/
-	//autocarro
-	/*Bus* bus = new Bus();
-	bus->setPosition(0.0, -1.0, 0.0);
-	man->addGameObject(bus);*/
-	glutTimerFunc(17, updateForward, 0);
+	glutTimerFunc(17, updateForward, 0); // inicia o ciclo de chamada da update
 	glutMainLoop();
 	return 0;
 }

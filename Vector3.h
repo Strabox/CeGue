@@ -28,6 +28,13 @@ public:
 		_y *= scale;
 		_z *= scale;
 	}
+	Vector3* makeCopy(Vector3* orig){
+		Vector3* copy = new Vector3();
+		copy->setX(orig->getX());
+		copy->setY(orig->getY());
+		copy->setZ(orig->getZ());
+		return copy;
+	}
 
 };
 
