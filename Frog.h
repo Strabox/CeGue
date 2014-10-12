@@ -11,9 +11,9 @@ double myRound(double x)
 
 class Frog : public DynamicObject {
 private:
-	double zRotation = 0;
+	double zRotation;
 public:
-	Frog() : DynamicObject() {}
+	Frog() : DynamicObject() {zRotation=0;}
 	~Frog(){}
 	void setZRotation(double z){ zRotation = z; }
 	void moveDown(){

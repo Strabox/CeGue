@@ -14,12 +14,12 @@
 #include "Timberlog.h"
 #include "Bus.h"
 
-#define VPORTRIGHT -5.5
-#define VPORTLEFT 5.5
-#define VPORTBOTTOM -1.5
-#define VPORTTOP 11.5
-#define VPORTFAR -11.5
-#define VPORTNEAR 11.5
+#define DRAWRIGHT -5.5
+#define DRAWLEFT 5.5
+#define DRAWBOTTOM -1.5
+#define DRAWTOP 11.5
+#define DRAWFAR -11.5
+#define DRAWNEAR 11.5
 #define FRAMESTOMOVE 6
 
 
@@ -83,11 +83,15 @@ public:
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		// reset À posição do referencial e redefinição da posição da câmara e rotação do mapa
 		glLoadIdentity();
-		glOrtho(VPORTLEFT, VPORTRIGHT, VPORTBOTTOM, VPORTTOP, VPORTNEAR, VPORTFAR);
+		glOrtho(DRAWLEFT, DRAWRIGHT, DRAWBOTTOM, DRAWTOP, DRAWNEAR, DRAWFAR);
 		glTranslatef(movex, movey - 1.0, 0);
+		
+		/* rotacao a volta do centro do mapa */
+		glTranslatef(movex, movey + 6.5, 0);
 		glRotatef(rotate_x, 1.0, 0.0, 0.0);
 		glRotatef(rotate_y, 0.0, 0.0, 1.0);
-		// Rotate when user changes rotate_x and rotate_y
+		glTranslatef(movex, movey - 6.5, 0);
+		
 		
 		printf("frame number: %d\n", ++frame);
 		glRotatef(180, 0.0, 1.0, 0.0);
@@ -99,16 +103,19 @@ public:
 		glFlush();
 	}
 	void reshape(int w, int h) { //segue sugestões dos slides mas muda algumas coisas (glOrtho em vez de gluOrtho2d) e os limites da janela
-		float xmin = VPORTLEFT, xmax = VPORTRIGHT, ymin = VPORTBOTTOM, ymax = VPORTTOP;
+		double xmax = DRAWLEFT;
+		double xmin = DRAWRIGHT;
+		double ymin = DRAWBOTTOM;
+		double ymax = DRAWTOP;
 		float ratio = (xmax - xmin) / (ymax - ymin);
-		float aspect = (float)w / h;
-		if (aspect > ratio)
-			glViewport((w - h*ratio) / 2, 0, h*ratio, h);
+		float aspect = (float) w / h;
+		if ( aspect > ratio )
+			glViewport( (w-h*ratio)/2, 0, h*ratio, h);
 		else
-			glViewport(0, (h - w / ratio) / 2, w, w / ratio);
+			glViewport( 0, (h-w/ratio)/2, w, w/ratio);
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		glOrtho(xmin, xmax, ymin, ymax, VPORTNEAR, VPORTFAR);
+		glOrtho(xmin, xmax, ymin, ymax, DRAWNEAR, DRAWFAR);
 	}
 
 	void keyPressed(unsigned char key, int x, int y){
@@ -142,7 +149,7 @@ public:
 		/*  initialize viewing values  */
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		glOrtho(VPORTLEFT, VPORTRIGHT, VPORTBOTTOM, VPORTTOP, 3.0, 0.0);
+		glOrtho(DRAWLEFT, DRAWRIGHT, DRAWBOTTOM, DRAWTOP, DRAWNEAR, DRAWFAR);
 	}
 };
 
