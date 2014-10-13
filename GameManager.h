@@ -23,15 +23,16 @@
 #define FRAMESTOMOVE 6
 
 
-Frog* sapo; //sapo DUMMY
+/*Frog* sapo; //sapo DUMMY
 Roadside* estradaborda; //estradaborda DUMMY
 Road* estrada;
 River* rio;
 Riverside* rioborda; //tudo DUMMIES
 Timberlog* tronco;
-Bus* bus;
-int frame=0;
-
+Bus* bus;*/
+int frame=0; //para fazer contagem dos frames na consola
+int total_time = 0;
+int delta_time;
 
 class GameManager {
 protected:
@@ -71,8 +72,11 @@ public:
 		}
 		frogFrames = (++frogFrames) % FRAMESTOMOVE; //o sapo só deve mover-se a cada conjunto de frames (para não ser demasiado rápido o movimento)
 
+		delta_time = glutGet(GLUT_ELAPSED_TIME) - total_time;
+		total_time += delta_time;
+
 		for (iter; iter != _game_objects.end(); iter++){
-			// fazer coisas com os objectos
+			(*iter)->update(delta_time);
 		}
 
 		display();
@@ -93,7 +97,7 @@ public:
 		glTranslatef(movex, movey - 6.5, 0);
 		
 		
-		printf("frame number: %d\n", ++frame);
+		printf("frame number: %d\ntime:%d\n", ++frame, glutGet(GLUT_ELAPSED_TIME));
 		glRotatef(180, 0.0, 1.0, 0.0);
 		
 		std::vector<GameObject* >::iterator iter = _game_objects.begin();
@@ -118,7 +122,7 @@ public:
 		glOrtho(xmin, xmax, ymin, ymax, DRAWNEAR, DRAWFAR);
 	}
 
-	void keyPressed(unsigned char key, int x, int y){
+	void keyPressed(unsigned char key, int x, int y, bool down){
 		if ((key == 'a') || (key == 'A')) frogA = 1;
 		else if ((key == 'q') || (key == 'Q')) frogQ = 1;
 		else if ((key == 'p') || (key == 'P')) frogP = 1;

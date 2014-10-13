@@ -11,7 +11,7 @@ public:
 	virtual void draw(){
 		printf("An empty instance of GameObject was created.\n");
 	}
-	void update(double delta_t){}
+	virtual void update(int delta_t){ printf("static %f %f %f\n", getPosition()->getX(), getPosition()->getY(), getPosition()->getX()); }
 };
 
 #endif
