@@ -6,7 +6,7 @@
 
 class Timberlog : public DynamicObject {
 public:
-	Timberlog(){}
+	Timberlog() : DynamicObject(){}
 	~Timberlog(){}
 	void draw(){
 		GLUquadricObj* quadric = gluNewQuadric(); //isto é preciso para o 

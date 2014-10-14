@@ -4,6 +4,8 @@
 #include <math.h>
 #include "DynamicObject.h"
 
+#define FROG_SPEED_MODULE 4.0
+
 double myRound(double x)
 {
 	return x >= 0.0f ? floorf(x + 0.5f) : ceilf(x - 0.5f);
@@ -12,25 +14,48 @@ double myRound(double x)
 class Frog : public DynamicObject {
 private:
 	double zRotation;
+	Vector3 *platformSpeed;
 public:
-	Frog() : DynamicObject() {zRotation=0;}
+	Frog() : DynamicObject() {
+		zRotation=0;
+		platformSpeed = new Vector3(0.0, 0.0, 0.0);
+	}
 	~Frog(){}
 	void setZRotation(double z){ zRotation = z; }
 	void moveDown(){
 		setZRotation(180.0);
-		getPosition()->addVector3(new Vector3(0.0, -1.0, 0.0));
+		//getPosition()->addVector3(new Vector3(0.0, -1.0, 0.0));
+		Vector3* new_speed = new Vector3(0.0, 0.0, 0.0);
+		new_speed->addVector3(platformSpeed);
+		new_speed->addVector3(new Vector3(0.0, -FROG_SPEED_MODULE, 0.0));
+		setSpeed(new_speed);
 	}
 	void moveUp(){
 		setZRotation(0.0);
-		getPosition()->addVector3(new Vector3(0.0, 1.0, 0.0));
+		//getPosition()->addVector3(new Vector3(0.0, 1.0, 0.0));
+		Vector3* new_speed = new Vector3(0.0, 0.0, 0.0);
+		new_speed->addVector3(platformSpeed);
+		new_speed->addVector3(new Vector3(0.0, FROG_SPEED_MODULE, 0.0));
+		setSpeed(new_speed);
 	}
 	void moveLeft(){
 		setZRotation(90.0);
-		getPosition()->addVector3(new Vector3(-1.0, 0.0, 0.0));
+		//getPosition()->addVector3(new Vector3(-1.0, 0.0, 0.0));
+		Vector3* new_speed = new Vector3(0.0, 0.0, 0.0);
+		new_speed->addVector3(platformSpeed);
+		new_speed->addVector3(new Vector3(-FROG_SPEED_MODULE, 0.0, 0.0));
+		setSpeed(new_speed);
 	}
 	void moveRight(){
 		setZRotation(-90.0);
-		getPosition()->addVector3(new Vector3(+1.0, 0.0, 0.0));
+		//getPosition()->addVector3(new Vector3(+1.0, 0.0, 0.0));
+		Vector3* new_speed = new Vector3(0.0, 0.0, 0.0);
+		new_speed->addVector3(platformSpeed);
+		new_speed->addVector3(new Vector3(FROG_SPEED_MODULE, 0.0, 0.0));
+		setSpeed(new_speed);
+	}
+	void stopMovement(){
+		setSpeed(platformSpeed);
 	}
 	void draw(){
 		Vector3* vector = getPosition();

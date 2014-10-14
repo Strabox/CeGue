@@ -64,13 +64,14 @@ public:
 	
 	void update(int useless) {
 		std::vector<GameObject* >::iterator iter = _game_objects.begin();
-		if (frogFrames == 0){
-			if (frogQ){ frog->moveUp(); frogQ = 0;}
-			else if (frogA){ frog->moveDown(); frogA = 0; }
-			else if (frogO){ frog->moveLeft(); frogO = 0; }
-			else if (frogP){ frog->moveRight(); frogP = 0; }
-		}
-		frogFrames = (++frogFrames) % FRAMESTOMOVE; //o sapo só deve mover-se a cada conjunto de frames (para não ser demasiado rápido o movimento)
+		//if (frogFrames == 0){
+			if (frogQ){ frog->moveUp(); frogA = 0; frogO = 0; frogP = 0; }
+			else if (frogA){ frog->moveDown(); frogQ = 0; frogO = 0; frogP = 0; }
+			else if (frogO){ frog->moveLeft(); frogQ = 0; frogA = 0; frogP = 0; }
+			else if (frogP){ frog->moveRight(); frogQ = 0; frogA = 0; frogO = 0; }
+			else{ frog->stopMovement();}
+		//}
+		//frogFrames = (++frogFrames) % FRAMESTOMOVE; //o sapo só deve mover-se a cada conjunto de frames (para não ser demasiado rápido o movimento)
 
 		delta_time = glutGet(GLUT_ELAPSED_TIME) - total_time;
 		total_time += delta_time;
@@ -123,14 +124,23 @@ public:
 	}
 
 	void keyPressed(unsigned char key, int x, int y, bool down){
-		if ((key == 'a') || (key == 'A')) frogA = 1;
-		else if ((key == 'q') || (key == 'Q')) frogQ = 1;
-		else if ((key == 'p') || (key == 'P')) frogP = 1;
-		else if ((key == 'o') || (key == 'O')) frogO = 1;
-		else if ((key == '2')) movey += 0.5;
-		else if ((key == '4')) movex -= 0.5;
-		else if ((key == '8')) movey -= 0.5;
-		else if ((key == '6')) movex += 0.5;
+		if (down) {
+			if ((key == '2')) movey += 0.5;
+			else if ((key == '4')) movex -= 0.5;
+			else if ((key == '8')) movey -= 0.5;
+			else if ((key == '6')) movex += 0.5;
+			else if ((key == 'a') || (key == 'A')) frogA = 1;
+			else if ((key == 'q') || (key == 'Q')) frogQ = 1;
+			else if ((key == 'p') || (key == 'P')) frogP = 1;
+			else if ((key == 'o') || (key == 'O')) frogO = 1;
+		}
+		else{
+			if ((key == 'a') || (key == 'A') ||
+				(key == 'q') || (key == 'Q') ||
+				(key == 'p') || (key == 'P') ||
+				(key == 'o') || (key == 'O'))
+					frogQ = 0; frogA = 0; frogO = 0; frogP = 0;
+		}
 	}
 
 	void specialKeyPressed(int key, int x, int y){

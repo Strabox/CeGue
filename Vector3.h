@@ -30,7 +30,6 @@ public:
 	}
 	Vector3* makeCopy(){
 		Vector3* copy = new Vector3();
-		printf("begin makecopy X %f\n", getX());
 		copy->setX(getX());
 		copy->setY(getY());
 		copy->setZ(getZ());

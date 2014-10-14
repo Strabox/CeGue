@@ -74,33 +74,33 @@ void spawnWorldObjects(){ // o mapa é 11 de largura por 13 de altura
 	Timberlog* tronco;
 	tronco = new Timberlog();
 	tronco->setPosition(-4.0, 9.0, -1.0);
-	frog->setSpeed(-0.50, 0.0, 0.0);
+	tronco->setSpeed(-0.50, 0.0, 0.0);
 	man->addGameObject(tronco);
 	tronco = new Timberlog();
 	tronco->setPosition(-1.0, 11.0, -1.0);
-	frog->setSpeed(-0.5, 0.0, 0.0); 
+	tronco->setSpeed(-0.5, 0.0, 0.0); 
 	man->addGameObject(tronco);
 	
 	Bus* bus;
 	bus = new Bus();
 	bus->setPosition(-1.0, 2.0, 0.0);
-	frog->setSpeed(0.0, 0.0, 0.0);
+	bus->setSpeed(-0.50, 0.0, 0.0);
 	man->addGameObject(bus);
 	bus = new Bus();
 	bus->setPosition(4.0, 4.0, 0.0);
-	frog->setSpeed(-0.5, 0.0, 0.0);
+	bus->setSpeed(-0.5, 0.0, 0.0);
 	man->addGameObject(bus);
 	
 	Car* car;
 	car = new Car();
 	car->setPosition(2.0, 2.0, 0.0);
-	frog->setSpeed(-0.50, 0.0, 0.0);
+	car->setSpeed(-0.50, 0.0, 0.0);
 	man->addGameObject(car);
 	
 	Turtle* turtle;
 	turtle = new Turtle();
 	turtle->setPosition(-2.0, 10.0, -1.0);
-	frog->setSpeed(-0.50, 0.0, 0.0);
+	turtle->setSpeed(-0.50, 0.0, 0.0);
 	man->addGameObject(turtle);
 }
 
