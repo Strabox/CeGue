@@ -32,8 +32,9 @@ void displayForward(){ man->display(); }	// openGL + OOP = trouble. esta funcao 
 
 void reshapeForward(int w, int h){ man->reshape(w, h); }	// openGL + OOP = trouble. esta funcao reencaminha a chamada à reshape tornado possível a sua chamada.
 
-void updateForward(int useless){	// chama o update do gamemanager (que chama a display) a cada 17ms (quase 60fps).
+void updateForward(int useless){	// chama o update do gamemanager a cada 17ms (quase 60fps) idealmente.
 	man->update(useless);			// o argumento useless é inuntil, so serve para se conseguir invocar a update.
+	man->display();					// chama a display depois da update
 	glutTimerFunc(MILISECONDS, updateForward, 0);
 }
 
@@ -74,33 +75,33 @@ void spawnWorldObjects(){ // o mapa é 11 de largura por 13 de altura
 	Timberlog* tronco;
 	tronco = new Timberlog();
 	tronco->setPosition(-4.0, 9.0, -1.0);
-	tronco->setSpeed(-0.50, 0.0, 0.0);
+	tronco->setSpeed(-1.5, 0.0, 0.0);
 	man->addGameObject(tronco);
 	tronco = new Timberlog();
 	tronco->setPosition(-1.0, 11.0, -1.0);
-	tronco->setSpeed(-0.5, 0.0, 0.0); 
+	tronco->setSpeed(-1.5, 0.0, 0.0); 
 	man->addGameObject(tronco);
 	
 	Bus* bus;
 	bus = new Bus();
 	bus->setPosition(-1.0, 2.0, 0.0);
-	bus->setSpeed(-0.50, 0.0, 0.0);
+	bus->setSpeed(-2.00, 0.0, 0.0);
 	man->addGameObject(bus);
 	bus = new Bus();
 	bus->setPosition(4.0, 4.0, 0.0);
-	bus->setSpeed(-0.5, 0.0, 0.0);
+	bus->setSpeed(-2.0, 0.0, 0.0);
 	man->addGameObject(bus);
 	
 	Car* car;
 	car = new Car();
-	car->setPosition(2.0, 2.0, 0.0);
-	car->setSpeed(-0.50, 0.0, 0.0);
+	car->setPosition(2.0, 3.0, 0.0);
+	car->setSpeed(-3.0, 0.0, 0.0);
 	man->addGameObject(car);
 	
 	Turtle* turtle;
 	turtle = new Turtle();
 	turtle->setPosition(-2.0, 10.0, -1.0);
-	turtle->setSpeed(-0.50, 0.0, 0.0);
+	turtle->setSpeed(-2.0, 0.0, 0.0);
 	man->addGameObject(turtle);
 }
 
@@ -116,6 +117,7 @@ int main(int argc, char** argv){
 	glutDisplayFunc(displayForward);
 	glutReshapeFunc(reshapeForward);
 	glutKeyboardFunc(regularKeys);
+	glutKeyboardUpFunc(regularUpKeys);
 	glutSpecialFunc(specialKeys);
 	/* Adicionar alguns objectos */
 	spawnWorldObjects();

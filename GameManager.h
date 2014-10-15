@@ -13,6 +13,7 @@
 #include "River.h"
 #include "Timberlog.h"
 #include "Bus.h"
+#include "Camera.h"
 
 #define DRAWRIGHT -5.5
 #define DRAWLEFT 5.5
@@ -37,6 +38,7 @@ int delta_time;
 class GameManager {
 protected:
 	std::vector < GameObject* > _game_objects;
+	Camera* _cameras;
 public:
 
 	int rotate_y; //usado para rodar a câmara e assim ver se os modelos estão em ordem
@@ -44,7 +46,9 @@ public:
 	double movex;
 	double movey;
 	Frog* frog;		//relacionado com o movimento do sapo
-	int frogQ, frogA, frogO, frogP, frogFrames;
+	int frogQ, frogA, frogO, frogP;
+	bool regularKeys[256];
+	bool specialKeys[32];
 
 	GameManager(){
 		rotate_x = 0;
@@ -55,7 +59,6 @@ public:
 		frogA = 0;
 		frogO = 0;
 		frogP = 0;
-		frogFrames = 0;
 	}
 	~GameManager();
 
@@ -80,7 +83,7 @@ public:
 			(*iter)->update(delta_time);
 		}
 
-		display();
+		//display();
 	};
 
 	void display(){
@@ -141,6 +144,7 @@ public:
 				(key == 'o') || (key == 'O'))
 					frogQ = 0; frogA = 0; frogO = 0; frogP = 0;
 		}
+		regularKeys[(int)key] = down;
 	}
 
 	void specialKeyPressed(int key, int x, int y){
@@ -154,6 +158,7 @@ public:
 			rotate_x += 5;
 		else if (key == GLUT_KEY_DOWN)
 			rotate_x -= 5;
+		specialKeys[key] = true;
 	}
 
 	void init(void){
