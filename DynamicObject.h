@@ -17,7 +17,6 @@ public:
 		Vector3* distance = getSpeed()->makeCopy();
 		distance->multiplyScale((double) delta_t / 1000);
 		pos->addVector3(distance);
-		//pos->setX( fmod(pos->getX()+5.5, 11));
 		if ((_x = pos->getX()) < -7.5){
 			pos->setX(_x + 15);
 		}

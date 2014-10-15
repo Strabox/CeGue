@@ -1,14 +1,13 @@
-﻿Build started 15-10-2014 01:06:20.
-     1>Project "C:\Users\Miguel\Documents\GitHub\CeGue\CG1.vcxproj" on node 2 (Build target(s)).
+﻿Build started 16-10-2014 00:15:06.
+     1>Project "C:\Users\Miguel\Documents\GitHub\CeGue\CG1.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\Miguel\Documents\GitHub\CeGue\glut\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _USING_V110_SDK71_ /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp
          Main.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Miguel\Documents\GitHub\CeGue\Debug\CG1.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\Users\Miguel\Documents\GitHub\CeGue\glut\lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Miguel\Documents\GitHub\CeGue\Debug\CG1.pdb" /SUBSYSTEM:CONSOLE,"5.01" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Miguel\Documents\GitHub\CeGue\Debug\CG1.lib" /MACHINE:X86 Debug\Main.obj
-         Debug\lab0.obj
          CG1.vcxproj -> C:\Users\Miguel\Documents\GitHub\CeGue\Debug\CG1.exe
-     1>Done Building Project "C:\Users\Miguel\Documents\GitHub\CeGue\CG1.vcxproj" (Build target(s)).
+     1>Done Building Project "C:\Users\Miguel\Documents\GitHub\CeGue\CG1.vcxproj" (Rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.55
+Time Elapsed 00:00:01.44

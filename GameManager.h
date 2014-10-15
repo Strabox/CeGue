@@ -21,16 +21,9 @@
 #define DRAWTOP 11.5
 #define DRAWFAR -11.5
 #define DRAWNEAR 11.5
-#define FRAMESTOMOVE 6
 
 
-/*Frog* sapo; //sapo DUMMY
-Roadside* estradaborda; //estradaborda DUMMY
-Road* estrada;
-River* rio;
-Riverside* rioborda; //tudo DUMMIES
-Timberlog* tronco;
-Bus* bus;*/
+
 int frame=0; //para fazer contagem dos frames na consola
 int total_time = 0;
 int delta_time;
@@ -67,15 +60,13 @@ public:
 	
 	void update(int useless) {
 		std::vector<GameObject* >::iterator iter = _game_objects.begin();
-		//if (frogFrames == 0){
+		
 			if (frogQ){ frog->moveUp(); frogA = 0; frogO = 0; frogP = 0; }
 			else if (frogA){ frog->moveDown(); frogQ = 0; frogO = 0; frogP = 0; }
 			else if (frogO){ frog->moveLeft(); frogQ = 0; frogA = 0; frogP = 0; }
 			else if (frogP){ frog->moveRight(); frogQ = 0; frogA = 0; frogO = 0; }
 			else{ frog->stopMovement();}
-		//}
-		//frogFrames = (++frogFrames) % FRAMESTOMOVE; //o sapo só deve mover-se a cada conjunto de frames (para não ser demasiado rápido o movimento)
-
+		
 		delta_time = glutGet(GLUT_ELAPSED_TIME) - total_time;
 		total_time += delta_time;
 
@@ -83,7 +74,7 @@ public:
 			(*iter)->update(delta_time);
 		}
 
-		//display();
+		
 	};
 
 	void display(){

@@ -9,7 +9,7 @@ public:
 	Timberlog() : DynamicObject(){}
 	~Timberlog(){}
 	void draw(){
-		GLUquadricObj* quadric = gluNewQuadric(); //isto é preciso para o 
+		GLUquadricObj* quadric = gluNewQuadric(); //isto é preciso para o cilindro
 		Vector3* vector = getPosition();
 		glPushMatrix();
 		glTranslatef(vector->getX(), vector->getY(), vector->getZ());
