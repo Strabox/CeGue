@@ -6,8 +6,11 @@
 
 class River : public StaticObject {
 public:
+
 	River(){}
+
 	~River(){}
+
 	void draw(){
 		Vector3* vector = getPosition();
 		glPushMatrix();
@@ -22,6 +25,7 @@ public:
 
 		glPopMatrix();
 	}
+
 };
 
 #endif

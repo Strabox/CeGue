@@ -6,8 +6,11 @@
 
 class Roadside : public StaticObject {
 public:
+
 	Roadside(){}
+
 	~Roadside(){}
+
 	void draw(){
 		Vector3* vector = getPosition();
 		glPushMatrix();
@@ -22,6 +25,7 @@ public:
 
 		glPopMatrix();
 	}
+
 };
 
 #endif

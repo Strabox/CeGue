@@ -1,4 +1,4 @@
-﻿Build started 17-10-2014 17:07:22.
+﻿Build started 17-10-2014 17:59:39.
      1>Project "C:\Users\André\Desktop\Clones do GitHUB\CeGue\CG1.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\André\Desktop\Clones do GitHUB\CeGue\glut\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _USING_V110_SDK71_ /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp
@@ -10,4 +10,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.81
+Time Elapsed 00:00:00.94

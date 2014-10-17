@@ -25,6 +25,15 @@
     <Filter Include="Header Files\Light Objects">
       <UniqueIdentifier>{44ec56dd-28b3-42a4-8013-5bae56569d77}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Dynamic Objects\Playbale Objects">
+      <UniqueIdentifier>{f4a19d39-d738-4f2f-95a3-52ea4344d07c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Dynamic Objects\NPC Objects">
+      <UniqueIdentifier>{0b979f27-f449-4f6e-b7b3-38cd53074ebb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\High Lvl Classes">
+      <UniqueIdentifier>{49abfbfc-273f-43f6-98aa-bd09275c5fba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -32,53 +41,59 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DynamicObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Frog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StaticObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Roadside.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Road.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="River.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Riverside.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Timberlog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameManager.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Bus.h">
+      <Filter>Header Files\Dynamic Objects\NPC Objects</Filter>
     </ClInclude>
     <ClInclude Include="Car.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Dynamic Objects\NPC Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Frog.h">
+      <Filter>Header Files\Dynamic Objects\Playbale Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="River.h">
+      <Filter>Header Files\Static Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Roadside.h">
+      <Filter>Header Files\Static Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Road.h">
+      <Filter>Header Files\Static Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Timberlog.h">
+      <Filter>Header Files\Dynamic Objects\NPC Objects</Filter>
     </ClInclude>
     <ClInclude Include="Turtle.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Dynamic Objects\NPC Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticObject.h">
+      <Filter>Header Files\Static Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicObject.h">
+      <Filter>Header Files\Dynamic Objects</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="Bus.h">
-      <Filter>Header Files\Dynamic Objects</Filter>
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files\High Lvl Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>Header Files\High Lvl Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files\High Lvl Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Riverside.h">
+      <Filter>Header Files\Static Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3.h">
+      <Filter>Header Files\High Lvl Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="PerspectiveCamera.h">
+      <Filter>Header Files\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="OrtogonalCamera.h">
+      <Filter>Header Files\Camera</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
