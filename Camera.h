@@ -7,7 +7,8 @@
 class Camera : public Entity {
 
 	protected: Vector3 _up;
-
+	
+	/* "Eye" Position. */
 	protected: Vector3 _at;
 
 	protected: double _near;
@@ -15,6 +16,8 @@ class Camera : public Entity {
 	protected: double _far;
 
 	public: Camera(double near,double far){
+		_up.set(0, 0, 1);
+		_at.set(0, 0, 0);
 		_near = near;
 		_far = far;
 	}
@@ -28,6 +31,8 @@ class Camera : public Entity {
 	}
 
 	public: virtual void computeProjectionMatrix(){}
+
+	public: virtual void computeVisualizationMatrix(){}
 
 };
 
