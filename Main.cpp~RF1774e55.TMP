@@ -106,13 +106,7 @@ void spawnWorldObjects(){ // o mapa é 11 de largura por 13 de altura
 	turtle->setSpeed(-2.0, 0.0, 0.0);
 	man->addGameObject(turtle);
 
-	/* First Camera - Orthogonal */
-	Camera* cam1 = new OrthogonalCamera(DRAWLEFT, DRAWRIGHT, DRAWBOTTOM, DRAWTOP, DRAWNEAR, DRAWFAR);
-	/* Second Camera - Static Prespective */
-	Camera* cam2 = new PerspectiveCamera(90, (DRAWLEFT-DRAWRIGHT)/(DRAWTOP-DRAWBOTTOM), 1.5, 20);
-	cam2->setPosition(0.0, 0.0, 6.0);
-	/* Third Camera - Mobile Prespective */
-	man->addCamera(cam1);
+	Camera* cam2 = new PerspectiveCamera(140, (DRAWLEFT-DRAWRIGHT)/(DRAWTOP-DRAWBOTTOM), 5, -5);
 	man->addCamera(cam2);
 }
 
@@ -123,6 +117,7 @@ int main(int argc, char** argv){
 	glutInitWindowSize(440, 520);
 	glutInitWindowPosition(100, 100);
 	glutCreateWindow("CG Frogger - grupo 18");
+	man->init();
 	// "binding" de funções ao GL
 	glutDisplayFunc(displayForward);
 	glutReshapeFunc(reshapeForward);
@@ -130,7 +125,6 @@ int main(int argc, char** argv){
 	glutKeyboardUpFunc(regularUpKeys);
 	glutSpecialFunc(specialKeys);
 	/* Adicionar alguns objectos */
-	man->init();
 	spawnWorldObjects();
 	glutTimerFunc(17, updateForward, 0); // inicia o ciclo de chamada da update
 	glutMainLoop();

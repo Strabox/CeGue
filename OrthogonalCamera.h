@@ -29,12 +29,15 @@ class OrthogonalCamera : public Camera {
 	}
 
 	public: void computeProjectionMatrix(){
-
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glOrtho(_left, _right, _bottom, _top, _near, _far);
 	}
 
 	public: void computeVisualizationMatrix(){
-
+		
 	}
+
 };
 
 #endif

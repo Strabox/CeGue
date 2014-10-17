@@ -96,9 +96,8 @@ class GameManager {
 		/* limpa tudo para redesenhar */
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		// reset À posição do referencial e redefinição da posição da câmara e rotação do mapa
-		glLoadIdentity();
-		glOrtho(DRAWLEFT, DRAWRIGHT, DRAWBOTTOM, DRAWTOP, DRAWNEAR, DRAWFAR);
 		if (cameras[0]){
+			_cameras[0]->computeProjectionMatrix();
 			glTranslatef(movex, movey - 1.0, 0);
 			/* Rotacao a volta do centro do mapa. */
 			glTranslatef(movex, movey + 6.5, 0);
@@ -108,11 +107,11 @@ class GameManager {
 			glRotatef(180, 0.0, 1.0, 0.0);
 		}
 		else if (cameras[1]){
-			_cameras[0]->computeProjectionMatrix();
-			_cameras[0]->computeVisualizationMatrix();
+			_cameras[1]->computeProjectionMatrix();
+			_cameras[1]->computeVisualizationMatrix();
 		}
 		
-		printf("frame number: %d\ntime:%d\n", ++frame, glutGet(GLUT_ELAPSED_TIME));
+		//printf("frame number: %d\ntime:%d\n", ++frame, glutGet(GLUT_ELAPSED_TIME));
 		
 		std::vector<GameObject* >::iterator iter = _game_objects.begin();
 		for (iter; iter != _game_objects.end(); iter++){
@@ -132,9 +131,8 @@ class GameManager {
 			glViewport( (w-h*ratio)/2, 0, h*ratio, h);
 		else
 			glViewport( 0, (h-w/ratio)/2, w, w/ratio);
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-		glOrtho(xmin, xmax, ymin, ymax, DRAWNEAR, DRAWFAR);
+		//glMatrixMode(GL_PROJECTION);
+		//glLoadIdentity();
 	}
 
 	void keyPressed(unsigned char key, int x, int y, bool down){
@@ -143,15 +141,20 @@ class GameManager {
 			else if ((key == 'g')) movex -= 0.5;
 			else if ((key == 'y')) movey -= 0.5;
 			else if ((key == 'j')) movex += 0.5;
-			else if (key == '0'){
+			else if (key == '1'){
 				cameras[0] = true;
 				cameras[1] = false;
 				cameras[2] = false;
 			}
-			else if (key == '1'){
+			else if (key == '2'){
 				cameras[0] = false;
 				cameras[1] = true;
 				cameras[2] = false;
+			}
+			else if (key == '3'){
+				cameras[0] = false;
+				cameras[1] = false;
+				cameras[2] = true;
 			}
 		}
 		regularKeys[(int)key] = down;
@@ -176,10 +179,8 @@ class GameManager {
 		glClearColor(0.0, 0.0, 0.0, 0.0);
 		glEnable(GL_DEPTH_TEST); // permite desenhar as coisas por ordem de profundidade
 		/*  initialize viewing values  */
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-		glOrtho(DRAWLEFT, DRAWRIGHT, DRAWBOTTOM, DRAWTOP, DRAWNEAR, DRAWFAR);
 	}
+
 };
 
 

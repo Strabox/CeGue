@@ -18,8 +18,8 @@ class Camera : public Entity {
 	protected: double _far;
 
 	public: Camera(double near,double far){
-		_up.set(0, 0, 1);
-		_at.set(0, 0, -1);
+		_up.set(0, 1, 0);
+		_at.set(0, 0, 0);
 		_center.set(0, 0, 0);
 		_near = near;
 		_far = far;
