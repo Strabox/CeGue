@@ -6,18 +6,28 @@
 
 class Camera : public Entity {
 
-	protected: Vector3 up;
+	protected: Vector3 _up;
 
-	protected: Vector3 at;
+	protected: Vector3 _at;
 
-	protected: Vector3 near;
+	protected: double _near;
 
-	protected: Vector3 far;
+	protected: double _far;
 
-	public:Camera(){}
+	public: Camera(double near,double far){
+		_near = near;
+		_far = far;
+	}
 
-	public:~Camera(){};
+	public: ~Camera(){};
 
+
+	public: void update(){
+
+
+	}
+
+	public: virtual void computeProjectionMatrix(){}
 
 };
 

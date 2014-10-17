@@ -91,7 +91,7 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Frog.h" />
-    <ClInclude Include="OrtogonalCamera.h" />
+    <ClInclude Include="OrthogonalCamera.h" />
     <ClInclude Include="PerspectiveCamera.h" />
     <ClInclude Include="River.h" />
     <ClInclude Include="Riverside.h" />

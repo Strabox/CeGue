@@ -22,18 +22,18 @@
 #define DRAWFAR -11.5
 #define DRAWNEAR 11.5
 
-
-
 int frame=0; //para fazer contagem dos frames na consola
 int total_time = 0;
 int delta_time;
 
 class GameManager {
-protected:
-	std::vector < GameObject* > _game_objects;
-	Camera* _cameras;
-public:
 
+	protected:
+	std::vector <GameObject*> _game_objects;
+
+	std::vector <Camera *> _cameras;
+
+	public:
 	int rotate_y; //usado para rodar a câmara e assim ver se os modelos estão em ordem
 	int rotate_x;
 	double movex;

@@ -28,11 +28,11 @@
     <Filter Include="Header Files\Dynamic Objects\Playbale Objects">
       <UniqueIdentifier>{f4a19d39-d738-4f2f-95a3-52ea4344d07c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Dynamic Objects\NPC Objects">
-      <UniqueIdentifier>{0b979f27-f449-4f6e-b7b3-38cd53074ebb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\High Lvl Classes">
       <UniqueIdentifier>{49abfbfc-273f-43f6-98aa-bd09275c5fba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Dynamic Objects\Non-Playable Objects">
+      <UniqueIdentifier>{0b979f27-f449-4f6e-b7b3-38cd53074ebb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -42,10 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bus.h">
-      <Filter>Header Files\Dynamic Objects\NPC Objects</Filter>
+      <Filter>Header Files\Dynamic Objects\Non-Playable Objects</Filter>
     </ClInclude>
     <ClInclude Include="Car.h">
-      <Filter>Header Files\Dynamic Objects\NPC Objects</Filter>
+      <Filter>Header Files\Dynamic Objects\Non-Playable Objects</Filter>
     </ClInclude>
     <ClInclude Include="Frog.h">
       <Filter>Header Files\Dynamic Objects\Playbale Objects</Filter>
@@ -60,10 +60,10 @@
       <Filter>Header Files\Static Objects</Filter>
     </ClInclude>
     <ClInclude Include="Timberlog.h">
-      <Filter>Header Files\Dynamic Objects\NPC Objects</Filter>
+      <Filter>Header Files\Dynamic Objects\Non-Playable Objects</Filter>
     </ClInclude>
     <ClInclude Include="Turtle.h">
-      <Filter>Header Files\Dynamic Objects\NPC Objects</Filter>
+      <Filter>Header Files\Dynamic Objects\Non-Playable Objects</Filter>
     </ClInclude>
     <ClInclude Include="StaticObject.h">
       <Filter>Header Files\Static Objects</Filter>
@@ -92,7 +92,7 @@
     <ClInclude Include="PerspectiveCamera.h">
       <Filter>Header Files\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="OrtogonalCamera.h">
+    <ClInclude Include="OrthogonalCamera.h">
       <Filter>Header Files\Camera</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,11 +5,31 @@
 
 class PerspectiveCamera : public Camera {
 
-	public: PerspectiveCamera(){}
+	private: double _fovy;
+
+	private: double _aspect;
+
+
+	public: PerspectiveCamera(double fovy,double aspect, double zNear,double zFar){
+		_fovy = fovy;
+		_aspect = aspect;
+	}
 
 	public: ~PerspectiveCamera(){}
 
 
+	public: void update(){
+
+
+	}
+
+	public: void computeProjectionMatrix(){
+
+	}
+
+	public: void computeVisualizationMatrix(){
+
+	}
 
 };
 
