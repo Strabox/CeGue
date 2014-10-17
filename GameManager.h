@@ -119,10 +119,10 @@ class GameManager {
 
 	void keyPressed(unsigned char key, int x, int y, bool down){
 		if (down) {
-			if ((key == '2')) movey += 0.5;
-			else if ((key == '4')) movex -= 0.5;
-			else if ((key == '8')) movey -= 0.5;
-			else if ((key == '6')) movex += 0.5;
+			if ((key == 'h')) movey += 0.5;
+			else if ((key == 'g')) movex -= 0.5;
+			else if ((key == 'y')) movey -= 0.5;
+			else if ((key == 'j')) movex += 0.5;
 		}
 		regularKeys[(int)key] = down;
 	}
