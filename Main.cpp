@@ -104,7 +104,8 @@ void spawnWorldObjects(){ // o mapa é 11 de largura por 13 de altura
 	turtle->setSpeed(-2.0, 0.0, 0.0);
 	man->addGameObject(turtle);
 
-
+	Camera* cam2 = new Camera(1, 1);
+	man->addCamera(cam2);
 }
 
 int main(int argc, char** argv){

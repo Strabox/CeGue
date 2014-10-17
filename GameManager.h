@@ -33,14 +33,24 @@ class GameManager {
 	std::vector <Camera *> _cameras;
 
 	public:
-	int rotate_y; //usado para rodar a câmara e assim ver se os modelos estão em ordem
-	int rotate_x;
-	double movex;
-	double movey;
+
 	Frog* frog;		//relacionado com o movimento do sapo
+
+	int rotate_y; //usado para rodar a câmara e assim ver se os modelos estão em ordem
+
+	int rotate_x;
+
+	double movex;
+
+	double movey;
+
 	int frogQ, frogA, frogO, frogP;
+
 	bool regularKeys[256];
+
 	bool specialKeys[32];
+
+	bool cameras[3];
 
 	GameManager(){
 		rotate_x = 0;
@@ -51,10 +61,17 @@ class GameManager {
 		frogA = 0;
 		frogO = 0;
 		frogP = 0;
+		cameras[0] = true;
+		cameras[1] = false;
+		cameras[2] = false;
 	}
+
 	~GameManager();
 
 	void addGameObject(GameObject* obj){ _game_objects.push_back(obj); }
+
+	void addCamera(Camera* cam){ _cameras.push_back(cam); }
+
 	void setFrog(Frog* f){ frog = f; }
 	
 	void update(int useless) {
@@ -72,9 +89,7 @@ class GameManager {
 		for (iter; iter != _game_objects.end(); iter++){
 			(*iter)->useKeys(regularKeys, specialKeys);
 			(*iter)->update(delta_time);
-		}
-
-		
+		}	
 	};
 
 	void display(){
@@ -83,17 +98,21 @@ class GameManager {
 		// reset À posição do referencial e redefinição da posição da câmara e rotação do mapa
 		glLoadIdentity();
 		glOrtho(DRAWLEFT, DRAWRIGHT, DRAWBOTTOM, DRAWTOP, DRAWNEAR, DRAWFAR);
-		glTranslatef(movex, movey - 1.0, 0);
-		
-		/* rotacao a volta do centro do mapa */
-		glTranslatef(movex, movey + 6.5, 0);
-		glRotatef(rotate_x, 1.0, 0.0, 0.0);
-		glRotatef(rotate_y, 0.0, 0.0, 1.0);
-		glTranslatef(movex, movey - 6.5, 0);
-		
+		if (cameras[0]){
+			glTranslatef(movex, movey - 1.0, 0);
+			/* Rotacao a volta do centro do mapa. */
+			glTranslatef(movex, movey + 6.5, 0);
+			glRotatef(rotate_x, 1.0, 0.0, 0.0);
+			glRotatef(rotate_y, 0.0, 0.0, 1.0);
+			glTranslatef(movex, movey - 6.5, 0);
+			glRotatef(180, 0.0, 1.0, 0.0);
+		}
+		else if (cameras[1]){
+			_cameras[0]->computeProjectionMatrix();
+			_cameras[0]->computeVisualizationMatrix();
+		}
 		
 		printf("frame number: %d\ntime:%d\n", ++frame, glutGet(GLUT_ELAPSED_TIME));
-		glRotatef(180, 0.0, 1.0, 0.0);
 		
 		std::vector<GameObject* >::iterator iter = _game_objects.begin();
 		for (iter; iter != _game_objects.end(); iter++){
@@ -101,6 +120,7 @@ class GameManager {
 		}
 		glFlush();
 	}
+
 	void reshape(int w, int h) { //segue sugestões dos slides mas muda algumas coisas (glOrtho em vez de gluOrtho2d) e os limites da janela
 		double xmax = DRAWLEFT;
 		double xmin = DRAWRIGHT;
@@ -123,6 +143,16 @@ class GameManager {
 			else if ((key == 'g')) movex -= 0.5;
 			else if ((key == 'y')) movey -= 0.5;
 			else if ((key == 'j')) movex += 0.5;
+			else if (key == '0'){
+				cameras[0] = true;
+				cameras[1] = false;
+				cameras[2] = false;
+			}
+			else if (key == '1'){
+				cameras[0] = false;
+				cameras[1] = true;
+				cameras[2] = false;
+			}
 		}
 		regularKeys[(int)key] = down;
 	}
