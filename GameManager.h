@@ -71,6 +71,7 @@ class GameManager {
 		total_time += delta_time;
 
 		for (iter; iter != _game_objects.end(); iter++){
+			(*iter)->useKeys(regularKeys, specialKeys);
 			(*iter)->update(delta_time);
 		}
 
@@ -123,17 +124,6 @@ class GameManager {
 			else if ((key == '4')) movex -= 0.5;
 			else if ((key == '8')) movey -= 0.5;
 			else if ((key == '6')) movex += 0.5;
-			else if ((key == 'a') || (key == 'A')) frogA = 1;
-			else if ((key == 'q') || (key == 'Q')) frogQ = 1;
-			else if ((key == 'p') || (key == 'P')) frogP = 1;
-			else if ((key == 'o') || (key == 'O')) frogO = 1;
-		}
-		else{
-			if ((key == 'a') || (key == 'A') ||
-				(key == 'q') || (key == 'Q') ||
-				(key == 'p') || (key == 'P') ||
-				(key == 'o') || (key == 'O'))
-					frogQ = 0; frogA = 0; frogO = 0; frogP = 0;
 		}
 		regularKeys[(int)key] = down;
 	}

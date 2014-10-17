@@ -13,6 +13,7 @@ public:
 	Vector3* getPosition(){ return _position; }
 	void setPosition(Vector3 &p){ _position = &p; }
 	void setPosition(double x, double y, double z){ _position = new Vector3(x,y,z); }
+	virtual void useKeys(bool regularKeys[], bool specialKeys[]){};
 };
 
 #endif

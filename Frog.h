@@ -47,6 +47,15 @@ public:
 	void stopMovement(){
 		setSpeed(platformSpeed);
 	}
+
+	void useKeys(bool regularKeys[], bool specialKeys[]){
+		if (regularKeys[(int)'q']){ moveUp(); /*frogA = 0; frogO = 0; frogP = 0; */ }
+		else if (regularKeys[(int)'a']){ moveDown(); /*frogQ = 0; frogO = 0; frogP = 0; */ }
+		else if (regularKeys[(int)'o']){ moveLeft(); /*frogQ = 0; frogA = 0; frogP = 0; */ }
+		else if (regularKeys[(int)'p']){ moveRight(); /*frogQ = 0; frogA = 0; frogO = 0;*/ }
+		else{ stopMovement(); }
+	}
+
 	void draw(){
 		Vector3* vector = getPosition();
 		glPushMatrix();
