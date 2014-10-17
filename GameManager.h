@@ -3,7 +3,6 @@
 
 #include <stdio.h>
 #include <vector>
-//#include <stdlib.h> //Main.cpp trata do erro do glut redefinir o exit do stdlib.
 #include "glut.h"
 #include "GameObject.h"
 #include "Frog.h"
