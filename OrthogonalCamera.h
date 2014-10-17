@@ -14,7 +14,7 @@ class OrthogonalCamera : public Camera {
 	private: double _top;
 
 
-	public: OrthogonalCamera(double left,double right,double bottom,double top,double near,double far){
+	public: OrthogonalCamera(double left,double right,double bottom,double top,double near,double far): Camera(near,far){
 		_left = left;
 		_right = right;
 		_bottom = bottom;

@@ -10,7 +10,7 @@ class PerspectiveCamera : public Camera {
 	private: double _aspect;
 
 
-	public: PerspectiveCamera(double fovy,double aspect, double zNear,double zFar){
+public: PerspectiveCamera(double fovy,double aspect, double zNear,double zFar): Camera(zNear,zFar){
 		_fovy = fovy;
 		_aspect = aspect;
 	}
