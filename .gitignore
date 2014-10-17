@@ -1,3 +1,9 @@
 *.opensdf
 *.sdf
 *.suo
+*.tlog
+*.exe
+*.ilk
+*.pdb
+*.obj
+*.lastbuildstate
