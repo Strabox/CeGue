@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Camera">
+      <UniqueIdentifier>{44c7bef6-dbae-4cbc-bba6-67d32546ef81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Static Objects">
+      <UniqueIdentifier>{c4e72c28-d440-4136-a3f2-8636808c5a7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Dynamic Objects">
+      <UniqueIdentifier>{369cbca0-4d33-4eef-bbdf-57cd6b60402c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Light Objects">
+      <UniqueIdentifier>{44ec56dd-28b3-42a4-8013-5bae56569d77}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -53,9 +65,6 @@
     <ClInclude Include="Timberlog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bus.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GameManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -67,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bus.h">
+      <Filter>Header Files\Dynamic Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
