@@ -114,8 +114,8 @@ void spawnWorldObjects(){ // o mapa é 11 de largura por 13 de altura
 	cam2->setCenter(0.0,3.0,0.0);
 	cam2->setUp(0.0,1.0,1.0);
 	/* Third Camera - Mobile Prespective */
-	Camera* cam3 = new PerspectiveCamera(110, (DRAWLEFT - DRAWRIGHT) / (DRAWTOP - DRAWBOTTOM), 1.5, 20);
-	cam3->setPosition(0.0, -1.0, 3.0);
+	Camera* cam3 = new PerspectiveCamera(85, (DRAWLEFT - DRAWRIGHT) / (DRAWTOP - DRAWBOTTOM), 1.5, 20);
+	cam3->setPosition(0.0, -2.0, 6.0);
 	cam3->setCenter(0.0,0.1,0.0);
 	cam3->setUp(0.0,1.0,1.0);
 	man->addCamera(cam1);
