@@ -110,6 +110,13 @@ class GameManager {
 			_cameras[1]->computeProjectionMatrix();
 			_cameras[1]->computeVisualizationMatrix();
 		}
+		else if (cameras[2]){
+			_cameras[2]->update();
+			_cameras[2]->setPosition(0.0, frog->getPosition()->getY() - 1, 3.0);
+			_cameras[2]->setCenter(frog->getPosition()->getX(), frog->getPosition()->getY(), frog->getPosition()->getZ());
+			_cameras[2]->computeProjectionMatrix();
+			_cameras[2]->computeVisualizationMatrix();
+		}
 		
 		//printf("frame number: %d\ntime:%d\n", ++frame, glutGet(GLUT_ELAPSED_TIME));
 		
@@ -131,8 +138,6 @@ class GameManager {
 			glViewport( (w-h*ratio)/2, 0, h*ratio, h);
 		else
 			glViewport( 0, (h-w/ratio)/2, w, w/ratio);
-		//glMatrixMode(GL_PROJECTION);
-		//glLoadIdentity();
 	}
 
 	void keyPressed(unsigned char key, int x, int y, bool down){

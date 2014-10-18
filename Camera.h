@@ -27,6 +27,13 @@ class Camera : public Entity {
 
 	public: ~Camera(){};
 
+	public: void setUp(double x, double y, double z){
+		_up.set(x, y, z);
+	}
+	
+	public: void setCenter(double x, double y, double z){
+		_center.set(x, y, z);
+	}
 
 	public: virtual void update(){}
 

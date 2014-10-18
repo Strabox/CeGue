@@ -13,16 +13,13 @@ class PerspectiveCamera : public Camera {
 	public: PerspectiveCamera(double fovy,double aspect, double zNear,double zFar): Camera(zNear,zFar){
 			_fovy = fovy;
 			_aspect = aspect;
-			_up.set(0, 1, 1);
-			_center.set(0, 3, 0);
 	}
 
 	public: ~PerspectiveCamera(){}
 
 
 	public: void update(){
-
-
+	
 	}
 
 	public: void computeProjectionMatrix(){
