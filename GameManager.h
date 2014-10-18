@@ -188,7 +188,7 @@ class GameManager {
 		GLfloat mat_shininess[] = { 80.0 };
 		GLfloat light_position[] = { 0.0, 5.0, 5.0, 0.0 };
 		glClearColor(0.0, 0.0, 0.0, 0.0);
-		glShadeModel(GL_SMOOTH);
+		glShadeModel(GL_FLAT);
 
 		glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
 		glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
