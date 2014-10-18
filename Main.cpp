@@ -109,12 +109,12 @@ void spawnWorldObjects(){ // o mapa é 11 de largura por 13 de altura
 	/* First Camera - Orthogonal */
 	Camera* cam1 = new OrthogonalCamera(DRAWLEFT, DRAWRIGHT, DRAWBOTTOM, DRAWTOP, DRAWNEAR, DRAWFAR);
 	/* Second Camera - Static Prespective */
-	Camera* cam2 = new PerspectiveCamera(120, (DRAWLEFT-DRAWRIGHT)/(DRAWTOP-DRAWBOTTOM), 1.5, 20);
+	Camera* cam2 = new PerspectiveCamera(110, (DRAWLEFT-DRAWRIGHT)/(DRAWTOP-DRAWBOTTOM), 1.5, 20);
 	cam2->setPosition(0.0, 0.0, 4.0);
 	cam2->setCenter(0.0,3.0,0.0);
 	cam2->setUp(0.0,1.0,1.0);
 	/* Third Camera - Mobile Prespective */
-	Camera* cam3 = new PerspectiveCamera(120, (DRAWLEFT - DRAWRIGHT) / (DRAWTOP - DRAWBOTTOM), 1.5, 20);
+	Camera* cam3 = new PerspectiveCamera(110, (DRAWLEFT - DRAWRIGHT) / (DRAWTOP - DRAWBOTTOM), 1.5, 20);
 	cam3->setPosition(0.0, -1.0, 3.0);
 	cam3->setCenter(0.0,0.1,0.0);
 	cam3->setUp(0.0,1.0,1.0);
