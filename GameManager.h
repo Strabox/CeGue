@@ -112,7 +112,7 @@ class GameManager {
 		}
 		else if (cameras[2]){
 			_cameras[2]->update();
-			_cameras[2]->setPosition(0.0, frog->getPosition()->getY() - 1, 3.0);
+			_cameras[2]->setPosition(frog->getPosition()->getX(), frog->getPosition()->getY() - 1, 3.0);
 			_cameras[2]->setCenter(frog->getPosition()->getX(), frog->getPosition()->getY(), frog->getPosition()->getZ());
 			_cameras[2]->computeProjectionMatrix();
 			_cameras[2]->computeVisualizationMatrix();
