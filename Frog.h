@@ -9,10 +9,17 @@ class Frog : public DynamicObject {
 private:
 	double zRotation;
 	Vector3 *platformSpeed;
+	/*flags*/
+	bool ground;
+	bool water;
+	bool logOrTurtle;
 public:
 	Frog() : DynamicObject() {
 		zRotation=0;
 		platformSpeed = new Vector3(0.0, 0.0, 0.0);
+		ground = true;
+		water = false;
+		logOrTurtle = false;
 	}
 	~Frog(){}
 	void setZRotation(double z){ zRotation = z; }
