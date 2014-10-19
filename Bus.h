@@ -8,6 +8,12 @@ class Bus : public DynamicObject {
 public:
 	Bus(){}
 	~Bus(){}
+
+	int checkColisions(double bottom, double left, double top, double right){
+		return 0;
+		
+	}
+	
 	void draw(){
 		Vector3* vector = getPosition();
 		glPushMatrix();

@@ -184,7 +184,6 @@ class GameManager {
 		glClearColor(0.0, 0.0, 0.0, 0.0);
 		glEnable(GL_DEPTH_TEST); // permite desenhar as coisas por ordem de profundidade
 		/*  initialize viewing values  */
-
 	}
 
 };
