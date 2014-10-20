@@ -14,8 +14,8 @@
 #include "Bus.h"
 #include "Camera.h"
 
-#define DRAWRIGHT -5.5
-#define DRAWLEFT 5.5
+#define DRAWRIGHT -6.5
+#define DRAWLEFT 6.5
 #define DRAWBOTTOM -1.5
 #define DRAWTOP 11.5
 #define DRAWFAR -11.5
@@ -28,6 +28,7 @@ int delta_time;
 class GameManager {
 
 	protected:
+
 	std::vector <GameObject*> _game_objects;
 
 	std::vector <Camera *> _cameras;
@@ -50,7 +51,7 @@ class GameManager {
 
 	bool specialKeys[32];
 
-	bool cameras[3];
+	int _activeCamera;
 
 	GameManager(){
 		rotate_x = 0;
@@ -61,15 +62,15 @@ class GameManager {
 		frogA = 0;
 		frogO = 0;
 		frogP = 0;
-		cameras[0] = true;
-		cameras[1] = false;
-		cameras[2] = false;
+		_activeCamera = 0;
 	}
 
 	~GameManager();
 
+	/* addGameObejct(obj) - adds a new Game object to the list.*/
 	void addGameObject(GameObject* obj){ _game_objects.push_back(obj); }
 
+	/* addCamera(cam) - Adds a new camera to the cameras list.*/
 	void addCamera(Camera* cam){ _cameras.push_back(cam); }
 
 	void setFrog(Frog* f){ frog = f; }
@@ -93,29 +94,25 @@ class GameManager {
 	};
 
 	void display(){
-		/* limpa tudo para redesenhar */
+		/* Reset Color and DEpth Buffer */
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		// reset À posição do referencial e redefinição da posição da câmara e rotação do mapa
-		if (cameras[0]){
-			_cameras[0]->computeProjectionMatrix();
+		/* reset À posição do referencial e redefinição da posição da câmara e rotação do mapa */
+		if (_activeCamera == 0){
+			_cameras[0]->update();
 			glTranslatef(movex, movey - 1.0, 0);
-			/* Rotacao a volta do centro do mapa. */
 			glTranslatef(movex, movey + 6.5, 0);
 			glRotatef(rotate_x, 1.0, 0.0, 0.0);
 			glRotatef(rotate_y, 0.0, 0.0, 1.0);
 			glTranslatef(movex, movey - 6.5, 0);
 			glRotatef(180, 0.0, 1.0, 0.0);
 		}
-		else if (cameras[1]){
-			_cameras[1]->computeProjectionMatrix();
-			_cameras[1]->computeVisualizationMatrix();
+		else if (_activeCamera == 1){
+			_cameras[1]->update();
 		}
-		else if (cameras[2]){
-			_cameras[2]->update();
+		else if (_activeCamera == 2){
 			_cameras[2]->setPosition(frog->getPosition()->getX(), frog->getPosition()->getY() - 2, 6.0);
 			_cameras[2]->setCenter(frog->getPosition()->getX(), frog->getPosition()->getY(), frog->getPosition()->getZ());
-			_cameras[2]->computeProjectionMatrix();
-			_cameras[2]->computeVisualizationMatrix();
+			_cameras[2]->update();
 		}
 		
 		printf("frame number: %d\ntime:%d\n", ++frame, glutGet(GLUT_ELAPSED_TIME));
@@ -126,6 +123,7 @@ class GameManager {
 		}
 		glFlush();
 	}
+
 
 	void reshape(int w, int h) { //segue sugestões dos slides mas muda algumas coisas (glOrtho em vez de gluOrtho2d) e os limites da janela
 		double xmax = DRAWLEFT;
@@ -147,24 +145,19 @@ class GameManager {
 			else if ((key == 'y')) movey -= 0.5;
 			else if ((key == 'j')) movex += 0.5;
 			else if (key == '1'){
-				cameras[0] = true;
-				cameras[1] = false;
-				cameras[2] = false;
+				_activeCamera = 0;
 			}
 			else if (key == '2'){
-				cameras[0] = false;
-				cameras[1] = true;
-				cameras[2] = false;
+				_activeCamera = 1;
 			}
 			else if (key == '3'){
-				cameras[0] = false;
-				cameras[1] = false;
-				cameras[2] = true;
+				_activeCamera = 2;
 			}
 		}
 		regularKeys[(int)key] = down;
 	}
 
+	/* - TESTS ONLY */
 	void specialKeyPressed(int key, int x, int y){
 		//  roda para a direita
 		if (key == GLUT_KEY_RIGHT)
@@ -179,11 +172,11 @@ class GameManager {
 		specialKeys[key] = true;
 	}
 
+	/* init() - Initialize Color and enables depth buffer.*/
 	void init(void){
 		/*  select clearing (background) color       */
 		glClearColor(0.0, 0.0, 0.0, 0.0);
 		glEnable(GL_DEPTH_TEST); // permite desenhar as coisas por ordem de profundidade
-		/*  initialize viewing values  */
 	}
 
 };

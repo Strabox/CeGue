@@ -40,7 +40,7 @@ void updateForward(int useless){	// chama o update do gamemanager a cada 17ms (q
 	glutTimerFunc(MILISECONDS, updateForward, 0);
 }
 
-void spawnWorldObjects(){ // o mapa é 11 de largura por 13 de altura
+void spawnWorldObjects(){ // Map has 11 width and 13 height 
 	double i = 0, j = 0;
 	
 	Frog* frog = new Frog();
@@ -108,16 +108,20 @@ void spawnWorldObjects(){ // o mapa é 11 de largura por 13 de altura
 
 	/* First Camera - Orthogonal */
 	Camera* cam1 = new OrthogonalCamera(DRAWLEFT, DRAWRIGHT, DRAWBOTTOM, DRAWTOP, DRAWNEAR, DRAWFAR);
+	cam1->setPosition(0.0, 0.0, 1.0);
+	cam1->setCenter(0.0, 0.0, 0.0);
+	cam1->setUp(0.0,1.0,0.0);
 	/* Second Camera - Static Prespective */
 	Camera* cam2 = new PerspectiveCamera(110, (DRAWLEFT-DRAWRIGHT)/(DRAWTOP-DRAWBOTTOM), 1.5, 20);
 	cam2->setPosition(0.0, 0.0, 4.0);
 	cam2->setCenter(0.0,3.0,0.0);
 	cam2->setUp(0.0,1.0,1.0);
 	/* Third Camera - Mobile Prespective */
-	Camera* cam3 = new PerspectiveCamera(85, (DRAWLEFT - DRAWRIGHT) / (DRAWTOP - DRAWBOTTOM), 1.5, 20);
+	Camera* cam3 = new PerspectiveCamera(90, (DRAWLEFT - DRAWRIGHT) / (DRAWTOP - DRAWBOTTOM) , 1.5, 20);
 	cam3->setPosition(0.0, -2.0, 6.0);
-	cam3->setCenter(0.0,0.1,0.0);
+	cam3->setCenter(0.0,0.0,0.0);
 	cam3->setUp(0.0,1.0,1.0);
+
 	man->addCamera(cam1);
 	man->addCamera(cam2);
 	man->addCamera(cam3);
@@ -130,16 +134,15 @@ int main(int argc, char** argv){
 	glutInitWindowSize(440, 520);
 	glutInitWindowPosition(100, 100);
 	glutCreateWindow("CG Frogger - grupo 18");
-	// "binding" de funções ao GL
+	// GL functions binding.
 	glutDisplayFunc(displayForward);
 	glutReshapeFunc(reshapeForward);
 	glutKeyboardFunc(regularKeys);
 	glutKeyboardUpFunc(regularUpKeys);
 	glutSpecialFunc(specialKeys);
-	/* Adicionar alguns objectos */
 	man->init();
-	spawnWorldObjects();
-	glutTimerFunc(17, updateForward, 0); // inicia o ciclo de chamada da update
+	spawnWorldObjects();				 // Initializes the World, creating necessary objects. 
+	glutTimerFunc(17, updateForward, 0); // Start the Update Cycle.
 	glutMainLoop();
 	return 0;
 }

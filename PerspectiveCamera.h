@@ -19,7 +19,8 @@ class PerspectiveCamera : public Camera {
 
 
 	public: void update(){
-	
+		computeProjectionMatrix();
+		computeVisualizationMatrix();
 	}
 
 	public: void computeProjectionMatrix(){
