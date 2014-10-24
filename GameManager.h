@@ -14,8 +14,8 @@
 #include "Bus.h"
 #include "Camera.h"
 
-#define DRAWRIGHT -6.5
-#define DRAWLEFT 6.5
+#define DRAWRIGHT -5.5
+#define DRAWLEFT 5.5
 #define DRAWBOTTOM -1.5
 #define DRAWTOP 11.5
 #define DRAWFAR -11.5
@@ -58,11 +58,12 @@ class GameManager {
 		rotate_y = 0;
 		movex = 0;
 		movey = 0;
-		frogQ = 0;
+		/*frogQ = 0;
 		frogA = 0;
 		frogO = 0;
 		frogP = 0;
-		_activeCamera = 0;
+		*/_activeCamera = 0;
+		for(int i=0; i<256; i++){ regularKeys[i]=false; }
 	}
 
 	~GameManager();
@@ -77,13 +78,13 @@ class GameManager {
 	
 	void update(int useless) {
 		std::vector<GameObject* >::iterator iter = _game_objects.begin();
-		
+		/*
 			if (frogQ){ frog->moveUp(); frogA = 0; frogO = 0; frogP = 0; }
 			else if (frogA){ frog->moveDown(); frogQ = 0; frogO = 0; frogP = 0; }
 			else if (frogO){ frog->moveLeft(); frogQ = 0; frogA = 0; frogP = 0; }
 			else if (frogP){ frog->moveRight(); frogQ = 0; frogA = 0; frogO = 0; }
 			else{ frog->stopMovement();}
-		
+		*/
 		delta_time = glutGet(GLUT_ELAPSED_TIME) - total_time;
 		total_time += delta_time;
 
@@ -110,7 +111,7 @@ class GameManager {
 			_cameras[1]->update();
 		}
 		else if (_activeCamera == 2){
-			_cameras[2]->setPosition(frog->getPosition()->getX(), frog->getPosition()->getY() - 2, 6.0);
+			_cameras[2]->setPosition(frog->getPosition()->getX(), frog->getPosition()->getY() - 2, 1.0);
 			_cameras[2]->setCenter(frog->getPosition()->getX(), frog->getPosition()->getY(), frog->getPosition()->getZ());
 			_cameras[2]->update();
 		}

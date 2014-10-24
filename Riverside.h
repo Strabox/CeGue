@@ -18,7 +18,7 @@ public:
 
 		glPushMatrix();
 		glTranslatef(0.0, 0.0, 0.0);
-		glScalef(13.0, 1.0, 1.0);
+		glScalef(11.0, 1.0, 1.0);
 		glColor3f(1.0, 1.0, 0.5);
 		glutSolidCube(1.0);
 		glPopMatrix();
