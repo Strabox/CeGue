@@ -6,10 +6,10 @@
 
 class GameObject : public Entity {
 public:
-	double xmin;
-	double xmax;
-	double ymin;
-	double ymax;
+	double collxmin;
+	double collxmax;
+	double collymin;
+	double collymax;
 	GameObject() : Entity(){}
 	~GameObject(){}
 	virtual void draw(){

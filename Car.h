@@ -7,15 +7,19 @@
 class Car : public DynamicObject {
 public:
 	Car(){
-		xmin = 0.5;
-		xmax = 0.5;
-		ymin = 0.25;
-		ymax = 0.25;
+		collxmin = -0.5;
+		collxmax = 0.5;
+		collymin = -0.25;
+		collymax = 0.25;
 	}
 	~Car(){}
 	
 	int checkColisions(double bottom, double left, double top, double right){
-		return 0;
+		if !(getPosition()->getX() + collxmin < left || getPosition()->getX() + collxmax > right || getPosition()->getY() + collymin < top || getPosition()->getY() +collymax > bottom){
+			printf("colide\n");
+			return 1;
+		}
+		else return 0;
 
 	}
 
