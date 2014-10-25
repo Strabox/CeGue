@@ -37,15 +37,35 @@ class Frog : public DynamicObject {
 
 	void setZRotation(double z){ zRotation = z; }
 
-	void moveDown(){
+	void moveDown(int direction){
 		setZRotation(180.0);
-		Vector3* new_speed = new Vector3(0.0, 0.0, 0.0);
-		new_speed->addVector3(platformSpeed);
-		new_speed->addVector3(new Vector3(0.0, -FROG_SPEED_MODULE, 0.0));
-		setSpeed(new_speed);
+		if (direction == 0){		//If its turned West
+			Vector3* new_speed = new Vector3(0.0, 0.0, 0.0);
+			new_speed->addVector3(platformSpeed);
+			new_speed->addVector3(new Vector3(0.0, -FROG_SPEED_MODULE, 0.0));
+			setSpeed(new_speed);
+		}
+		else if (direction == 1){	//If its turned South
+			Vector3* new_speed = new Vector3(0.0, 0.0, 0.0);
+			new_speed->addVector3(platformSpeed);
+			new_speed->addVector3(new Vector3(0.0, -FROG_SPEED_MODULE, 0.0));
+			setSpeed(new_speed);
+		}
+		else if (direction == 2){	//If its turned East
+			Vector3* new_speed = new Vector3(0.0, 0.0, 0.0);
+			new_speed->addVector3(platformSpeed);
+			new_speed->addVector3(new Vector3(0.0, -FROG_SPEED_MODULE, 0.0));
+			setSpeed(new_speed);
+		}
+		else if (direction == 3){	//If its turned North
+			Vector3* new_speed = new Vector3(0.0, 0.0, 0.0);
+			new_speed->addVector3(platformSpeed);
+			new_speed->addVector3(new Vector3(0.0, -FROG_SPEED_MODULE, 0.0));
+			setSpeed(new_speed);
+		}
 	}
 
-	void moveUp(){
+	void moveUp(int direction){
 		setZRotation(0.0);
 		Vector3* new_speed = new Vector3(0.0, 0.0, 0.0);
 		new_speed->addVector3(platformSpeed);
@@ -53,7 +73,7 @@ class Frog : public DynamicObject {
 		setSpeed(new_speed);
 	}
 
-	void moveLeft(){
+	void moveLeft(int direction){
 		setZRotation(90.0);
 		Vector3* new_speed = new Vector3(0.0, 0.0, 0.0);
 		new_speed->addVector3(platformSpeed);
@@ -61,7 +81,7 @@ class Frog : public DynamicObject {
 		setSpeed(new_speed);
 	}
 
-	void moveRight(){
+	void moveRight(int direction){
 		setZRotation(-90.0);
 		Vector3* new_speed = new Vector3(0.0, 0.0, 0.0);
 		new_speed->addVector3(platformSpeed);
@@ -90,14 +110,6 @@ class Frog : public DynamicObject {
 	void die(){
 		setPosition(0.0, 0.0, 0.0);
 		platformSpeed = new Vector3(0.0, 0.0, 0.0);
-	}
-
-	void useKeys(bool regularKeys[], bool specialKeys[]){
-		if (regularKeys[(int)'q']){ moveUp(); }
-		else if (regularKeys[(int)'a']){ moveDown(); }
-		else if (regularKeys[(int)'o']){ moveLeft(); }
-		else if (regularKeys[(int)'p']){ moveRight(); }
-		else{ stopMovement(); }
 	}
 
 	void draw(){

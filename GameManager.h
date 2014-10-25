@@ -38,6 +38,8 @@ class GameManager {
 
 	Frog* frog;		//relacionado com o movimento do sapo
 
+	int _frogDirection;
+
 	int rotate_y; //usado para rodar a câmara e assim ver se os modelos estão em ordem
 
 	int rotate_x;
@@ -45,10 +47,6 @@ class GameManager {
 	double movex;
 
 	double movey;
-	
-	bool regularKeys[256];
-
-	bool specialKeys[32];
 
 	int _activeCamera;
 
@@ -60,7 +58,7 @@ class GameManager {
 		movex = 0;
 		movey = 0;
 		_activeCamera = 0;
-		for(int i=0; i<256; i++){ regularKeys[i]=false; }
+		_frogDirection = 3;
 	}
 
 	~GameManager();
@@ -80,7 +78,6 @@ class GameManager {
 		total_time += delta_time;
 
 		for (iter; iter != _game_objects.end(); iter++){
-			(*iter)->useKeys(regularKeys, specialKeys);
 			(*iter)->update(delta_time);
 		}
 		frog->checkIfColided(_cars);
@@ -132,12 +129,44 @@ class GameManager {
 			glViewport( 0, (h-w/ratio)/2, w, w/ratio);
 	}
 
+	/* !!!!!!!IMPORTANTE: 0 - West, 1 - South, 2 - East,3 - North*/
+	int calculateDirection(int actualDirection,int newDirection){
+		if (actualDirection == 0 && newDirection == 0) return 1;
+		else if (actualDirection == 0 && newDirection == 1) return 2;
+		else if (actualDirection == 0 && newDirection == 2) return 0;
+		else if (actualDirection == 0 && newDirection == 3) return 0;
+		else if (actualDirection == 1 && newDirection == 0) return 2;
+		else if (actualDirection == 1 && newDirection == 1) return 3;
+		else if (actualDirection == 1 && newDirection == 2) return -1;
+		else if (actualDirection == 1 && newDirection == 3) return -1;
+		else if (actualDirection == 2 && newDirection == 0) return -1;
+		else if (actualDirection == 2 && newDirection == 1) return -1;
+		else if (actualDirection == 2 && newDirection == 2) return -1;
+		else if (actualDirection == 2 && newDirection == 3) return -1;
+		else if (actualDirection == 3 && newDirection == 0) return -1;
+		else if (actualDirection == 3 && newDirection == 1) return -1;
+		else if (actualDirection == 3 && newDirection == 2) return -1;
+		else if (actualDirection == 3 && newDirection == 3) return -1;
+	}
+
 	void keyPressed(unsigned char key, int x, int y, bool down){
 		if (down) {
 			if ((key == 'h')) movey += 0.5;
-			else if ((key == 'g')) movex -= 0.5;
-			else if ((key == 'y')) movey -= 0.5;
-			else if ((key == 'j')) movex += 0.5;
+			else if (key == 'g') movex -= 0.5;
+			else if (key == 'y') movey -= 0.5;
+			else if (key == 'j') movex += 0.5;
+			else if (key == 'q'){
+				frog->moveUp(_frogDirection);
+			}
+			else if (key == 'a'){
+				frog->moveDown(_frogDirection);
+			}
+			else if (key == 'o'){
+				frog->moveLeft(_frogDirection);
+			}
+			else if (key == 'p'){
+				frog->moveRight(_frogDirection);
+			}
 			else if (key == '1'){
 				_activeCamera = 0;
 			}
@@ -147,20 +176,9 @@ class GameManager {
 			else if (key == '3'){
 				_activeCamera = 2;
 			}
-			else if (key == 'q' && _activeCamera == 2){
-
-			}
-			else if (key == 'a' && _activeCamera == 2){
-			
-			}
-			else if (key == 'o' && _activeCamera == 2){
-				
-			}
-			else if (key == 'p' && _activeCamera == 2){
-				
-			}
 		}
-		regularKeys[(int)key] = down;
+		else{ frog->stopMovement(); }
+	
 	}
 
 	/* - TESTS ONLY */
@@ -175,7 +193,6 @@ class GameManager {
 			rotate_x += 5;
 		else if (key == GLUT_KEY_DOWN)
 			rotate_x -= 5;
-		specialKeys[key] = true;
 	}
 	
 	/* init() - Initialize Color and enables depth buffer.*/
