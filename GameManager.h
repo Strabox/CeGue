@@ -83,7 +83,7 @@ class GameManager {
 			(*iter)->useKeys(regularKeys, specialKeys);
 			(*iter)->update(delta_time);
 		}
-		//frog->checkIfColided(&_cars);
+		frog->checkIfColided(_cars);
 
 	};
 
