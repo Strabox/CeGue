@@ -13,25 +13,8 @@ public:
 		collymax = 0.5;
 	}
 	~Car(){}
-	
-	int checkColisions(double frogbottom, double frogleft, double frogtop, double frogright){
-		double selfleft = getPosition()->getX() + collxmin;
-		double selfright = getPosition()->getX() + collxmax;
-		double selfbottom = getPosition()->getY() + collymin;
-		double selftop = getPosition()->getY() + collymax;
-		//bool
-		
-		if (!(selfleft > frogright || selfright < frogleft || selfbottom > frogbottom || selftop < frogtop)){
-			printf("colide\ncolide\ncolide\ncolide\ncolide\ncolide\ncolide\ncolide\ncolide\ncolide\ncolide\ncolide\ncolide\ncolide\ncolide\n");
-			return 1;
-		}
-		printf("car:\nleft %f \t right %f\ntop %f \t bottom%f\n", selfleft, selfright, selftop, selfbottom);
-		printf("frog:\nleft %f \t right %f\ntop %f \t bottom%f\n", frogleft, frogright, frogtop, frogbottom);
-		printf("%d %d %d %d", selfleft > frogright, selfright < frogleft, selfbottom > frogbottom, selftop < frogtop);
 
-		return 0;
-		
-	}
+	int answerToColision(){ return 1; } // 1 = death from being run over
 
 	void draw(){
 		Vector3* vector = getPosition();
