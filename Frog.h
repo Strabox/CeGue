@@ -94,12 +94,13 @@ class Frog : public DynamicObject {
 	}
 
 	
-	int checkIfColided(std::vector <Car *> collidable){
-		std::vector<Car* >::iterator iter = collidable.begin();
+	int checkIfColided(std::vector <GameObject *> collidable){
+		std::vector<GameObject* >::iterator iter = collidable.begin();
 		int dead = 0;
 		Vector3* pos = getPosition();
 
 		for (iter; iter != collidable.end(); iter++){
+			if ((int) this == (int)*iter) continue;
 			dead = (0 || (*iter)->checkColisions(pos->getY() - 0.15, pos->getX() - 0.15, pos->getY() + 0.15, pos->getX() + 0.15));
 		}
 		if (dead == 1){ die(); }

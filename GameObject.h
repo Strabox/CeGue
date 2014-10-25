@@ -16,23 +16,25 @@ public:
 		printf("An empty instance of GameObject was created.\n");
 	}
 	virtual void update(int delta_t){}
-	virtual int checkColisions(double frogbottom, double frogleft, double frogtop, double frogright){
+	int checkColisions(double frogbottom, double frogleft, double frogtop, double frogright){
 		double selfleft = getPosition()->getX() + collxmin;
 		double selfright = getPosition()->getX() + collxmax;
 		double selfbottom = getPosition()->getY() + collymin;
 		double selftop = getPosition()->getY() + collymax;
 
 		if (!(selfleft > frogright || selfright < frogleft || selfbottom > frogbottom || selftop < frogtop)){
+			printf("col\n");
 			return answerToColision();
 		}
 		else {
+			printf("ncol\n");
 			return 0;
 		}
 	}
 	/* http://www.gamedev.net/page/resources/_/technical/game-programming/swept-aabb-collision-detection-and-response-r3084
 	* ver Board-Phasing
 	*/
-	virtual int answerToColision(){ return 0; }
+	virtual int answerToColision(){ printf("oops\n"); return 0; }
 };
 
 #endif

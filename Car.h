@@ -14,7 +14,7 @@ public:
 	}
 	~Car(){}
 
-	int answerToColision(){ return 1; } // 1 = death from being run over
+	int answerToColision(){ printf("car\n"); return 1; } // 1 = death from being run over
 
 	void draw(){
 		Vector3* vector = getPosition();

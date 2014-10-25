@@ -80,7 +80,7 @@ class GameManager {
 		for (iter; iter != _game_objects.end(); iter++){
 			(*iter)->update(delta_time);
 		}
-		frog->checkIfColided(_cars);
+		frog->checkIfColided(_game_objects);
 
 	};
 
