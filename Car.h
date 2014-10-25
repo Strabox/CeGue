@@ -6,8 +6,19 @@
 
 class Car : public DynamicObject {
 public:
-	Car(){}
+	Car(){
+		xmin = 0.5;
+		xmax = 0.5;
+		ymin = 0.25;
+		ymax = 0.25;
+	}
 	~Car(){}
+	
+	int checkColisions(double bottom, double left, double top, double right){
+		return 0;
+
+	}
+
 	void draw(){
 		Vector3* vector = getPosition();
 		glPushMatrix();

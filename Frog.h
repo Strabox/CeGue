@@ -1,7 +1,10 @@
 #ifndef FROG_H
 #define FROG_H
+#include <vector>
 #include "glut.h"
 #include "DynamicObject.h"
+#include "Car.h"
+
 
 #define FROG_SPEED_MODULE 4.0
 
@@ -55,11 +58,23 @@ public:
 		setSpeed(platformSpeed);
 	}
 
+	int checkIfColided(std::vector <Car *> *colidable){
+		std::vector<GameObject* >::iterator iter = colidable->begin();
+		int dead = 0;
+
+		for (iter; iter != colidable->end(); iter++){
+			dead = (0 || (*iter)->checkColisions(this) );
+		}
+		if (dead == 1){ setPosition(0.0, 0.0, 0.0); }
+
+		return 0;
+	}
+
 	void useKeys(bool regularKeys[], bool specialKeys[]){
-		if (regularKeys[(int)'q']){ moveUp(); /*frogA = 0; frogO = 0; frogP = 0; */ }
-		else if (regularKeys[(int)'a']){ moveDown(); /*frogQ = 0; frogO = 0; frogP = 0; */ }
-		else if (regularKeys[(int)'o']){ moveLeft(); /*frogQ = 0; frogA = 0; frogP = 0; */ }
-		else if (regularKeys[(int)'p']){ moveRight(); /*frogQ = 0; frogA = 0; frogO = 0;*/ }
+		if (regularKeys[(int)'q']){ moveUp(); }
+		else if (regularKeys[(int)'a']){ moveDown(); }
+		else if (regularKeys[(int)'o']){ moveLeft(); }
+		else if (regularKeys[(int)'p']){ moveRight(); }
 		else{ stopMovement(); }
 	}
 

@@ -13,6 +13,7 @@
 #include "Timberlog.h"
 #include "Bus.h"
 #include "Camera.h"
+#include "Car.h"
 
 #define DRAWRIGHT -5.5
 #define DRAWLEFT 5.5
@@ -44,25 +45,21 @@ class GameManager {
 	double movex;
 
 	double movey;
-
-	int frogQ, frogA, frogO, frogP;
-
+	
 	bool regularKeys[256];
 
 	bool specialKeys[32];
 
 	int _activeCamera;
 
+	std::vector <Car *> _cars;
+
 	GameManager(){
 		rotate_x = 0;
 		rotate_y = 0;
 		movex = 0;
 		movey = 0;
-		/*frogQ = 0;
-		frogA = 0;
-		frogO = 0;
-		frogP = 0;
-		*/_activeCamera = 0;
+		_activeCamera = 0;
 		for(int i=0; i<256; i++){ regularKeys[i]=false; }
 	}
 
@@ -78,20 +75,16 @@ class GameManager {
 	
 	void update(int useless) {
 		std::vector<GameObject* >::iterator iter = _game_objects.begin();
-		/*
-			if (frogQ){ frog->moveUp(); frogA = 0; frogO = 0; frogP = 0; }
-			else if (frogA){ frog->moveDown(); frogQ = 0; frogO = 0; frogP = 0; }
-			else if (frogO){ frog->moveLeft(); frogQ = 0; frogA = 0; frogP = 0; }
-			else if (frogP){ frog->moveRight(); frogQ = 0; frogA = 0; frogO = 0; }
-			else{ frog->stopMovement();}
-		*/
+		
 		delta_time = glutGet(GLUT_ELAPSED_TIME) - total_time;
 		total_time += delta_time;
 
 		for (iter; iter != _game_objects.end(); iter++){
 			(*iter)->useKeys(regularKeys, specialKeys);
 			(*iter)->update(delta_time);
-		}	
+		}
+		frog->checkIfColided(&_cars);
+
 	};
 
 	void display(){

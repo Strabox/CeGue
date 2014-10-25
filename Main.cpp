@@ -14,7 +14,7 @@
 #include "PerspectiveCamera.h"
 #include "OrthogonalCamera.h"
 
-#define MILISECONDS 17
+#define MILISECONDS 7
 
 GameManager* man;
 
@@ -99,6 +99,7 @@ void spawnWorldObjects(){ // Map has 11 width and 13 height
 	car->setPosition(2.0, 3.0, 0.0);
 	car->setSpeed(-3.0, 0.0, 0.0);
 	man->addGameObject(car);
+	man->_cars.push_back(car);
 	
 	Turtle* turtle;
 	turtle = new Turtle();
@@ -112,9 +113,9 @@ void spawnWorldObjects(){ // Map has 11 width and 13 height
 	cam1->setCenter(0.0, 0.0, 0.0);
 	cam1->setUp(0.0,1.0,0.0);
 	/* Second Camera - Static Prespective */
-	Camera* cam2 = new PerspectiveCamera(110, (DRAWLEFT-DRAWRIGHT)/(DRAWTOP-DRAWBOTTOM), 0.1, 20);
-	cam2->setPosition(0.0, 0.0, 6.0);
-	cam2->setCenter(0.0,3.0,0.0);
+	Camera* cam2 = new PerspectiveCamera(110, (DRAWTOP - DRAWBOTTOM) / (DRAWLEFT - DRAWRIGHT), 0.1, 20);
+	cam2->setPosition(5.0, 6.0, 6.0);
+	cam2->setCenter(0.0, 6.0, 0.0);
 	cam2->setUp(0.0,9.0,1.0);
 	/* Third Camera - Mobile Prespective */
 	Camera* cam3 = new PerspectiveCamera(110, (DRAWLEFT - DRAWRIGHT) / (DRAWTOP - DRAWBOTTOM) , 0.1, 20);
