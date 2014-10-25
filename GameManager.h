@@ -83,7 +83,7 @@ class GameManager {
 			(*iter)->useKeys(regularKeys, specialKeys);
 			(*iter)->update(delta_time);
 		}
-		frog->checkIfColided(&_cars);
+		//frog->checkIfColided(&_cars);
 
 	};
 
@@ -165,7 +165,7 @@ class GameManager {
 			rotate_x -= 5;
 		specialKeys[key] = true;
 	}
-
+	
 	/* init() - Initialize Color and enables depth buffer.*/
 	void init(void){
 		/*  select clearing (background) color       */

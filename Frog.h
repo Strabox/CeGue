@@ -58,6 +58,7 @@ public:
 		setSpeed(platformSpeed);
 	}
 
+	/*
 	int checkIfColided(std::vector <Car *> *colidable){
 		std::vector<GameObject* >::iterator iter = colidable->begin();
 		int dead = 0;
@@ -68,7 +69,7 @@ public:
 		if (dead == 1){ setPosition(0.0, 0.0, 0.0); }
 
 		return 0;
-	}
+	}*/
 
 	void useKeys(bool regularKeys[], bool specialKeys[]){
 		if (regularKeys[(int)'q']){ moveUp(); }
