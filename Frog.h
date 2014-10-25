@@ -100,7 +100,7 @@ class Frog : public DynamicObject {
 		Vector3* pos = getPosition();
 
 		for (iter; iter != collidable.end(); iter++){
-			dead = (0 || (*iter)->checkColisions(pos->getY() - 0.15, pos->getX() - 0.15, pos->getY() - 0.15, pos->getX() + 0.15));
+			dead = (0 || (*iter)->checkColisions(pos->getY() - 0.15, pos->getX() - 0.15, pos->getY() + 0.15, pos->getX() + 0.15));
 		}
 		if (dead == 1){ die(); }
 		
