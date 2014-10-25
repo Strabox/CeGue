@@ -113,10 +113,10 @@ void spawnWorldObjects(){ // Map has 11 width and 13 height
 	cam1->setCenter(0.0, 0.0, 0.0);
 	cam1->setUp(0.0,1.0,0.0);
 	/* Second Camera - Static Prespective */
-	Camera* cam2 = new PerspectiveCamera(110, (DRAWTOP - DRAWBOTTOM) / (DRAWLEFT - DRAWRIGHT), 0.1, 20);
-	cam2->setPosition(5.0, 6.0, 6.0);
+	Camera* cam2 = new PerspectiveCamera(110, (DRAWLEFT - DRAWRIGHT) / (DRAWTOP - DRAWBOTTOM), 0.1, 20);
+	cam2->setPosition(0.0, 0.0, 6.0);
 	cam2->setCenter(0.0, 6.0, 0.0);
-	cam2->setUp(0.0,9.0,1.0);
+	cam2->setUp(0.0,1.0,1.0);
 	/* Third Camera - Mobile Prespective */
 	Camera* cam3 = new PerspectiveCamera(110, (DRAWLEFT - DRAWRIGHT) / (DRAWTOP - DRAWBOTTOM) , 0.1, 20);
 	cam3->setPosition(0.0, -2.0, 1.0);

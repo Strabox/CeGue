@@ -5,18 +5,26 @@
 #include "DynamicObject.h"
 #include "Car.h"
 
-
 #define FROG_SPEED_MODULE 4.0
 
 class Frog : public DynamicObject {
-private:
+
+	private:
+
 	double zRotation;
+
 	Vector3 *platformSpeed;
+
+
 	/*flags*/
 	bool ground;
+
 	bool water;
+
 	bool logOrTurtle;
-public:
+
+	public:
+
 	Frog() : DynamicObject() {
 		zRotation=0;
 		platformSpeed = new Vector3(0.0, 0.0, 0.0);
@@ -24,8 +32,11 @@ public:
 		water = false;
 		logOrTurtle = false;
 	}
+
 	~Frog(){}
+
 	void setZRotation(double z){ zRotation = z; }
+
 	void moveDown(){
 		setZRotation(180.0);
 		Vector3* new_speed = new Vector3(0.0, 0.0, 0.0);
@@ -33,6 +44,7 @@ public:
 		new_speed->addVector3(new Vector3(0.0, -FROG_SPEED_MODULE, 0.0));
 		setSpeed(new_speed);
 	}
+
 	void moveUp(){
 		setZRotation(0.0);
 		Vector3* new_speed = new Vector3(0.0, 0.0, 0.0);
@@ -40,6 +52,7 @@ public:
 		new_speed->addVector3(new Vector3(0.0, FROG_SPEED_MODULE, 0.0));
 		setSpeed(new_speed);
 	}
+
 	void moveLeft(){
 		setZRotation(90.0);
 		Vector3* new_speed = new Vector3(0.0, 0.0, 0.0);
@@ -47,6 +60,7 @@ public:
 		new_speed->addVector3(new Vector3(-FROG_SPEED_MODULE, 0.0, 0.0));
 		setSpeed(new_speed);
 	}
+
 	void moveRight(){
 		setZRotation(-90.0);
 		Vector3* new_speed = new Vector3(0.0, 0.0, 0.0);
@@ -54,6 +68,7 @@ public:
 		new_speed->addVector3(new Vector3(FROG_SPEED_MODULE, 0.0, 0.0));
 		setSpeed(new_speed);
 	}
+
 	void stopMovement(){
 		setSpeed(platformSpeed);
 	}
@@ -129,8 +144,8 @@ public:
 		glPopMatrix();
 		
 		glPopMatrix();
-
 	}
+
 };
 
 #endif

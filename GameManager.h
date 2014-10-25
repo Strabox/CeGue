@@ -104,7 +104,7 @@ class GameManager {
 			_cameras[1]->update();
 		}
 		else if (_activeCamera == 2){
-			_cameras[2]->setPosition(frog->getPosition()->getX(), frog->getPosition()->getY() - 2, 1.0);
+			_cameras[2]->setPosition(frog->getPosition()->getX(), frog->getPosition()->getY() - 2, 2.0);
 			_cameras[2]->setCenter(frog->getPosition()->getX(), frog->getPosition()->getY(), frog->getPosition()->getZ());
 			_cameras[2]->update();
 		}
@@ -146,6 +146,18 @@ class GameManager {
 			}
 			else if (key == '3'){
 				_activeCamera = 2;
+			}
+			else if (key == 'q' && _activeCamera == 2){
+
+			}
+			else if (key == 'a' && _activeCamera == 2){
+			
+			}
+			else if (key == 'o' && _activeCamera == 2){
+				
+			}
+			else if (key == 'p' && _activeCamera == 2){
+				
 			}
 		}
 		regularKeys[(int)key] = down;
