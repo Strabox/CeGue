@@ -7,9 +7,16 @@
 class Riverside : public StaticObject {
 public:
 
-	Riverside(){}
+	Riverside(){
+		collxmin = -6.0;
+		collxmax = 6.0;
+		collymin = -0.5;
+		collymax = 0.5;
+	}
 
 	~Riverside(){}
+
+	int answerToColision(){ printf("road\n"); return 4; } // 4 = ground
 
 	void draw(){
 		Vector3* vector = getPosition();

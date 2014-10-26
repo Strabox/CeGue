@@ -6,8 +6,16 @@
 
 class Turtle : public DynamicObject {
 public:
-	Turtle(){}
+	Turtle(){
+		collxmin = -1.5;
+		collxmax = 1.5;
+		collymin = -0.5;
+		collymax = 0.5;
+	}
 	~Turtle(){}
+
+	int answerToColision(){ printf("turtle\n"); return 2; } // 2 = must float
+
 	void draw(){
 		Vector3* vector = getPosition();
 		glPushMatrix();

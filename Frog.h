@@ -23,6 +23,8 @@ class Frog : public DynamicObject {
 
 	bool logOrTurtle;
 
+	bool wall;
+
 	public:
 
 	Frog() : DynamicObject() {
@@ -96,15 +98,23 @@ class Frog : public DynamicObject {
 	
 	int checkIfColided(std::vector <GameObject *> collidable){
 		std::vector<GameObject* >::iterator iter = collidable.begin();
-		int dead = 0;
+		int colision_type = 0;
+		ground = false;
+		water = false;
+		logOrTurtle = false;
 		Vector3* pos = getPosition();
 
 		for (iter; iter != collidable.end(); iter++){
 			if ((int) this == (int)*iter) continue;
-			dead = (0 || (*iter)->checkColisions(pos->getY() - 0.15, pos->getX() - 0.15, pos->getY() + 0.15, pos->getX() + 0.15));
+			colision_type = ((*iter)->checkColisions(pos->getY() - 0.3, pos->getX() - 0.3, pos->getY() + 0.3, pos->getX() + 0.3));
+			
+			if (colision_type == 1) die();
+			else if (colision_type == 2) logOrTurtle = true;
+			else if (colision_type == 3) ground = true;
+			else if (colision_type == 4) wall = true;
+			else if (colision_type == 5) water = true;
 		}
-		if (dead == 1){ die(); }
-		
+
 		return 0;
 	}
 

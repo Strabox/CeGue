@@ -7,9 +7,16 @@
 class River : public StaticObject {
 public:
 
-	River(){}
+	River(){
+		collxmin = -6.0;
+		collxmax = 6.0;
+		collymin = -2.5;
+		collymax = 2.5;
+	}
 
 	~River(){}
+
+	int answerToColision(){ printf("river\n"); return 5; } // 5 = above water
 
 	void draw(){
 		Vector3* vector = getPosition();

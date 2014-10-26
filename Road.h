@@ -7,9 +7,16 @@
 class Road : public StaticObject {
 public:
 
-	Road(){}
+	Road(){
+		collxmin = -6.0;
+		collxmax = 6.0;
+		collymin = -2.5;
+		collymax = 2.5;
+	}
 
 	~Road(){}
+
+	int answerToColision(){ printf("road\n"); return 4; } // 4 = ground
 
 	void draw(){
 		Vector3* vector = getPosition();
