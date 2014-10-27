@@ -10,7 +10,7 @@ public:
 	Riverside(){
 		collxmin = -6.0;
 		collxmax = 6.0;
-		collymin = -0.5;
+		collymin = -0.2;
 		collymax = 0.5;
 	}
 

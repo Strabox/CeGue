@@ -6,6 +6,10 @@
 #include "Car.h"
 
 #define FROG_SPEED_MODULE 4.0
+#define FROG_DIMENSION_YMIN -0.3
+#define FROG_DIMENSION_YMAX 0.3
+#define FROG_DIMENSION_XMIN -0.3
+#define FROG_DIMENSION_XMAX 0.3
 
 class Frog : public DynamicObject {
 
@@ -106,7 +110,7 @@ class Frog : public DynamicObject {
 
 		for (iter; iter != collidable.end(); iter++){
 			if ((int) this == (int)*iter) continue;
-			colision_type = ((*iter)->checkColisions(pos->getY() - 0.3, pos->getX() - 0.3, pos->getY() + 0.3, pos->getX() + 0.3));
+			colision_type = ((*iter)->checkColisions(pos->getY() + FROG_DIMENSION_YMIN, pos->getX() + FROG_DIMENSION_XMIN, pos->getY() + FROG_DIMENSION_YMAX, pos->getX() + FROG_DIMENSION_XMAX));
 			
 			if (colision_type == 1) die();
 			else if (colision_type == 2) logOrTurtle = true;
@@ -121,6 +125,28 @@ class Frog : public DynamicObject {
 	void die(){
 		setPosition(0.0, 0.0, 0.0);
 		platformSpeed = new Vector3(0.0, 0.0, 0.0);
+	}
+
+	void update(int delta_t){
+		double _x, _y;
+		Vector3* pos = getPosition();
+		Vector3* distance = getSpeed()->makeCopy();
+		distance->multiplyScale((double)delta_t / 1000);
+		pos->addVector3(distance);
+		_x = pos->getX();
+		_y = pos->getY();
+		if (_x > 5.5 - FROG_DIMENSION_XMAX){
+			pos->setX(5.5 - FROG_DIMENSION_XMAX);
+		}
+		else if (_x < -5.5 - FROG_DIMENSION_XMIN){
+			pos->setX(-5.5 - FROG_DIMENSION_XMIN);
+		}
+		if (_y > 12.5 - FROG_DIMENSION_YMAX){
+			pos->setY(12.5 - FROG_DIMENSION_YMAX);
+		}
+		else if (_y < -0.5 - FROG_DIMENSION_YMIN){
+			pos->setY(-0.5 - FROG_DIMENSION_YMIN);
+		}
 	}
 
 	void draw(){

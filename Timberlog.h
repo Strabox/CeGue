@@ -9,8 +9,8 @@ public:
 	Timberlog() : DynamicObject(){
 		collxmin = -1.5;
 		collxmax = 1.5;
-		collymin = -0.5;
-		collymax = 0.5;
+		collymin = -0.35;
+		collymax = 0.35;
 	}
 	~Timberlog(){}
 

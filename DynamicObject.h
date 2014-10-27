@@ -17,7 +17,7 @@ class DynamicObject : public GameObject {
 
 		~DynamicObject(){}
 
-		void update(int delta_t){
+		virtual void update(int delta_t){
 			double _x;
 			Vector3* pos = getPosition();
 			Vector3* distance = getSpeed()->makeCopy();

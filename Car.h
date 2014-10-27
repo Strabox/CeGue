@@ -9,8 +9,8 @@ public:
 	Car(){
 		collxmin = -0.6;
 		collxmax = 0.6;
-		collymin = -0.5;
-		collymax = 0.5;
+		collymin = -0.3;
+		collymax = 0.3;
 	}
 	~Car(){}
 

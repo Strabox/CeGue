@@ -22,7 +22,7 @@ public:
 		double selfbottom = getPosition()->getY() + collymin;
 		double selftop = getPosition()->getY() + collymax;
 
-		if (!(selfleft > frogright || selfright < frogleft || selfbottom > frogbottom || selftop < frogtop)){
+		if (!(selfleft > frogright || selfright < frogleft || selfbottom > frogtop || selftop < frogbottom)){
 			printf("col\n");
 			return answerToColision();
 		}

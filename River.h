@@ -10,8 +10,8 @@ public:
 	River(){
 		collxmin = -6.0;
 		collxmax = 6.0;
-		collymin = -2.5;
-		collymax = 2.5;
+		collymin = -2.2;
+		collymax = 2.2;
 	}
 
 	~River(){}

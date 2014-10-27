@@ -11,7 +11,7 @@ public:
 		collxmin = -6.0;
 		collxmax = 6.0;
 		collymin = -0.5;
-		collymax = 0.5;
+		collymax = 0.2;
 	}
 
 	~Roadside(){}

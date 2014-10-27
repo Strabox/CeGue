@@ -9,8 +9,8 @@ public:
 	Bus(){
 		collxmin = -0.7;
 		collxmax = 1.3;
-		collymin = -0.5;
-		collymax = 0.5;
+		collymin = -0.4;
+		collymax = 0.4;
 	}
 	~Bus(){}
 
