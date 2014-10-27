@@ -106,6 +106,10 @@ void spawnWorldObjects(){ // Map has 11 width and 13 height
 	turtle->setPosition(-2.0, 10.0, -1.0);
 	turtle->setSpeed(-2.0, 0.0, 0.0);
 	man->addGameObject(turtle);
+	turtle = new Turtle();
+	turtle->setPosition(-2.0, 7.0, -1.0);
+	turtle->setSpeed(-2.0, 0.0, 0.0);
+	man->addGameObject(turtle);
 
 	/* First Camera - Orthogonal */
 	Camera* cam1 = new OrthogonalCamera(DRAWLEFT, DRAWRIGHT, DRAWBOTTOM, DRAWTOP, DRAWNEAR, DRAWFAR);

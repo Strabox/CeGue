@@ -27,8 +27,6 @@ class Frog : public DynamicObject {
 
 	bool logOrTurtle;
 
-	bool wall;
-
 	public:
 
 	Frog() : DynamicObject() {
@@ -110,13 +108,32 @@ class Frog : public DynamicObject {
 
 		for (iter; iter != collidable.end(); iter++){
 			if ((int) this == (int)*iter) continue;
+			
 			colision_type = ((*iter)->checkColisions(pos->getY() + FROG_DIMENSION_YMIN, pos->getX() + FROG_DIMENSION_XMIN, pos->getY() + FROG_DIMENSION_YMAX, pos->getX() + FROG_DIMENSION_XMAX));
 			
-			if (colision_type == 1) die();
-			else if (colision_type == 2) logOrTurtle = true;
+			if (colision_type == 1){
+				die();
+				break;
+			}
+
 			else if (colision_type == 3) ground = true;
-			else if (colision_type == 4) wall = true;
 			else if (colision_type == 5) water = true;
+			else if (colision_type == 2){
+				logOrTurtle = true;
+				break;
+			}
+		}
+
+		if (ground) return 0; //ground keeps the frog safe from the water
+		
+		else if (water){
+			if (!logOrTurtle){ //the frog will survive the water if there's a 
+				die();
+				return 0;
+			}
+			else{
+				platformSpeed = (*iter)->getSpeed();
+			}
 		}
 
 		return 0;
@@ -125,6 +142,7 @@ class Frog : public DynamicObject {
 	void die(){
 		setPosition(0.0, 0.0, 0.0);
 		platformSpeed = new Vector3(0.0, 0.0, 0.0);
+		setSpeed(0.0, 0.0, 0.0);
 	}
 
 	void update(int delta_t){
