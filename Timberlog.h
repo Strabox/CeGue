@@ -7,14 +7,14 @@
 class Timberlog : public DynamicObject {
 public:
 	Timberlog() : DynamicObject(){
-		collxmin = -1.5;
-		collxmax = 1.5;
-		collymin = -0.35;
-		collymax = 0.35;
+		collxmin = -1.35;
+		collxmax = 1.35;
+		collymin = -0.2;
+		collymax = 0.2;
 	}
 	~Timberlog(){}
 
-	int answerToColision(){ printf("log\n"); return 2; } // 2 = must float
+	int answerToColision(){ return 2; } // 2 = must float
 
 	void draw(){
 		GLUquadricObj* quadric = gluNewQuadric(); //isto é preciso para o cilindro

@@ -16,7 +16,7 @@ public:
 
 	~River(){}
 
-	int answerToColision(){ printf("river\n"); return 5; } // 5 = above water
+	int answerToColision(){ return 5; } // 5 = above water
 
 	void draw(){
 		Vector3* vector = getPosition();

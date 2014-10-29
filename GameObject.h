@@ -10,7 +10,10 @@ public:
 	double collxmax;
 	double collymin;
 	double collymax;
-	GameObject() : Entity(){}
+	double speed_multiplier;
+	GameObject() : Entity(){
+		speed_multiplier=1.0;
+	}
 	~GameObject(){}
 
 	virtual void draw(){
@@ -25,11 +28,9 @@ public:
 		double selftop = getPosition()->getY() + collymax;
 
 		if (!(selfleft > frogright || selfright < frogleft || selfbottom > frogtop || selftop < frogbottom)){
-			printf("col\n");
 			return answerToColision();
 		}
 		else {
-			printf("ncol\n");
 			return 0;
 		}
 	}
@@ -37,9 +38,9 @@ public:
 	* ver Board-Phasing
 	*/
 	
-	virtual int answerToColision(){ printf("oops\n"); return 0; }
+	virtual int answerToColision(){ printf("GameObject instantiated when it shouldn't have been\n"); return 0; }
 
-	virtual Vector3* getSpeed(){ return NULL; }
+	virtual Vector3* getSpeed(){ return new Vector3(0.0, 0.0, 0.0); }
 };
 
 #endif

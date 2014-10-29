@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <vector>
+#include <cmath>
 #include "glut.h"
 #include "GameObject.h"
 #include "Frog.h"
@@ -38,8 +39,6 @@ class GameManager {
 
 	Frog* frog;		//relacionado com o movimento do sapo
 
-	int _frogDirection;
-
 	int rotate_y; //usado para rodar a câmara e assim ver se os modelos estão em ordem
 
 	int rotate_x;
@@ -47,6 +46,8 @@ class GameManager {
 	double movex;
 
 	double movey;
+
+	double tens_of_seconds_passed;
 
 	int _activeCamera;
 
@@ -58,7 +59,7 @@ class GameManager {
 		movex = 0;
 		movey = 0;
 		_activeCamera = 0;
-		_frogDirection = 3;
+		tens_of_seconds_passed=0.0;
 	}
 
 	~GameManager();
@@ -73,16 +74,26 @@ class GameManager {
 	
 	void update(int useless) {
 		std::vector<GameObject* >::iterator iter = _game_objects.begin();
-		
+		bool increase_speed = false;
+
 		delta_time = glutGet(GLUT_ELAPSED_TIME) - total_time;
 		total_time += delta_time;
 
+		if ((total_time / 10000)> (int)tens_of_seconds_passed){
+			printf("%f\n", tens_of_seconds_passed );
+			increase_speed=true;
+			tens_of_seconds_passed++;
+		}
+
 		for (iter; iter != _game_objects.end(); iter++){
+			if (increase_speed){ (*iter)->getSpeed()->multiplyScale(1.05);}
 			(*iter)->update(delta_time);
 		}
 		frog->checkIfColided(_game_objects);
 
-	};
+		increase_speed=false;
+
+	}
 
 	void display(){
 		/* Reset Color and DEpth Buffer */
@@ -129,26 +140,6 @@ class GameManager {
 			glViewport( 0, (h-w/ratio)/2, w, w/ratio);
 	}
 
-	/* !!!!!!!IMPORTANTE: 0 - West, 1 - South, 2 - East,3 - North*/
-	int calculateDirection(int actualDirection,int newDirection){
-		if (actualDirection == 0 && newDirection == 0) return 1;
-		else if (actualDirection == 0 && newDirection == 1) return 2;
-		else if (actualDirection == 0 && newDirection == 2) return 0;
-		else if (actualDirection == 0 && newDirection == 3) return 0;
-		else if (actualDirection == 1 && newDirection == 0) return 2;
-		else if (actualDirection == 1 && newDirection == 1) return 3;
-		else if (actualDirection == 1 && newDirection == 2) return -1;
-		else if (actualDirection == 1 && newDirection == 3) return -1;
-		else if (actualDirection == 2 && newDirection == 0) return -1;
-		else if (actualDirection == 2 && newDirection == 1) return -1;
-		else if (actualDirection == 2 && newDirection == 2) return -1;
-		else if (actualDirection == 2 && newDirection == 3) return -1;
-		else if (actualDirection == 3 && newDirection == 0) return -1;
-		else if (actualDirection == 3 && newDirection == 1) return -1;
-		else if (actualDirection == 3 && newDirection == 2) return -1;
-		else if (actualDirection == 3 && newDirection == 3) return -1;
-	}
-
 	void keyPressed(unsigned char key, int x, int y, bool down){
 		if (down) {
 			if ((key == 'h')) movey += 0.5;
@@ -156,16 +147,16 @@ class GameManager {
 			else if (key == 'y') movey -= 0.5;
 			else if (key == 'j') movex += 0.5;
 			else if (key == 'q'){
-				frog->moveUp(_frogDirection);
+				frog->moveUp();
 			}
 			else if (key == 'a'){
-				frog->moveDown(_frogDirection);
+				frog->moveDown();
 			}
 			else if (key == 'o'){
-				frog->moveLeft(_frogDirection);
+				frog->moveLeft();
 			}
 			else if (key == 'p'){
-				frog->moveRight(_frogDirection);
+				frog->moveRight();
 			}
 			else if (key == '1'){
 				_activeCamera = 0;
@@ -177,7 +168,7 @@ class GameManager {
 				_activeCamera = 2;
 			}
 		}
-		else{ frog->stopMovement(); }
+		else{frog->stopMovement(); }
 	
 	}
 

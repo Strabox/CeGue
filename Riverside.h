@@ -16,7 +16,7 @@ public:
 
 	~Riverside(){}
 
-	int answerToColision(){ printf("road\n"); return 4; } // 4 = ground
+	int answerToColision(){ return 6; } // 6 = win
 
 	void draw(){
 		Vector3* vector = getPosition();

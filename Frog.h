@@ -41,54 +41,38 @@ class Frog : public DynamicObject {
 
 	void setZRotation(double z){ zRotation = z; }
 
-	void moveDown(int direction){
+	void moveDown(){
 		setZRotation(180.0);
-		if (direction == 0){		//If its turned West
-			Vector3* new_speed = new Vector3(0.0, 0.0, 0.0);
-			new_speed->addVector3(platformSpeed);
-			new_speed->addVector3(new Vector3(0.0, -FROG_SPEED_MODULE, 0.0));
-			setSpeed(new_speed);
-		}
-		else if (direction == 1){	//If its turned South
-			Vector3* new_speed = new Vector3(0.0, 0.0, 0.0);
-			new_speed->addVector3(platformSpeed);
-			new_speed->addVector3(new Vector3(0.0, -FROG_SPEED_MODULE, 0.0));
-			setSpeed(new_speed);
-		}
-		else if (direction == 2){	//If its turned East
-			Vector3* new_speed = new Vector3(0.0, 0.0, 0.0);
-			new_speed->addVector3(platformSpeed);
-			new_speed->addVector3(new Vector3(0.0, -FROG_SPEED_MODULE, 0.0));
-			setSpeed(new_speed);
-		}
-		else if (direction == 3){	//If its turned North
-			Vector3* new_speed = new Vector3(0.0, 0.0, 0.0);
-			new_speed->addVector3(platformSpeed);
-			new_speed->addVector3(new Vector3(0.0, -FROG_SPEED_MODULE, 0.0));
-			setSpeed(new_speed);
-		}
+		Vector3* new_speed = new Vector3(0.0, 0.0, 0.0);
+		new_speed->addVector3(platformSpeed);
+		//new_speed->multiplyScale(speed_multiplier);
+		new_speed->addVector3(new Vector3(0.0, -FROG_SPEED_MODULE, 0.0));
+		setSpeed(new_speed);
 	}
 
-	void moveUp(int direction){
+	void moveUp(){
 		setZRotation(0.0);
 		Vector3* new_speed = new Vector3(0.0, 0.0, 0.0);
 		new_speed->addVector3(platformSpeed);
+		//new_speed->multiplyScale(speed_multiplier);
 		new_speed->addVector3(new Vector3(0.0, FROG_SPEED_MODULE, 0.0));
 		setSpeed(new_speed);
 	}
 
-	void moveLeft(int direction){
+	void moveLeft(){
 		setZRotation(90.0);
 		Vector3* new_speed = new Vector3(0.0, 0.0, 0.0);
 		new_speed->addVector3(platformSpeed);
+		//new_speed->multiplyScale(speed_multiplier);
 		new_speed->addVector3(new Vector3(-FROG_SPEED_MODULE, 0.0, 0.0));
 		setSpeed(new_speed);
 	}
 
-	void moveRight(int direction){
+	void moveRight(){
 		setZRotation(-90.0);
 		Vector3* new_speed = new Vector3(0.0, 0.0, 0.0);
 		new_speed->addVector3(platformSpeed);
+		//new_speed->multiplyScale(speed_multiplier);
 		new_speed->addVector3(new Vector3(FROG_SPEED_MODULE, 0.0, 0.0));
 		setSpeed(new_speed);
 	}
@@ -112,23 +96,30 @@ class Frog : public DynamicObject {
 			colision_type = ((*iter)->checkColisions(pos->getY() + FROG_DIMENSION_YMIN, pos->getX() + FROG_DIMENSION_XMIN, pos->getY() + FROG_DIMENSION_YMAX, pos->getX() + FROG_DIMENSION_XMAX));
 			
 			if (colision_type == 1){
-				die();
+				winOrDie();
 				break;
 			}
 
-			else if (colision_type == 3) ground = true;
+			else if (colision_type == 6){
+				winOrDie();
+				break;
+			}
+			else if (colision_type == 4) ground = true;
 			else if (colision_type == 5) water = true;
 			else if (colision_type == 2){
 				logOrTurtle = true;
 				break;
 			}
 		}
-
-		if (ground) return 0; //ground keeps the frog safe from the water
 		
+		if (ground){
+			platformSpeed = new Vector3(0.0, 0.0, 0.0);
+			return 0; //ground keeps the frog safe from the water
+		}
+
 		else if (water){
-			if (!logOrTurtle){ //the frog will survive the water if there's a 
-				die();
+			if (!logOrTurtle){ //the frog will survive the water if there's a log or a turtle
+				winOrDie();
 				return 0;
 			}
 			else{
@@ -139,7 +130,7 @@ class Frog : public DynamicObject {
 		return 0;
 	}
 
-	void die(){
+	void winOrDie(){
 		setPosition(0.0, 0.0, 0.0);
 		platformSpeed = new Vector3(0.0, 0.0, 0.0);
 		setSpeed(0.0, 0.0, 0.0);

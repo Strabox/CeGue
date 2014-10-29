@@ -14,7 +14,7 @@ public:
 	}
 	~Bus(){}
 
-	int answerToColision(){ printf("bus\n"); return 1; } // 1 = being run over
+	int answerToColision(){ return 1; } // 1 = being run over
 
 	void draw(){
 		Vector3* vector = getPosition();

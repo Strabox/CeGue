@@ -81,13 +81,30 @@ void spawnWorldObjects(){ // Map has 11 width and 13 height
 	man->addGameObject(tronco);
 	tronco = new Timberlog();
 	tronco->setPosition(-1.0, 11.0, -1.0);
-	tronco->setSpeed(-1.5, 0.0, 0.0); 
+	tronco->setSpeed(-1.25, 0.0, 0.0); 
+	man->addGameObject(tronco);
+	tronco = new Timberlog();
+	tronco->setPosition(-1.0, 8.0, -1.0);
+	tronco->setSpeed(-1.0, 0.0, 0.0); 
+	man->addGameObject(tronco);
+
+	tronco = new Timberlog();
+	tronco->setPosition(3.5, 9.0, -1.0);
+	tronco->setSpeed(-1.5, 0.0, 0.0);
+	man->addGameObject(tronco);
+	tronco = new Timberlog();
+	tronco->setPosition(6.5, 11.0, -1.0);
+	tronco->setSpeed(-1.25, 0.0, 0.0); 
+	man->addGameObject(tronco);
+	tronco = new Timberlog();
+	tronco->setPosition(-6.5, 8.0, -1.0);
+	tronco->setSpeed(-1.0, 0.0, 0.0); 
 	man->addGameObject(tronco);
 	
 	Bus* bus;
 	bus = new Bus();
 	bus->setPosition(-1.0, 2.0, 0.0);
-	bus->setSpeed(-2.00, 0.0, 0.0);
+	bus->setSpeed(-1.75, 0.0, 0.0);
 	man->addGameObject(bus);
 	bus = new Bus();
 	bus->setPosition(4.0, 4.0, 0.0);
@@ -97,18 +114,37 @@ void spawnWorldObjects(){ // Map has 11 width and 13 height
 	Car* car;
 	car = new Car();
 	car->setPosition(2.0, 3.0, 0.0);
+	car->setSpeed(-4.0, 0.0, 0.0);
+	man->addGameObject(car);
+	man->_cars.push_back(car);
+	car = new Car();
+	car->setPosition(1.0, 1.0, 0.0);
 	car->setSpeed(-3.0, 0.0, 0.0);
+	man->addGameObject(car);
+	man->_cars.push_back(car);
+	car = new Car();
+	car->setPosition(7.0, 5.0, 0.0);
+	car->setSpeed(-2.5, 0.0, 0.0);
 	man->addGameObject(car);
 	man->_cars.push_back(car);
 	
 	Turtle* turtle;
 	turtle = new Turtle();
 	turtle->setPosition(-2.0, 10.0, -1.0);
-	turtle->setSpeed(-2.0, 0.0, 0.0);
+	turtle->setSpeed(-1.0, 0.0, 0.0);
 	man->addGameObject(turtle);
 	turtle = new Turtle();
 	turtle->setPosition(-2.0, 7.0, -1.0);
-	turtle->setSpeed(-2.0, 0.0, 0.0);
+	turtle->setSpeed(-1.25, 0.0, 0.0);
+	man->addGameObject(turtle);
+
+	turtle = new Turtle();
+	turtle->setPosition(4.5, 10.0, -1.0);
+	turtle->setSpeed(-1.0, 0.0, 0.0);
+	man->addGameObject(turtle);
+	turtle = new Turtle();
+	turtle->setPosition(4.5, 7.0, -1.0);
+	turtle->setSpeed(-1.25, 0.0, 0.0);
 	man->addGameObject(turtle);
 
 	/* First Camera - Orthogonal */

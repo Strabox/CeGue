@@ -16,7 +16,7 @@ public:
 
 	~Road(){}
 
-	int answerToColision(){ printf("road\n"); return 4; } // 4 = ground
+	int answerToColision(){ return 4; } // 4 = ground
 
 	void draw(){
 		Vector3* vector = getPosition();
