@@ -42,13 +42,15 @@ class GameManager {
 
 	public:
 
+	std::vector <Car *> _cars;
+
 	Frog* frog;				//relacionado com o movimento do sapo
 
 	int rotate_y;			//usado para rodar a câmara e assim ver se os modelos estão em ordem
 
 	int rotate_x;
 
-	bool light = false;
+	bool light = false;		//Light Mode Off in Begining
 
 	double movex;
 
@@ -56,9 +58,8 @@ class GameManager {
 
 	double tens_of_seconds_passed;
 
-	int _activeCamera;
+	int _activeCamera;		//Current Camera
 
-	std::vector <Car *> _cars;
 
 	GameManager(){
 		rotate_x = 0;
@@ -194,7 +195,7 @@ class GameManager {
 				}
 			}
 			else if (key == 'c'){
-
+				
 			}
 			else if (key == 'k')		//TESTS PURPOSE ONLY
 			{
