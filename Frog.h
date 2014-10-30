@@ -93,7 +93,7 @@ class Frog : public DynamicObject {
 		Vector3* pos = getPosition();
 
 		for (iter; iter != collidable.end(); iter++){
-			if ((int) this == (int)*iter) continue;
+			if ((int) this == (int)*iter) continue;		//Collision with itself.
 			
 			colision_type = ((*iter)->checkColisions(pos->getY() + FROG_DIMENSION_YMIN, pos->getX() + FROG_DIMENSION_XMIN, pos->getY() + FROG_DIMENSION_YMAX, pos->getX() + FROG_DIMENSION_XMAX));
 			
