@@ -1,5 +1,6 @@
 #ifndef FROG_H
 #define FROG_H
+
 #include <vector>
 #include "glut.h"
 #include "DynamicObject.h"

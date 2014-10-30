@@ -15,6 +15,7 @@
 #include "Bus.h"
 #include "Camera.h"
 #include "Car.h"
+#include "LightSource.h"
 
 #define DRAWRIGHT -5.5
 #define DRAWLEFT 5.5
@@ -34,6 +35,8 @@ class GameManager {
 	std::vector <GameObject*> _game_objects;
 
 	std::vector <Camera *> _cameras;
+
+	std::vector <LightSource> _light_sources;
 
 	public:
 
@@ -70,6 +73,9 @@ class GameManager {
 	/* addCamera(cam) - Adds a new camera to the cameras list.*/
 	void addCamera(Camera* cam){ _cameras.push_back(cam); }
 
+	/* addlightSource(source) - Adds a new LightSource to the gameManager. */
+	void addLightSource(LightSource source){ _light_sources.push_back(source);}
+
 	void setFrog(Frog* f){ frog = f; }
 	
 	void update(int useless) {
@@ -80,7 +86,7 @@ class GameManager {
 		total_time += delta_time;
 
 		if ((total_time / 10000)> (int)tens_of_seconds_passed){
-			printf("%f\n", tens_of_seconds_passed );
+			//printf("%f\n", tens_of_seconds_passed );
 			increase_speed=true;
 			tens_of_seconds_passed++;
 		}
@@ -117,7 +123,7 @@ class GameManager {
 			_cameras[2]->update();
 		}
 		
-		printf("frame number: %d\ntime:%d\n", ++frame, glutGet(GLUT_ELAPSED_TIME));
+		//printf("frame number: %d\ntime:%d\n", ++frame, glutGet(GLUT_ELAPSED_TIME));
 		
 		std::vector<GameObject* >::iterator iter = _game_objects.begin();
 		for (iter; iter != _game_objects.end(); iter++){
@@ -167,12 +173,18 @@ class GameManager {
 			else if (key == '3'){
 				_activeCamera = 2;
 			}
+			else if (key == 'n'){
+
+			}
+			else if (key == 'c'){
+
+			}
 		}
 		else{frog->stopMovement(); }
 	
 	}
 
-	/* - TESTS ONLY */
+	/* - TESTS PURPOSE ONLY */
 	void specialKeyPressed(int key, int x, int y){
 		//  roda para a direita
 		if (key == GLUT_KEY_RIGHT)
@@ -191,6 +203,7 @@ class GameManager {
 		/*  select clearing (background) color       */
 		glClearColor(0.0, 0.0, 0.0, 0.0);
 		glEnable(GL_DEPTH_TEST); // permite desenhar as coisas por ordem de profundidade
+		
 	}
 
 };

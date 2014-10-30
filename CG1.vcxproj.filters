@@ -22,9 +22,6 @@
     <Filter Include="Header Files\Dynamic Objects">
       <UniqueIdentifier>{369cbca0-4d33-4eef-bbdf-57cd6b60402c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Light Objects">
-      <UniqueIdentifier>{44ec56dd-28b3-42a4-8013-5bae56569d77}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Dynamic Objects\Playbale Objects">
       <UniqueIdentifier>{f4a19d39-d738-4f2f-95a3-52ea4344d07c}</UniqueIdentifier>
     </Filter>
@@ -33,6 +30,9 @@
     </Filter>
     <Filter Include="Header Files\Dynamic Objects\Non-Playable Objects">
       <UniqueIdentifier>{0b979f27-f449-4f6e-b7b3-38cd53074ebb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Light Sources">
+      <UniqueIdentifier>{44ec56dd-28b3-42a4-8013-5bae56569d77}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +94,12 @@
     </ClInclude>
     <ClInclude Include="OrthogonalCamera.h">
       <Filter>Header Files\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="LightSource.h">
+      <Filter>Header Files\Light Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4.h">
+      <Filter>Header Files\High Lvl Classes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
