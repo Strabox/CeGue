@@ -3,7 +3,7 @@
 
 #include "Vector4.h"
 
-/* Class LightSource - */
+/* Class LightSource - Represents a Light Source */
 class LightSource{
 
 	private: Vector4 _ambient;
@@ -20,13 +20,14 @@ class LightSource{
 
 	private: double _exponent;
 
-	private: GLenum _num;
+	private: GLenum _num;			//Number of the GL_LIGHTi
 
-	private: bool _state;
+	private: bool _state;			//Light is On/Off
 
 
 	public: LightSource(GLenum number){
 		_num = number;
+		_state = false;				//Off by default.
 	}
 
 	public: ~LightSource(){}

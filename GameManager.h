@@ -83,6 +83,7 @@ class GameManager {
 
 	void setFrog(Frog* f){ frog = f; }
 	
+	/* update() - Called before paint the scene to update Graphic Objects. */
 	void update(int useless) {
 		std::vector<GameObject* >::iterator iter = _game_objects.begin();
 		bool increase_speed = false;
@@ -106,6 +107,7 @@ class GameManager {
 
 	}
 
+	/* display() - Calle to paint all the scene.*/
 	void display(){
 		/* Reset Color and DEpth Buffer */
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -142,7 +144,7 @@ class GameManager {
 		glFlush();
 	}
 
-	/* reshape(w,h) - */
+	/* reshape(w,h) - Event handler called when user resize the game window. */
 	void reshape(int w, int h) { //segue sugestões dos slides mas muda algumas coisas (glOrtho em vez de gluOrtho2d) e os limites da janela
 		double xmax = DRAWLEFT;
 		double xmin = DRAWRIGHT;
@@ -184,20 +186,41 @@ class GameManager {
 			else if (key == '3'){
 				_activeCamera = 2;
 			}
-			else if (key == 'l'){
+			else if (key == 'l'){					//Global illumination key.
 				if (_light_sources[0]->getState() == false){
 					glEnable(GL_LIGHT0);
 					_light_sources[0]->setState(true);
 				}
 				else{
-					glDisable(GL_LIGHT0);
+					glDisable(GL_LIGHT0);			
 					_light_sources[0]->setState(false);
 				}
 			}
-			else if (key == 'c'){
-				
+			else if (key == 'c'){					//Local spotlight illuminations.
+				if (_light_sources[1]->getState() == false){
+					for (int i = 1; i <= 6; i++){
+						_light_sources[1]->setState(true);
+					}
+					glEnable(GL_LIGHT1);
+					glEnable(GL_LIGHT2);
+					glEnable(GL_LIGHT3);
+					glEnable(GL_LIGHT4);
+					glEnable(GL_LIGHT5);
+					glEnable(GL_LIGHT6);
+				}
+				else{
+					for (int i = 1; i <= 6; i++){
+						_light_sources[1]->setState(false);
+					}
+					glDisable(GL_LIGHT1);
+					glDisable(GL_LIGHT2);
+					glDisable(GL_LIGHT3);
+					glDisable(GL_LIGHT4);
+					glDisable(GL_LIGHT5);
+					glDisable(GL_LIGHT6);
+				}
 			}
-			else if (key == 'k')		//TESTS PURPOSE ONLY
+			else if (key == 'k')		//TESTS PURPOSE ONLY (Turns on/off light mode)
 			{
 				if (light == false){
 					glEnable(GL_LIGHTING);
@@ -209,7 +232,7 @@ class GameManager {
 				}
 			}
 		}
-		else{frog->stopMovement(); }
+		else{frog->stopMovement();}
 	
 	}
 
@@ -231,7 +254,7 @@ class GameManager {
 	void init(void){
 		/*  select clearing (background) color */
 		glClearColor(0.0, 0.0, 0.0, 0.0);
-		glEnable(GL_DEPTH_TEST); // permite desenhar as coisas por ordem de profundidade
+		glEnable(GL_DEPTH_TEST);			// permite desenhar as coisas por ordem de profundidade
 		glShadeModel(GL_SMOOTH);
 	}
 
