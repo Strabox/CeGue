@@ -5,7 +5,8 @@
 
 
 class River : public StaticObject {
-public:
+
+	public:
 
 	River(){
 		collxmin = -6.0;
@@ -26,7 +27,7 @@ public:
 
 		glPushMatrix();
 		glTranslatef(vector->getX(), vector->getY(), vector->getZ());
-
+		
 		glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
 		glMaterialf(GL_FRONT, GL_SHININESS, shininess);
 

@@ -5,22 +5,31 @@
 #include <stdio.h>
 
 class Timberlog : public DynamicObject {
-public:
+
+	public:
+
 	Timberlog() : DynamicObject(){
 		collxmin = -1.35;
 		collxmax = 1.35;
 		collymin = -0.2;
 		collymax = 0.2;
 	}
+
 	~Timberlog(){}
 
 	int answerToColision(){ return 2; } // 2 = must float
 
 	void draw(){
-		GLUquadricObj* quadric = gluNewQuadric(); //isto é preciso para o cilindro
+		GLUquadricObj* quadric = gluNewQuadric(); //Necessary for Cylinder.
 		Vector3* vector = getPosition();
+		GLfloat mat_specular[] = { 110.0/255.0, 37.0/255.0, 37.0/255.0, 0.4 };
+		GLfloat shininess = 0.20;
+
 		glPushMatrix();
 		glTranslatef(vector->getX(), vector->getY(), vector->getZ());
+		glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+		glMaterialf(GL_FRONT, GL_SHININESS, shininess);
+
 		glTranslatef(1.5, 0.0, 0.1);
 		glRotatef(270, 0.0, 1.0, 0.0);
 		

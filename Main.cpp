@@ -174,27 +174,27 @@ void spawnWorldObjects(){ // Map has 11 width and 13 height
 
 	/*  Spotlights - 6 spotlights */
 	LightSource* spotlight1 = new LightSource(GL_LIGHT1);
-	vec = Vector3(-1.0, 8.0, 2.0);
+	vec = Vector3(-2.5, 12.0, 3.0);
 	spotlight1->setPosition(vec);
 
 	LightSource* spotlight2 = new LightSource(GL_LIGHT2);
-	vec = Vector3(0.0, 0.0, 0.0);
+	vec = Vector3(2.5, 12.0, 3.0);
 	spotlight2->setPosition(vec);
 
 	LightSource* spotlight3 = new LightSource(GL_LIGHT3);
-	vec = Vector3(0.0, 0.0, 0.0);
+	vec = Vector3(-2.5, 6.0, 3.0);
 	spotlight3->setPosition(vec);
 
 	LightSource* spotlight4 = new LightSource(GL_LIGHT4);
-	vec = Vector3(0.0, 0.0, 0.0);
+	vec = Vector3(2.5, 6.0, 3.0);
 	spotlight4->setPosition(vec);
 
 	LightSource* spotlight5 = new LightSource(GL_LIGHT5);
-	vec = Vector3(0.0, 0.0, 0.0);
+	vec = Vector3(-2.5, 0.0, 3.0);
 	spotlight5->setPosition(vec);
 
 	LightSource* spotlight6 = new LightSource(GL_LIGHT6);
-	vec = Vector3(0.0, 0.0, 0.0);
+	vec = Vector3(2.5, 0.0, 3.0);
 	spotlight6->setPosition(vec);
 
 	man->addLightSource(globalIllumination);

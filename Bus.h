@@ -5,13 +5,16 @@
 
 
 class Bus : public DynamicObject {
-public:
+
+	public:
+
 	Bus(){
 		collxmin = -0.7;
 		collxmax = 1.3;
 		collymin = -0.4;
 		collymax = 0.4;
 	}
+
 	~Bus(){}
 
 	int answerToColision(){ return 1; } // 1 = being run over

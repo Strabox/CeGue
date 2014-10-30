@@ -5,7 +5,8 @@
 
 
 class Roadside : public StaticObject {
-public:
+
+	public:
 
 	Roadside(){
 		collxmin = -6.0;

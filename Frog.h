@@ -2,9 +2,11 @@
 #define FROG_H
 
 #include <vector>
+#include <Windows.h>
 #include "glut.h"
 #include "DynamicObject.h"
 #include "Car.h"
+#include "resource.h"
 
 #define FROG_SPEED_MODULE 4.0
 #define FROG_DIMENSION_YMIN -0.3
@@ -19,7 +21,6 @@ class Frog : public DynamicObject {
 	double zRotation;
 
 	Vector3 *platformSpeed;
-
 
 	/*flags*/
 	bool ground;
@@ -135,6 +136,7 @@ class Frog : public DynamicObject {
 		setPosition(0.0, 0.0, 0.0);
 		platformSpeed = new Vector3(0.0, 0.0, 0.0);
 		setSpeed(0.0, 0.0, 0.0);
+		PlaySound((LPCWSTR)IDR_WAVE1, NULL, SND_RESOURCE | SND_ASYNC);
 	}
 
 	void update(int delta_t){

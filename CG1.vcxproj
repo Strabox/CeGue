@@ -95,6 +95,7 @@
     <ClInclude Include="LightSource.h" />
     <ClInclude Include="OrthogonalCamera.h" />
     <ClInclude Include="PerspectiveCamera.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="River.h" />
     <ClInclude Include="Riverside.h" />
     <ClInclude Include="Road.h" />
@@ -104,6 +105,9 @@
     <ClInclude Include="Turtle.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="Vector4.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="CG1.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

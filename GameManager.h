@@ -107,9 +107,9 @@ class GameManager {
 
 	}
 
-	/* display() - Calle to paint all the scene.*/
+	/* display() - Call to paint all the scene.*/
 	void display(){
-		/* Reset Color and DEpth Buffer */
+		/* Reset Color and Depth Buffer */
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		/* reset À posição do referencial e redefinição da posição da câmara e rotação do mapa */
 		if (_activeCamera == 0){
