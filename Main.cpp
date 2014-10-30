@@ -167,10 +167,13 @@ void spawnWorldObjects(){ // Map has 11 width and 13 height
 	man->addCamera(cam2);
 	man->addCamera(cam3);
 
-	/* Light Source - Global direction illumination */
+	/* Global Ligth - Global direction illumination. */
 	LightSource* globalIllumination = new LightSource(GL_LIGHT0);
-	Vector3 pos = Vector3(0, 5, 5);
+	Vector3 pos = Vector3(0.0, 5.0, 5.0);
+	printf("->%f\n", pos.getY());
 	globalIllumination->setPosition(pos);
+
+	/* Local Spotlights -  */
 
 	man->addLightSource(globalIllumination);
 }

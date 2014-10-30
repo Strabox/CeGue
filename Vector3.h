@@ -59,12 +59,11 @@ class Vector3 {
 		return res;
 	}
 
-	Vector3 operator=(const Vector3& vec){
-		Vector3 res;
+	void operator=(const Vector3& vec){
 		this->setX(vec._x);
 		this->setY(vec._y);
 		this->setZ(vec._z);
-		return res;
+		return;
 	}
 
 
