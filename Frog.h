@@ -97,18 +97,18 @@ class Frog : public DynamicObject {
 			
 			colision_type = ((*iter)->checkColisions(pos->getY() + FROG_DIMENSION_YMIN, pos->getX() + FROG_DIMENSION_XMIN, pos->getY() + FROG_DIMENSION_YMAX, pos->getX() + FROG_DIMENSION_XMAX));
 			
-			if (colision_type == 1){
+			if (colision_type == 1){					//Crashed with a car/bus.	
 				winOrDie();
 				break;
 			}
 
-			else if (colision_type == 6){
+			else if (colision_type == 6){				//WIN 
 				winOrDie();
 				break;
 			}
-			else if (colision_type == 4) ground = true;
-			else if (colision_type == 5) water = true;
-			else if (colision_type == 2){
+			else if (colision_type == 4) ground = true;	//It is in the ground.
+			else if (colision_type == 5) water = true;	//Fall in water.
+			else if (colision_type == 2){				//Its is in a turtle or log.
 				logOrTurtle = true;
 				break;
 			}
@@ -116,11 +116,11 @@ class Frog : public DynamicObject {
 		
 		if (ground){
 			platformSpeed = new Vector3(0.0, 0.0, 0.0);
-			return 0; //ground keeps the frog safe from the water
+			return 0;								 //ground keeps the frog safe from the water
 		}
 
 		else if (water){
-			if (!logOrTurtle){ //the frog will survive the water if there's a log or a turtle
+			if (!logOrTurtle){						//the frog will survive the water if there's a log or a turtle
 				winOrDie();
 				return 0;
 			}
