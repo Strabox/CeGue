@@ -166,6 +166,13 @@ void spawnWorldObjects(){ // Map has 11 width and 13 height
 	man->addCamera(cam1);
 	man->addCamera(cam2);
 	man->addCamera(cam3);
+
+	/* Light Source - Global direction illumination */
+	LightSource* globalIllumination = new LightSource(GL_LIGHT0);
+	Vector3 pos = Vector3(0, 5, 5);
+	globalIllumination->setPosition(pos);
+
+	man->addLightSource(globalIllumination);
 }
 
 int main(int argc, char** argv){

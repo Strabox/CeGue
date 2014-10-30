@@ -72,8 +72,11 @@ class LightSource{
 		_exponent = exponent;
 	}
 
+	/* draw() - */
 	public: void draw(){
-
+		GLfloat	light_position[] = {_position.getX(),_position.getY(),_position.getZ()};
+		glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+		printf("%d %d %d\n", _position.getX(), _position.getY(), _position.getZ());
 	}
 
 };

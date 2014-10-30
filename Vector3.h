@@ -67,6 +67,7 @@ class Vector3 {
 		return res;
 	}
 
+
 	void addVector3(Vector3* toAdd){
 		_x += toAdd->getX();
 		_y += toAdd->getY();

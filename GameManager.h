@@ -25,7 +25,9 @@
 #define DRAWNEAR 11.5
 
 int frame=0; //para fazer contagem dos frames na consola
+
 int total_time = 0;
+
 int delta_time;
 
 class GameManager {
@@ -36,15 +38,17 @@ class GameManager {
 
 	std::vector <Camera *> _cameras;
 
-	std::vector <LightSource> _light_sources;
+	std::vector <LightSource*> _light_sources;
 
 	public:
 
-	Frog* frog;		//relacionado com o movimento do sapo
+	Frog* frog;				//relacionado com o movimento do sapo
 
-	int rotate_y; //usado para rodar a câmara e assim ver se os modelos estão em ordem
+	int rotate_y;			//usado para rodar a câmara e assim ver se os modelos estão em ordem
 
 	int rotate_x;
+
+	bool light = false;
 
 	double movex;
 
@@ -74,7 +78,7 @@ class GameManager {
 	void addCamera(Camera* cam){ _cameras.push_back(cam); }
 
 	/* addlightSource(source) - Adds a new LightSource to the gameManager. */
-	void addLightSource(LightSource source){ _light_sources.push_back(source);}
+	void addLightSource(LightSource* source){ _light_sources.push_back(source);}
 
 	void setFrog(Frog* f){ frog = f; }
 	
@@ -125,6 +129,11 @@ class GameManager {
 		
 		//printf("frame number: %d\ntime:%d\n", ++frame, glutGet(GLUT_ELAPSED_TIME));
 		
+		std::vector<LightSource* >::iterator iterLight = _light_sources.begin();
+		for (iterLight; iterLight != _light_sources.end(); iterLight++){
+			if ((*iterLight)->getState() == true)
+				(*iterLight)->draw();
+		}
 		std::vector<GameObject* >::iterator iter = _game_objects.begin();
 		for (iter; iter != _game_objects.end(); iter++){
 			(*iter)->draw();
@@ -132,7 +141,7 @@ class GameManager {
 		glFlush();
 	}
 
-
+	/* reshape(w,h) - */
 	void reshape(int w, int h) { //segue sugestões dos slides mas muda algumas coisas (glOrtho em vez de gluOrtho2d) e os limites da janela
 		double xmax = DRAWLEFT;
 		double xmin = DRAWRIGHT;
@@ -146,6 +155,7 @@ class GameManager {
 			glViewport( 0, (h-w/ratio)/2, w, w/ratio);
 	}
 
+	/* keyPressed(key,x,y,down) - */
 	void keyPressed(unsigned char key, int x, int y, bool down){
 		if (down) {
 			if ((key == 'h')) movey += 0.5;
@@ -173,11 +183,29 @@ class GameManager {
 			else if (key == '3'){
 				_activeCamera = 2;
 			}
-			else if (key == 'n'){
-
+			else if (key == 'l'){
+				if (_light_sources[0]->getState() == false){
+					glEnable(GL_LIGHT0);
+					_light_sources[0]->setState(true);
+				}
+				else{
+					glDisable(GL_LIGHT0);
+					_light_sources[0]->setState(false);
+				}
 			}
 			else if (key == 'c'){
 
+			}
+			else if (key == 'k')		//TESTS PURPOSE ONLY
+			{
+				if (light == false){
+					glEnable(GL_LIGHTING);
+					light = true;
+				}
+				else{
+					glDisable(GL_LIGHTING);
+					light = false;
+				}
 			}
 		}
 		else{frog->stopMovement(); }
@@ -200,10 +228,10 @@ class GameManager {
 	
 	/* init() - Initialize Color and enables depth buffer.*/
 	void init(void){
-		/*  select clearing (background) color       */
+		/*  select clearing (background) color */
 		glClearColor(0.0, 0.0, 0.0, 0.0);
 		glEnable(GL_DEPTH_TEST); // permite desenhar as coisas por ordem de profundidade
-		
+		glShadeModel(GL_SMOOTH);
 	}
 
 };
