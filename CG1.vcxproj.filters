@@ -101,5 +101,8 @@
     <ClInclude Include="Vector4.h">
       <Filter>Header Files\High Lvl Classes</Filter>
     </ClInclude>
+    <ClInclude Include="BlackWall.h">
+      <Filter>Header Files\Static Objects</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
