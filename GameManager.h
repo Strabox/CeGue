@@ -202,26 +202,26 @@ class GameManager {
 			}
 			else if (key == 'c'){					//Local spotlight illuminations.
 				if (_light_sources[1]->getState() == false){
-					for (int i = 1; i <= 6; i++){
-						_light_sources[1]->setState(true);
+					for (int i = 1; i <= 1; i++){
+						_light_sources[i]->setState(true);
 					}
 					glEnable(GL_LIGHT1);
-					glEnable(GL_LIGHT2);
-					glEnable(GL_LIGHT3);
-					glEnable(GL_LIGHT4);
-					glEnable(GL_LIGHT5);
-					glEnable(GL_LIGHT6);
+					//glEnable(GL_LIGHT2);
+					//glEnable(GL_LIGHT3);
+					//glEnable(GL_LIGHT4);
+					//glEnable(GL_LIGHT5);
+					//glEnable(GL_LIGHT6);
 				}
 				else{
-					for (int i = 1; i <= 6; i++){
-						_light_sources[1]->setState(false);
+					for (int i = 1; i <= 1; i++){
+						_light_sources[i]->setState(false);
 					}
 					glDisable(GL_LIGHT1);
-					glDisable(GL_LIGHT2);
-					glDisable(GL_LIGHT3);
-					glDisable(GL_LIGHT4);
-					glDisable(GL_LIGHT5);
-					glDisable(GL_LIGHT6);
+					//glDisable(GL_LIGHT2);
+					//glDisable(GL_LIGHT3);
+					//glDisable(GL_LIGHT4);
+					//glDisable(GL_LIGHT5);
+					//glDisable(GL_LIGHT6);
 				}
 			}
 			else if (key == 'k')		//TESTS PURPOSE ONLY (Turns on/off light mode)

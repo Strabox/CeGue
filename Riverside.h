@@ -20,8 +20,14 @@ public:
 
 	void draw(){
 		Vector3* vector = getPosition();
+		GLfloat mat_specular[] = { 1.0, 1.0, 0.0, 0.7 };
+		GLfloat shininess = 0.30;
+
 		glPushMatrix();
 		glTranslatef(vector->getX(), vector->getY(), vector->getZ());
+
+		glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+		glMaterialf(GL_FRONT, GL_SHININESS, shininess);
 
 		glPushMatrix();
 		glTranslatef(0.0, 0.0, 0.0);

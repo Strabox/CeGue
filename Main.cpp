@@ -168,42 +168,71 @@ void spawnWorldObjects(){ // Map has 11 width and 13 height
 	man->addCamera(cam3);
 
 	/* Global Ligth - Global direction illumination. */
-	Vector3 vec = Vector3(0.0, 4.5, 12.0);
+	Vector4 vec = Vector4(0.0, 4.5, 12.0,0.0);
+	Vector4 vec2 = Vector4(0.4, 0.4, 0.4, 1.0);
 	LightSource* globalIllumination = new LightSource(GL_LIGHT0);
 	globalIllumination->setPosition(vec);
+	globalIllumination->setSpecular(vec2);
+	globalIllumination->setCutOff(180);
+	globalIllumination->setDiffuse(vec2);
+	globalIllumination->setExponent(0.0);
 
 	/*  Spotlights - 6 spotlights */
 	LightSource* spotlight1 = new LightSource(GL_LIGHT1);
-	vec = Vector3(-2.5, 12.0, 3.0);
+	vec = Vector4(-2.5, 12.0, 4.0,0.0);
 	spotlight1->setPosition(vec);
+	spotlight1->setSpecular(vec2);
+	spotlight1->setCutOff(40.0);
+	spotlight1->setDiffuse(vec2);
+	spotlight1->setExponent(0.5);
 
 	LightSource* spotlight2 = new LightSource(GL_LIGHT2);
-	vec = Vector3(2.5, 12.0, 3.0);
+	vec = Vector4(2.5, 12.0, 4.0, 1.0);
 	spotlight2->setPosition(vec);
+	spotlight2->setSpecular(vec2);
+	spotlight2->setCutOff(50);
+	spotlight2->setDiffuse(vec2);
+	spotlight2->setExponent(0.5);
 
 	LightSource* spotlight3 = new LightSource(GL_LIGHT3);
-	vec = Vector3(-2.5, 6.0, 3.0);
+	vec = Vector4(-2.5, 6.0, 4.0, 1.0);
 	spotlight3->setPosition(vec);
+	spotlight3->setSpecular(vec2);
+	spotlight3->setCutOff(50);
+	spotlight3->setDiffuse(vec2);
+	spotlight3->setExponent(0.5);
 
 	LightSource* spotlight4 = new LightSource(GL_LIGHT4);
-	vec = Vector3(2.5, 6.0, 3.0);
+	vec = Vector4(2.5, 6.0, 4.0, 1.0);
 	spotlight4->setPosition(vec);
+	spotlight4->setSpecular(vec2);
+	spotlight4->setCutOff(50);
+	spotlight4->setDiffuse(vec2);
+	spotlight4->setExponent(0.5);
 
 	LightSource* spotlight5 = new LightSource(GL_LIGHT5);
-	vec = Vector3(-2.5, 0.0, 3.0);
+	vec = Vector4(-2.5, 1.0, 4.0, 1.0);
 	spotlight5->setPosition(vec);
+	spotlight5->setSpecular(vec2);
+	spotlight5->setCutOff(50);
+	spotlight5->setDiffuse(vec2);
+	spotlight5->setExponent(0.5);
 
 	LightSource* spotlight6 = new LightSource(GL_LIGHT6);
-	vec = Vector3(2.5, 0.0, 3.0);
+	vec = Vector4(2.5, 1.0, 4.0, 1.0);
 	spotlight6->setPosition(vec);
+	spotlight6->setSpecular(vec2);
+	spotlight6->setCutOff(50);
+	spotlight6->setDiffuse(vec2);
+	spotlight6->setExponent(0.5);
 
 	man->addLightSource(globalIllumination);
 	man->addLightSource(spotlight1);
-	man->addLightSource(spotlight2);
-	man->addLightSource(spotlight3);
-	man->addLightSource(spotlight4);
-	man->addLightSource(spotlight5);
-	man->addLightSource(spotlight6);
+	//man->addLightSource(spotlight2);
+	//man->addLightSource(spotlight3);
+	//man->addLightSource(spotlight4);
+	//man->addLightSource(spotlight5);
+	//man->addLightSource(spotlight6);
 }
 
 int main(int argc, char** argv){

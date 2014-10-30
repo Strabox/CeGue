@@ -12,22 +12,22 @@ class LightSource{
 
 	private: Vector4 _specular;
 
-	private: Vector3 _position;
+	private: Vector4 _position;
 
 	private: Vector3 _direction;
 
 	private: double _cut_off;
 
-	private: double _exponent;
+	private: GLfloat _exponent;
 
-	private: GLenum _num;			//Number of the GL_LIGHTi
+	private: GLenum _num;				//Number of the GL_LIGHTi
 
-	private: bool _state;			//Light is On/Off
+	private: bool _state;				//Light is On/Off
 
 
 	public: LightSource(GLenum number){
 		_num = number;
-		_state = false;				//Off by default.
+		_state = false;					//Off by default.
 	}
 
 	public: ~LightSource(){}
@@ -45,7 +45,7 @@ class LightSource{
 		_state = state;
 	}
 
-	public: void setPosition(const Vector3 &position){
+	public: void setPosition(const Vector4 &position){
 		_position = position;
 	}
 	
@@ -75,9 +75,15 @@ class LightSource{
 
 	/* draw() - */
 	public: void draw(){
-		GLfloat	light_position[] = {_position.getX(),_position.getY(),_position.getZ()};
-		glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-	
+		GLfloat	light_position[] = {_position.getX(),_position.getY(),_position.getZ(),_position.getW()};
+		GLfloat	light_specular[] = { _specular.getX(), _specular.getY(), _specular.getZ(),_specular.getW()};
+		GLfloat	light_diffuse[] = { _diffuse.getX(), _diffuse.getY(), _diffuse.getZ(),_diffuse.getW() };
+
+		glLightf(_num, GL_SPOT_CUTOFF, _cut_off);
+		glLightfv(_num, GL_POSITION, light_position);
+		glLightfv(_num, GL_SPECULAR, light_specular);
+		glLightfv(_num, GL_DIFFUSE, light_diffuse);
+		glLightfv(_num, GL_SPOT_EXPONENT, &_exponent);
 	}
 
 };
