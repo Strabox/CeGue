@@ -16,6 +16,7 @@
 #include "Camera.h"
 #include "Car.h"
 #include "LightSource.h"
+#include "BlackWall.h"
 
 #define DRAWRIGHT -5.5
 #define DRAWLEFT 5.5
@@ -60,6 +61,7 @@ class GameManager {
 
 	int _activeCamera;		//Current Camera
 
+	BlackWall* walls;
 
 	GameManager(){
 		rotate_x = 0;
@@ -68,6 +70,7 @@ class GameManager {
 		movey = 0;
 		_activeCamera = 0;
 		tens_of_seconds_passed=0.0;
+		walls = new BlackWall();
 	}
 
 	~GameManager();
@@ -137,6 +140,7 @@ class GameManager {
 			if ((*iterLight)->getState() == true)
 				(*iterLight)->draw();
 		}
+		walls->draw();
 		std::vector<GameObject* >::iterator iter = _game_objects.begin();
 		for (iter; iter != _game_objects.end(); iter++){
 			(*iter)->draw();
