@@ -182,9 +182,9 @@ void spawnWorldObjects(){ // Map has 11 width and 13 height
 	vec = Vector4(-2.5, 12.0, 4.0,0.0);
 	spotlight1->setPosition(vec);
 	spotlight1->setSpecular(vec2);
-	spotlight1->setCutOff(40.0);
+	spotlight1->setCutOff(70.0);
 	spotlight1->setDiffuse(vec2);
-	spotlight1->setExponent(0.5);
+	spotlight1->setExponent(0.0);
 
 	LightSource* spotlight2 = new LightSource(GL_LIGHT2);
 	vec = Vector4(2.5, 12.0, 4.0, 1.0);

@@ -79,10 +79,10 @@ class LightSource{
 		GLfloat	light_specular[] = { _specular.getX(), _specular.getY(), _specular.getZ(),_specular.getW()};
 		GLfloat	light_diffuse[] = { _diffuse.getX(), _diffuse.getY(), _diffuse.getZ(),_diffuse.getW() };
 
-		glLightf(_num, GL_SPOT_CUTOFF, _cut_off);
 		glLightfv(_num, GL_POSITION, light_position);
 		glLightfv(_num, GL_SPECULAR, light_specular);
 		glLightfv(_num, GL_DIFFUSE, light_diffuse);
+		glLightf(_num, GL_SPOT_CUTOFF, _cut_off);
 		glLightfv(_num, GL_SPOT_EXPONENT, &_exponent);
 	}
 
