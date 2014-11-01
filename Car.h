@@ -28,6 +28,12 @@ public:
 		glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_ambient);
 		glTranslatef(vector.getX(), vector.getY(), vector.getZ());
 		
+		//rear
+		//glBegin(GL_TRIANGLES);
+		//glNormal3f(0.6, 0, 1);
+		//glVertex3f(0, 0, 0);
+
+		/*
 		//front/rear
 		glPushMatrix();
 		glTranslatef(0.0, 0.0, -0.3);
@@ -66,7 +72,7 @@ public:
 		glColor3f(0.25, 0.25, 0.25);
 		glutSolidSphere(0.1, 12, 12);
 		glPopMatrix();
-
+		*/
 
 		glPopMatrix();
 	}

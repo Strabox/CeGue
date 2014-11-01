@@ -151,7 +151,7 @@ public:
 			setPosition(5.5 - FROG_DIMENSION_XMAX, getPosition().getY(), getPosition().getZ());
 		}
 		else if (_x < -5.5 - FROG_DIMENSION_XMIN){
-			setPosition(5.5 - FROG_DIMENSION_XMIN, getPosition().getY(), getPosition().getZ());
+			setPosition(-5.5 - FROG_DIMENSION_XMIN, getPosition().getY(), getPosition().getZ());
 		}
 		if (_y > 12.5 - FROG_DIMENSION_YMAX){
 			setPosition(getPosition().getX(), 12.5 - FROG_DIMENSION_YMAX, getPosition().getZ());

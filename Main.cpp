@@ -78,34 +78,34 @@ void spawnWorldObjects(){									// Map has 11 width and 13 height
 	
 	Timberlog* tronco;
 	tronco = new Timberlog();
-	tronco->setPosition(-4.0, 9.0, -1.0);
-	tronco->setSpeed(-1.5, 0.0, 0.0);
+	tronco->setPosition(-1.0, 11.0, -1.0);
+	tronco->setSpeed(1.25, 0.0, 0.0);
 	man->addGameObject(tronco);
 	man->addDynamicObject(tronco);
 	tronco = new Timberlog();
-	tronco->setPosition(-1.0, 11.0, -1.0);
-	tronco->setSpeed(-1.25, 0.0, 0.0); 
+	tronco->setPosition(-4.0, 9.0, -1.0);
+	tronco->setSpeed(1.5, 0.0, 0.0);
 	man->addGameObject(tronco);
 	man->addDynamicObject(tronco);
 	tronco = new Timberlog();
 	tronco->setPosition(-1.0, 8.0, -1.0);
-	tronco->setSpeed(-1.0, 0.0, 0.0); 
+	tronco->setSpeed(1.0, 0.0, 0.0); 
 	man->addGameObject(tronco);
 	man->addDynamicObject(tronco);
 
 	tronco = new Timberlog();
-	tronco->setPosition(3.5, 9.0, -1.0);
-	tronco->setSpeed(-1.5, 0.0, 0.0);
+	tronco->setPosition(6.5, 11.0, -1.0);
+	tronco->setSpeed(1.25, 0.0, 0.0);
 	man->addGameObject(tronco);
 	man->addDynamicObject(tronco);
 	tronco = new Timberlog();
-	tronco->setPosition(6.5, 11.0, -1.0);
-	tronco->setSpeed(-1.25, 0.0, 0.0); 
+	tronco->setPosition(3.5, 9.0, -1.0);
+	tronco->setSpeed(1.5, 0.0, 0.0);
 	man->addGameObject(tronco);
 	man->addDynamicObject(tronco);
 	tronco = new Timberlog();
 	tronco->setPosition(-6.5, 8.0, -1.0);
-	tronco->setSpeed(-1.0, 0.0, 0.0); 
+	tronco->setSpeed(1.0, 0.0, 0.0); 
 	man->addGameObject(tronco);
 	man->addDynamicObject(tronco);
 	

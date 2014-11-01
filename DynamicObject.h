@@ -43,7 +43,7 @@ public:
 	}
 
 	virtual void update(int delta_t){
-		double _x;
+		double _x, _vx;
 		Vector3 pos = getPosition();
 		Vector3 distance = getSpeed();
 		
@@ -51,8 +51,14 @@ public:
 		setPosition(pos + distance);
 		pos = getPosition();
 		
-		if ((_x = pos.getX()) < -7.5){			//Checks if all the obejct is out o gameboard.
-			setPosition(_x + 15,pos.getY(),pos.getZ());
+		_x = pos.getX();
+		_vx = distance.getX();
+
+		if ( (_x < -7.5) && (_vx < 0.0) ){			//If an object is beyond the left wall
+			setPosition(_x + 15,pos.getY(),pos.getZ()); //and moving left, he gets respawned
+		}
+		else if ((_x > +7.5) && (_vx > 0.0)){			//If an object is beyond the right wall
+			setPosition(_x - 15, pos.getY(), pos.getZ()); //and moving right, he gets respawned
 		}
 	}
 
