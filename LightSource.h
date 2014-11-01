@@ -3,7 +3,7 @@
 
 #include "Vector4.h"
 
-/* Class LightSource - Represents a Light Source */
+/* Class LightSource - Represents a Light Source. */
 class LightSource{
 
 	private: Vector4 _ambient;
@@ -28,6 +28,8 @@ class LightSource{
 	public: LightSource(GLenum number){
 		_num = number;
 		_state = false;					//Off by default.
+		_exponent = 0.0;				//Default
+		_cut_off = 180;					//Default
 	}
 
 	public: ~LightSource(){}
@@ -73,16 +75,20 @@ class LightSource{
 		_exponent = exponent;
 	}
 
-	/* draw() - */
+	/* draw() -  */
 	public: void draw(){
 		GLfloat	light_position[] = {_position.getX(),_position.getY(),_position.getZ(),_position.getW()};
 		GLfloat	light_specular[] = { _specular.getX(), _specular.getY(), _specular.getZ(),_specular.getW()};
 		GLfloat	light_diffuse[] = { _diffuse.getX(), _diffuse.getY(), _diffuse.getZ(),_diffuse.getW() };
+		GLfloat light_ambient[] = { _ambient.getX(), _ambient.getY(), _ambient.getZ(), _ambient.getW() };
+		GLfloat light_direction[] = { _direction.getX(), _direction.getX(), _direction.getZ() };
 
 		glLightfv(_num, GL_POSITION, light_position);
-		glLightfv(_num, GL_SPECULAR, light_specular);
-		glLightfv(_num, GL_DIFFUSE, light_diffuse);
 		glLightf(_num, GL_SPOT_CUTOFF, _cut_off);
+		glLightfv(_num, GL_SPOT_DIRECTION, light_direction);
+		glLightfv(_num, GL_SPECULAR, light_specular);
+		glLightfv(_num, GL_AMBIENT, light_ambient);
+		glLightfv(_num, GL_DIFFUSE, light_diffuse);
 		glLightfv(_num, GL_SPOT_EXPONENT, &_exponent);
 	}
 

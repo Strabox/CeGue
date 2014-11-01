@@ -1,46 +1,50 @@
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
+
 #include "glut.h"
 #include "Entity.h"
 #include "stdio.h"
+#include "Box.h"
 
+/* Class GameObject - Abstract Class represents all objects in game.*/
 class GameObject : public Entity {
+
+private:
+
+	Box _hitBox;
+
 public:
-	double collxmin;
-	double collxmax;
-	double collymin;
-	double collymax;
-	double speed_multiplier;
-	GameObject() : Entity(){
-		speed_multiplier=1.0;
+
+	GameObject(Box box) : Entity(){
+		_hitBox = box;
 	}
+
 	~GameObject(){}
 
-	virtual void draw(){
-		printf("An empty instance of GameObject was created.\n");
+
+	public: Box getBox(){
+		return _hitBox;
 	}
+
+	virtual void draw(){}
+
 	virtual void update(int delta_t){}
 
-	int checkColisions(double frogbottom, double frogleft, double frogtop, double frogright){
-		double selfleft = getPosition()->getX() + collxmin;
-		double selfright = getPosition()->getX() + collxmax;
-		double selfbottom = getPosition()->getY() + collymin;
-		double selftop = getPosition()->getY() + collymax;
-
-		if (!(selfleft > frogright || selfright < frogleft || selfbottom > frogtop || selftop < frogbottom)){
+	virtual int checkColisions(Vector3 frogPos,Box frogBox){
+		if (Box::Collided(frogBox, frogPos, _hitBox, getPosition()))
 			return answerToColision();
-		}
-		else {
+		else
 			return 0;
-		}
 	}
+
 	/* http://www.gamedev.net/page/resources/_/technical/game-programming/swept-aabb-collision-detection-and-response-r3084
 	* ver Board-Phasing
 	*/
 	
-	virtual int answerToColision(){ printf("GameObject instantiated when it shouldn't have been\n"); return 0; }
+	virtual int answerToColision(){ return -1; }
 
-	virtual Vector3* getSpeed(){ return new Vector3(0.0, 0.0, 0.0); }
+
+	virtual Vector3 getSpeed(){ return Vector3(0.0, 0.0, 0.0); }
 };
 
 #endif

@@ -1,10 +1,11 @@
 #ifndef VECTOR3_H
 #define VECTOR3_H
+
 #include "glut.h"
 
 class Vector3 {
 
-	protected:
+protected:
 
 	double _x;
 
@@ -12,11 +13,11 @@ class Vector3 {
 
 	double _z;
 
-	public:
+public:
 
 	Vector3(){}
 
-	Vector3(double x, double y, double z){ _x = x; _y = y; _z = z; }
+	Vector3(double x, double y, double z){ _x = x; _y = y; _z = z;}
 
 	~Vector3(){}
 
@@ -64,27 +65,6 @@ class Vector3 {
 		this->setY(vec._y);
 		this->setZ(vec._z);
 		return;
-	}
-
-
-	void addVector3(Vector3* toAdd){
-		_x += toAdd->getX();
-		_y += toAdd->getY();
-		_z += toAdd->getZ();
-	}
-
-	void multiplyScale(double scale){
-		_x *= scale;
-		_y *= scale;
-		_z *= scale;
-	}
-
-	Vector3* makeCopy(){
-		Vector3* copy = new Vector3();
-		copy->setX(getX());
-		copy->setY(getY());
-		copy->setZ(getZ());
-		return copy;
 	}
 
 };

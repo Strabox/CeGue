@@ -37,7 +37,7 @@ class OrthogonalCamera : public Camera {
 	public: void computeVisualizationMatrix(){
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
-		gluLookAt(_position->getX(), _position->getY(), _position->getZ(), _center.getX(), _center.getY(), _center.getZ(), _up.getX(), _up.getY(), _up.getZ());
+		gluLookAt(_position.getX(), _position.getY(), _position.getZ(), _center.getX(), _center.getY(), _center.getZ(), _up.getX(), _up.getY(), _up.getZ());
 	}
 
 };

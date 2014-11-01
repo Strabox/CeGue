@@ -1,53 +1,47 @@
 #ifndef BUS_H
 #define BUS_H
+
 #include "glut.h"
 #include "DynamicObject.h"
 
-
 class Bus : public DynamicObject {
 
-	public:
+public:
 
-	Bus(){
-		collxmin = -0.7;
-		collxmax = 1.3;
-		collymin = -0.4;
-		collymax = 0.4;
-	}
+	Bus():DynamicObject(Box(-0.7,1.3,-0.4,0.4)){}
 
 	~Bus(){}
 
-	int answerToColision(){ return 1; } // 1 = being run over
+	int answerToColision(){ return 1; }				// 1 = being run over
 
 	void draw(){
-		Vector3* vector = getPosition();
-
-		GLfloat mat_specular[] = { 1.0, 0.0, 0.0,0.8};
+		Vector3 vector = getPosition();
+		GLfloat mat_specular[] = { 1.0, 0.0, 0.0,1.0};
 		GLfloat mat_ambient[] = { 0.7, 0.7, 0.7, 1.0 };
-		GLfloat shininess = 0.76;
+		GLfloat shininess = 0.50;
 
 		glPushMatrix();
-		glTranslatef(vector->getX(), vector->getY(), vector->getZ());
+		glTranslatef(vector.getX(), vector.getY(), vector.getZ());
 
 		glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
 		glMaterialf(GL_FRONT, GL_SHININESS, shininess);
 		glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
 
-		glPushMatrix();//capo
+		glPushMatrix();								//capo
 		glTranslatef(-0.4, 0.0, -0.1);
 		glScalef(1.0, 1.0, 0.5);
 		glColor3f(1.0, 1.0, 0.0);
 		glutSolidCube(0.6);
 		glPopMatrix();
 
-		glPushMatrix(); //cockpit
+		glPushMatrix();								//cockpit
 		glTranslatef(0.5, 0.0, 0.1);
 		glColor3f(1.0, 1.0, 0.0);
 		glScalef(2.0, 1.0, 1.0);
 		glutSolidCube(0.8);
 		glPopMatrix();
 
-		glPushMatrix();//paineis sobre as rodas da frente
+		glPushMatrix();								//paineis sobre as rodas da frente
 		glTranslatef(-0.3, 0.0, -0.15);
 		glScalef(1.0, 1.0, 0.15);
 		glColor3f(1.0, 1.0, 0.0);

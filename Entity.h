@@ -1,28 +1,35 @@
 #ifndef ENTITY_H
 #define ENTITY_H
+
 #include "glut.h"
 #include "Vector3.h"
 
 
 class Entity {
 
-	protected:
+protected:
 
-	Vector3* _position;
+	Vector3 _position;
 
-	public:
+
+public:
 
 	Entity(){}
 
 	~Entity(){}
 
-	Vector3* getPosition(){ return _position; }
+	Vector3 getPosition(){ 
+		return _position; 
+	}
 
-	void setPosition(Vector3 &p){ _position = &p; }
+	void setPosition(const Vector3 &p){ 
+		_position = p; 
+	}
 
-	void setPosition(double x, double y, double z){ _position = new Vector3(x,y,z); }
+	void setPosition(double x, double y, double z){ 
+		_position.set(x, y, z); 
+	}
 
-	virtual void useKeys(bool regularKeys[], bool specialKeys[]){};
 };
 
 #endif

@@ -1,25 +1,29 @@
 #ifndef TURTLE_H
 #define TURTLE_H
+
 #include "glut.h"
 #include "DynamicObject.h"
 #include <stdio.h>
 
 class Turtle : public DynamicObject {
+
 public:
-	Turtle(){
-		collxmin = -1.35;
-		collxmax = 1.35;
-		collymin = -0.2;
-		collymax = 0.2;
-	}
+
+	Turtle():DynamicObject(Box(-1.35,1.35,-0.2,0.2)){}
+
 	~Turtle(){}
 
-	int answerToColision(){ return 2; } // 2 = must float
+	int answerToColision(){ return 2; }					// 2 = must float
 
 	void draw(){
-		Vector3* vector = getPosition();
+		Vector3 vector = getPosition();
+		GLfloat mat_specular[] = { 110.0 / 255.0, 37.0 / 255.0, 37.0 / 255.0, 0.4 };
+		GLfloat shininess = 0.20;
+		
 		glPushMatrix();
-		glTranslatef(vector->getX() - 1.0, vector->getY(), vector->getZ());
+		glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+		glMaterialf(GL_FRONT, GL_SHININESS, shininess);
+		glTranslatef(vector.getX() - 1.0, vector.getY(), vector.getZ());
 
 		//turtle 1
 		glTranslatef(+0.0, 0.0, 0.0);

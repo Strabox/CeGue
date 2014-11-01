@@ -1,35 +1,32 @@
 #ifndef ROADSIDE_H
 #define ROADSIDE_H
+
 #include "glut.h"
 #include "StaticObject.h"
 
-
 class Roadside : public StaticObject {
 
-	public:
+public:
 
-	Roadside(){
-		collxmin = -6.0;
-		collxmax = 6.0;
-		collymin = -0.5;
-		collymax = 0.2;
-	}
+	Roadside() :StaticObject(Box(-6.0,6.0,-0.5,0.2)){}
 
 	~Roadside(){}
 
 	int answerToColision(){ return 4; }			// 4 = ground
 
 	void draw(){
-		Vector3* vector = getPosition();
-
-		GLfloat mat_specular[] = { 0.0, 1.0, 0.0, 0.7 };
-		GLfloat shininess = 0.60;
+		Vector3 vector = getPosition();
+		GLfloat mat_specular[] = { 0.0, 0.0, 0.1, 1.0 };
+		GLfloat mat_ambient[] = { 0.0, 6.0, 0.0, 1.0 };
+		GLfloat mat_diffuse[] = { 0.0, 6.0, 0.0, 1.0 };
+		GLfloat shininess = 25;
 
 		glPushMatrix();
-		glTranslatef(vector->getX(), vector->getY(), vector->getZ());
-
 		glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
 		glMaterialf(GL_FRONT, GL_SHININESS, shininess);
+		glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_ambient);
+		glTranslatef(vector.getX(), vector.getY(), vector.getZ());
 
 		glPushMatrix();
 		glTranslatef(0.0, 0.0, 0.0);

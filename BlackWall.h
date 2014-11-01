@@ -1,10 +1,11 @@
 #ifndef BLACKWALL_H
 #define BLACKWALL_H
+
 #include "glut.h"
 #include "Entity.h"
 
-
 class BlackWall : public Entity {
+
 public:
 
 	BlackWall(){
@@ -14,9 +15,16 @@ public:
 	~BlackWall(){}
 
 	void draw(){
-		Vector3* vector = getPosition();
+		Vector3 vector = getPosition();
+		GLfloat mat_specular[] = { 0.0, 0.0, 0.0, 1.0 };
+		GLfloat mat_ambient[] = { 0.0, 0.0, 0.0, 1.0 };
+		GLfloat shininess = 0.50;
+
 		glPushMatrix();
-		glTranslatef(vector->getX(), vector->getY(), vector->getZ());
+		glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+		glMaterialf(GL_FRONT, GL_SHININESS, shininess);
+		glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
+		glTranslatef(vector.getX(), vector.getY(), vector.getZ());
 
 		glPushMatrix();
 			glTranslatef(0.0, -7.0, -1.0);
