@@ -28,11 +28,37 @@ public:
 		glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_ambient);
 		glTranslatef(vector.getX(), vector.getY(), vector.getZ());
 		
-		//rear
-		//glBegin(GL_TRIANGLES);
+		//roof
+		glBegin(GL_POLYGON);
+		glColor3f(0.0, 0.5, 1.0);
 		//glNormal3f(0.6, 0, 1);
-		//glVertex3f(0, 0, 0);
+		glVertex3f(-0.1, 0, 0.4);
+		glVertex3f(0.0, -0.15, 0.4);
+		glVertex3f(0.2, -0.15, 0.4);
+		glVertex3f(0.4, -0.1, 0.4);
+		glVertex3f(0.4, 0.1, 0.4);
+		glVertex3f(0.2, 0.15, 0.4);
+		glVertex3f(0.0, 0.15, 0.4);
+		glEnd();
+		
+		//sides
+		//glNormal3f(0.6, 0, 1);
+		glBegin(GL_POLYGON);
+		glColor3f(0.0, 0.5, 1.0);
+		glVertex3f(-0.2, -0.3, 0.25);//left
+		glVertex3f(-0.2, -0.3, 0.1);
+		glVertex3f(0.3, -0.3, 0.1);
+		glVertex3f(0.3, -0.3, 0.25);
+		glEnd();
+		glBegin(GL_POLYGON);
+		glColor3f(0.0, 0.5, 1.0);
+		glVertex3f(-0.2, 0.3, 0.25);//right
+		glVertex3f(0.3, 0.3, 0.25);
+		glVertex3f(0.3, 0.3, 0.1);
+		glVertex3f(-0.2, 0.3, 0.1);
+		glEnd();
 
+		
 		/*
 		//front/rear
 		glPushMatrix();
