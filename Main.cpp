@@ -198,58 +198,58 @@ void spawnWorldObjects(){									// Map has 11 width and 13 height
 
 	/*  Spotlights - 6 spotlights */
 	LightSource* spotlight1 = new LightSource(GL_LIGHT1);
-	spotlight1->setCutOff(30.0);
+	spotlight1->setCutOff(20.0);
 	spotlight1->setPosition(Vector4(-2.5, 12.0, 4.0, 1.0));
 	spotlight1->setSpecular(vec2);
 	spotlight1->setDiffuse(Vector4(0.6, 0.6, 0.6, 1.0));
 	spotlight1->setExponent(2.0);
 	spotlight1->setAmbient(Vector4(0.1, 0.1, 0.1, 1.0));
-	spotlight1->setDirection(Vector3(0.0, 0.0, -1.0));
+	spotlight1->setDirection(Vector3(0.0, -1, -1.0));
 
 	LightSource* spotlight2 = new LightSource(GL_LIGHT2);
-	spotlight2->setCutOff(30.0);
+	spotlight2->setCutOff(20.0);
 	spotlight2->setPosition(Vector4(-2.5, 6.0, 4.0, 1.0));
 	spotlight2->setSpecular(vec2);
 	spotlight2->setDiffuse(Vector4(0.6, 0.6, 0.6, 1.0));
 	spotlight2->setExponent(2.0);
 	spotlight2->setAmbient(Vector4(0.1, 0.1, 0.1, 1.0));
-	spotlight2->setDirection(Vector3(0.0, 0.0, -1.0));
+	spotlight2->setDirection(Vector3(0.0, -1, -1.0));
 
 	LightSource* spotlight3 = new LightSource(GL_LIGHT3);
-	spotlight3->setCutOff(30.0);
+	spotlight3->setCutOff(20.0);
 	spotlight3->setPosition(Vector4(-2.5, 1.0, 4.0, 1.0));
 	spotlight3->setSpecular(vec2);
 	spotlight3->setDiffuse(Vector4(0.6, 0.6, 0.6, 1.0));
 	spotlight3->setExponent(2.0);
 	spotlight3->setAmbient(Vector4(0.1, 0.1, 0.1, 1.0));
-	spotlight3->setDirection(Vector3(0.0, 0.0, -1.0));
+	spotlight3->setDirection(Vector3(0.0, 1, -1.0));
 
 	LightSource* spotlight4 = new LightSource(GL_LIGHT4);
 	spotlight4->setPosition(Vector4(2.5, 12.0, 4.0, 1.0));
 	spotlight4->setSpecular(vec2);
-	spotlight4->setCutOff(30.0);
+	spotlight4->setCutOff(20.0);
 	spotlight4->setDiffuse(Vector4(0.6, 0.6, 0.6, 1.0));
 	spotlight4->setExponent(2.0);
 	spotlight4->setAmbient(Vector4(0.1, 0.1, 0.1, 1.0));
-	spotlight4->setDirection(Vector3(0.0, 0.0, -1.0));
+	spotlight4->setDirection(Vector3(0.0, -1, -1.0));
 
 	LightSource* spotlight5 = new LightSource(GL_LIGHT5);
 	spotlight5->setPosition(Vector4(2.5, 6.0, 4.0, 1.0));
 	spotlight5->setSpecular(vec2);
-	spotlight5->setCutOff(30.0);
+	spotlight5->setCutOff(20.0);
 	spotlight5->setDiffuse(Vector4(0.6, 0.6, 0.6, 1.0));
 	spotlight5->setExponent(2.0);
 	spotlight5->setAmbient(Vector4(0.1, 0.1, 0.1, 1.0));
-	spotlight5->setDirection(Vector3(0.0, 0.0, -1.0));
+	spotlight5->setDirection(Vector3(0.0, 1, -1.0));
 
 	LightSource* spotlight6 = new LightSource(GL_LIGHT6);
 	spotlight6->setPosition(Vector4(2.5, 1.0, 4.0, 1.0));
 	spotlight6->setSpecular(vec2);
-	spotlight6->setCutOff(30.0);
+	spotlight6->setCutOff(20.0);
 	spotlight6->setDiffuse(Vector4(0.6, 0.6, 0.6, 1.0));
 	spotlight6->setExponent(2.0);
 	spotlight6->setAmbient(Vector4(0.1, 0.1, 0.1, 1.0));
-	spotlight6->setDirection(Vector3(0.0, 0.0, -1.0));
+	spotlight6->setDirection(Vector3(0.0, 1, -1.0));
 
 	man->addLightSource(globalIllumination);
 	man->addLightSource(spotlight1);
