@@ -17,8 +17,10 @@ public:
 
 	void draw(){
 		Vector3 vector = getPosition();
-		GLfloat mat_specular[] = { 110.0 / 255.0, 37.0 / 255.0, 37.0 / 255.0, 0.4 };
-		GLfloat shininess = 0.20;
+		GLfloat mat_specular[] = { 0.1, 0.75, 0.1, 1.0 };
+		GLfloat mat_ambient[] = { 0.1, 0.5, 0.1, 1.0 };
+		GLfloat mat_diffuse[] = { 0.1, 0.5, 0.1, 1.0 };
+		GLfloat shininess = 5;
 		
 		glPushMatrix();
 		glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);

@@ -18,20 +18,25 @@ public:
 	void draw(){
 		GLUquadricObj* quadric = gluNewQuadric();				 //Necessary for Cylinder.
 		Vector3 vector = getPosition();
-		GLfloat mat_specular[] = { 110.0/255.0, 37.0/255.0, 37.0/255.0, 0.4 };
-		GLfloat shininess = 0.20;
+		GLfloat mat_specular[] = { 0.25, 0.15, 0.1, 1.0 };
+		GLfloat mat_ambient[] = { 0.25, 0.15, 0.1, 1.0 };
+		GLfloat mat_diffuse[] = { 0.25, 0.15, 0.1, 1.0 };
+		GLfloat shininess = 15;
 
-		glPushMatrix();
 		glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
 		glMaterialf(GL_FRONT, GL_SHININESS, shininess);
-
+		glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_ambient);
+		
+		glPushMatrix();
 		glTranslatef(vector.getX(), vector.getY(), vector.getZ());
+		
 		glTranslatef(1.5, 0.0, 0.1);
 		glRotatef(270, 0.0, 1.0, 0.0);
 		
 		glPushMatrix();
 		glColor3f(0.25, 0.15, 0.0);
-		gluCylinder(quadric, 0.4, 0.4, 3 , 12, 3);
+		gluCylinder(quadric, 0.4, 0.4, 3 , 12, 9);
 		glPopMatrix();
 
 		glPopMatrix();

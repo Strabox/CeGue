@@ -163,13 +163,17 @@ public:
 
 	void draw(){
 		Vector3 vector = getPosition();
-		GLfloat mat_specular[] = { 0.0, 1.0, 0.0, 1.0 };
-		GLfloat shininess = 0.25;
-
-		glPushMatrix();
+		GLfloat mat_specular[] = { 0.1, 0.75, 0.1, 1.0 };
+		GLfloat mat_ambient[] = { 0.1, 0.5, 0.1, 1.0 };
+		GLfloat mat_diffuse[] = { 0.1, 0.5, 0.1, 1.0 };
+		GLfloat shininess = 5;
 
 		glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
 		glMaterialf(GL_FRONT, GL_SHININESS, shininess);
+		glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_ambient);
+
+		glPushMatrix();
 
 		glTranslatef(vector.getX(), vector.getY(), vector.getZ()-0.25);
 		glRotatef(_zRotation, 0, 0, 1.0);
@@ -178,25 +182,29 @@ public:
 		glPushMatrix();								//front leg
 		glColor3f(0.0, 1.0, 0.0);
 		glTranslatef(0.3, 0.2, -0.45);
-		glutSolidCube(0.1);
+		//glutSolidCube(0.1);
+		glutSolidSphere(0.1, 8, 8);
 		glPopMatrix();
 		
 		glPushMatrix();
 		glColor3f(0.0, 1.0, 0.0);
 		glTranslatef(-0.3, 0.2, -0.45);
-		glutSolidCube(0.1);
+		//glutSolidCube(0.1);
+		glutSolidSphere(0.1, 8, 8);
 		glPopMatrix();
 		
 		glPushMatrix();
 		glColor3f(0.0, 1.0, 0.0);
-		glTranslatef(0.3, -0.3, -0.35);
-		glutSolidCube(0.3);
+		glTranslatef(0.3, -0.25, -0.4);
+		//glutSolidCube(0.3);
+		glutSolidSphere(0.2, 12, 12);
 		glPopMatrix();
 		
 		glPushMatrix();
 		glColor3f(0.0, 1.0, 0.0);
-		glTranslatef(-0.3, -0.3, -0.35);
-		glutSolidCube(0.3);
+		glTranslatef(-0.3, -0.25, -0.4);
+		//glutSolidCube(0.3);
+		glutSolidSphere(0.2, 12, 12);
 		glPopMatrix();
 		
 		glPushMatrix();								// body

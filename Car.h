@@ -17,20 +17,20 @@ public:
 	void draw(){
 		Vector3 vector = getPosition();
 		//corpo do carro - azul
-		GLfloat mat_specular_corpo[] = { 0.0, 0.0, 1.0, 1.0 };
-		GLfloat mat_ambient_corpo[] = { 0.2, 0.2, 0.5, 1.0 };
-		GLfloat mat_diffuse_corpo[] = { 0.5, 0.5, 0.5, 1.0 };
-		GLfloat shininess_corpo = 10;
+		GLfloat mat_specular_corpo[] = { 0.2, 0.2, 1.0, 1.0 };
+		GLfloat mat_ambient_corpo[] = { 0.2, 0.2, 0.75, 1.0 };
+		GLfloat mat_diffuse_corpo[] = { 0.5, 0.5, 0.75, 1.0 };
+		GLfloat shininess_corpo = 50;
 		//vidros - branco
 		GLfloat mat_specular_vidros[] = { 0.75, 0.75, 0.75, 1.0 };
 		GLfloat mat_ambient_vidros[] = { 0.75, 0.75, 0.75, 1.0 };
 		GLfloat mat_diffuse_vidros[] = { 0.75, 0.75, 0.75, 1.0 };
-		GLfloat shininess_vidros = 50;
+		GLfloat shininess_vidros = 100;
 		//farois
 		GLfloat mat_specular_farois[] = { 1.0, 0.0, 0.0, 1.0 };
-		GLfloat mat_ambient_farois[] = { 0.5, 0.2, 0.0, 1.0 };
+		GLfloat mat_ambient_farois[] = { 0.75, 0.2, 0.0, 1.0 };
 		GLfloat mat_diffuse_farois[] = { 0.75, 0.5, 0.5, 1.0 };
-		GLfloat shininess_farois = 10;
+		GLfloat shininess_farois = 1;
 		//pneus
 		GLfloat mat_specular_pneus[] = { 0.2, 0.2, 0.2, 1.0 };
 		GLfloat mat_ambient_pneus[] = { 0.2, 0.2, 0.2, 1.0 };

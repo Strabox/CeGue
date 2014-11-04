@@ -16,10 +16,10 @@ public:
 
 	void draw(){
 		Vector3 vector = getPosition();
-		GLfloat mat_specular[] = {0.0, 0.0, 0.1, 1.0 };
-		GLfloat mat_ambient[] = { 0.0, 0.0, 0.3, 1.0 };
-		GLfloat mat_diffuse[] = { 0.0, 0.0, 0.3, 1.0 };
-		GLfloat shininess = 15;
+		GLfloat mat_specular[] = {0.2, 0.2, 0.5, 1.0 };
+		GLfloat mat_ambient[] = { 0.1, 0.1, 0.25, 1.0 };
+		GLfloat mat_diffuse[] = { 0.5, 0.5, 0.75, 1.0 };
+		GLfloat shininess = 1;
 
 		glPushMatrix();
 		glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
@@ -28,12 +28,16 @@ public:
 		glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_ambient);
 		glTranslatef(vector.getX(), vector.getY(), vector.getZ());
 
-		glPushMatrix();
-		glTranslatef(0.0, 0.0, -0.25);
-		glColor3f(0.25, 0.5, 1.0);
-		glScalef(11.0, 5.0, 0.5);				//River area
-		glutSolidCube(1.0);
-		glPopMatrix();
+		for (double y = -2.25; y <= 2.25; y += 0.5){
+			for (double x = -5.25; x <= 5.25; x += 0.5){
+				glPushMatrix();
+				glTranslatef(x, y, -0.25);
+				glColor3f(0.25, 0.5, 1.0);
+				glScalef(0.5, 0.5, 0.5);				//River area
+				glutSolidCube(1.0);
+				glPopMatrix();
+			}
+		}
 
 		glPopMatrix();
 	}
