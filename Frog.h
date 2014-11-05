@@ -98,12 +98,12 @@ public:
 			colision_type = (*iter)->checkColisions(getPosition(),getBox());
 			
 			if (colision_type == 1){						//Crashed with a car/bus.	
-				winOrDie();
+				die("Atropelado!");
 				_lives--;
 				break;
 			}
 			else if (colision_type == 6){					//WIN 
-				winOrDie();
+				win();
 				break;
 			}
 			else if (colision_type == 4) _ground = true;	//It is in the ground.
@@ -120,7 +120,7 @@ public:
 		}
 		else if (_water){
 			if (!_logOrTurtle){								//the frog will survive the water if there's a log or a turtle
-				winOrDie();
+				die("Afogado!");
 				_lives--;
 				return 0;
 			}
@@ -132,7 +132,15 @@ public:
 		return 0;
 	}
 
-	void winOrDie(){
+	void win(){
+		setPosition(0.0, 0.0, 0.0);
+		_platformSpeed = Vector3(0.0, 0.0, 0.0);
+		setSpeed(0.0, 0.0, 0.0);
+		
+	}
+
+	void die(char* message){
+		printf("%s\n",message);
 		setPosition(0.0, 0.0, 0.0);
 		_platformSpeed = Vector3(0.0, 0.0, 0.0);
 		setSpeed(0.0, 0.0, 0.0);

@@ -222,7 +222,7 @@ public:
 					_light_sources[0]->setPosition(Vector4(0.0, 4.5, 10.0, 0.0));
 					_light_sources[0]->setSpecular(Vector4(0.4, 0.4, 0.4, 1.0));
 					_light_sources[0]->setDiffuse(Vector4(0.4, 0.4, 0.4, 1.0));
-					_light_sources[0]->setAmbient(Vector4(0.1, 0.1, 0.1, 1.0));
+					_light_sources[0]->setAmbient(Vector4(0.5, 0.5, 0.5, 1.0));
 					_light_sources[0]->setDirection(Vector3(0.0, 0.0, -1.0));
 					_light_sources[0]->setCutOff(180);
 					_light_sources[0]->setExponent(0.0);
