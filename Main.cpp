@@ -37,9 +37,9 @@ void displayForward(){ man->display(); }					// openGL + OOP = trouble. esta fun
 void reshapeForward(int w, int h){ man->reshape(w, h); }	// openGL + OOP = trouble. esta funcao reencaminha a chamada à reshape tornado possível a sua chamada.
 
 void updateForward(int useless){							// chama o update do gamemanager a cada 17ms (quase 60fps) idealmente.
+	glutTimerFunc(MILISECONDS, updateForward, 0);
 	man->update(useless);									// o argumento useless é inuntil, so serve para se conseguir invocar a update.
 	man->display();											// chama a display depois da update
-	glutTimerFunc(MILISECONDS, updateForward, 0);
 }
 
 void spawnWorldObjects(){									// Map has 11 width and 13 height 

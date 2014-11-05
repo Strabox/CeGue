@@ -66,6 +66,10 @@ protected:
 
 	BlackWall* walls;
 
+	int score;
+
+	double fps;
+
 public:
 
 	GameManager(){
@@ -77,6 +81,8 @@ public:
 		light = false;
 		tens_of_seconds_passed=0.0;
 		walls = new BlackWall();
+		score = 0;
+		fps = 0;
 	}
 
 	~GameManager();
@@ -115,16 +121,22 @@ public:
 			}
 			(*iter)->update(delta_time);
 		}
-		frog->checkIfColided(_game_objects);
+		score += frog->checkIfColided(_game_objects);
 
 		increase_speed=false;
 	}
 
 	/* display() - Call to paint all the scene.*/
 	void display(){
-		char* vidas = (char*) malloc(sizeof(char)*10);
-		memset(vidas, '\0', 10);
-		strcpy_s(vidas, 10,"Vidas:  ");
+		frame++;
+		char* stringHUD1 = (char*) malloc(sizeof(char)*35);
+		memset(stringHUD1, '\0', 35);
+		//strcpy_s(stringHUD1, 20,"Vidas: ");
+		fps = 1000.0* ((double)frame) / ((double)total_time);
+		sprintf_s(stringHUD1 + 0, 35, "%d vidas | %d pontos | %.0ffps", frog->getLives(), score, fps);
+		
+
+
 		/* Reset Color and Depth Buffer */
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		if (_activeCamera == 0){
@@ -145,9 +157,9 @@ public:
 			_cameras[2]->update();
 		}
 		
-		//printf("frame number: %d\ntime:%d\n", ++frame, glutGet(GLUT_ELAPSED_TIME));
-		sprintf_s(vidas + 7, 10, "%d", frog->getLives());
-		//writeString(-2, 12, 1.0, 0.0, 0.0, GLUT_BITMAP_HELVETICA_18, vidas);
+		
+		
+		writeString(-5, 12, 1.0, 0.0, 0.0, GLUT_BITMAP_HELVETICA_12 , stringHUD1);
 		
 		std::vector<LightSource* >::iterator iterLight = _light_sources.begin();
 		for (iterLight; iterLight != _light_sources.end(); iterLight++){
@@ -166,7 +178,7 @@ public:
 	void writeString(int x, int y, float r, float g, float b, void* font, char *string)
 	{
 		glColor3f(r, g, b);
-		glRasterPos3f(x, y,3);
+		glRasterPos2f(x, y);//,3);
 		int len, i;
 		len = (int)strlen(string);
 		for (i = 0; i < len; i++) {
@@ -174,6 +186,7 @@ public:
 		}
 	}
 
+	
 	/* reshape(w,h) - Event handler called when user resize the game window. */
 	void reshape(int w, int h) {
 		double xmax = DRAWLEFT;

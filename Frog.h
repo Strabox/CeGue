@@ -91,6 +91,7 @@ public:
 		_ground = false;
 		_water = false;
 		_logOrTurtle = false;
+		int pointsToReturn = 0;								//Defines what kind of fate the frog had, so a score can be assigned.
 
 		for (iter; iter != collidable.end(); iter++){
 			if ((int) this == (int)*iter) continue;			//Collision with itself.
@@ -100,10 +101,12 @@ public:
 			if (colision_type == 1){						//Crashed with a car/bus.	
 				die("Atropelado!");
 				_lives--;
+				pointsToReturn = -10;						//Points to earn (negative = lose) when the frog is run over
 				break;
 			}
 			else if (colision_type == 6){					//WIN 
 				win();
+				pointsToReturn = 50;						//Points to earn when you win the game
 				break;
 			}
 			else if (colision_type == 4) _ground = true;	//It is in the ground.
@@ -116,20 +119,21 @@ public:
 		
 		if (_ground){
 			_platformSpeed = Vector3(0.0, 0.0, 0.0);
-			return 0;										 //ground keeps the frog safe from the water
+			return pointsToReturn;										 //ground keeps the frog safe from the water
 		}
 		else if (_water){
 			if (!_logOrTurtle){								//the frog will survive the water if there's a log or a turtle
 				die("Afogado!");
 				_lives--;
-				return 0;
+				pointsToReturn = -10;
+				return -1;
 			}
 			else{
 				_platformSpeed = (*iter)->getSpeed();
 			}
 		}
 
-		return 0;
+		return pointsToReturn;
 	}
 
 	void win(){
