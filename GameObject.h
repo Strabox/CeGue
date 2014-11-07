@@ -13,6 +13,10 @@ private:
 
 	Box _hitBox;
 
+protected:
+
+	GLint textureID;
+
 public:
 
 	GameObject(Box box) : Entity(){
@@ -43,6 +47,7 @@ public:
 	
 	virtual int answerToColision(){ return -1; }
 
+	virtual int giveTextureID(GLint id){ return 0; }
 
 	virtual Vector3 getSpeed(){ return Vector3(0.0, 0.0, 0.0); }
 };

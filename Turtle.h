@@ -28,7 +28,7 @@ public:
 		GLfloat shininess_corpo = 1;
 		
 		glPushMatrix();
-		glTranslatef(vector.getX(), vector.getY(), vector.getZ());
+		glTranslatef(vector.getX()-1, vector.getY(), vector.getZ());
 
 		//turtle 1
 		glTranslatef(+0.0, 0.0, 0.0);

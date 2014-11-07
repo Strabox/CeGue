@@ -48,6 +48,10 @@ protected:
 
 	std::vector <Car *> _cars;
 
+	GLuint* textures;
+
+	bool texture_state;
+
 	Frog* frog;					//Used in frog's movement.
 
 	int rotate_y;				//TESTS PURPOSE: rotate camera 1.
@@ -83,6 +87,8 @@ public:
 		walls = new BlackWall();
 		score = 0;
 		fps = 0;
+		glGenTextures(1, textures);
+		texture_state = false;
 	}
 
 	~GameManager();
@@ -122,6 +128,10 @@ public:
 			(*iter)->update(delta_time);
 		}
 		score += frog->checkIfColided(_game_objects);
+		if (frog->getLives() <= 0){
+			score = 0;
+			frog->setLives(5);
+		}
 
 		increase_speed=false;
 	}
@@ -286,6 +296,16 @@ public:
 					light = false;
 				}
 			}
+			else if (key == 't'){
+				if (texture_state == false){
+					glEnable(GL_TEXTURE);
+					texture_state = true;
+				}
+				else{
+					glDisable(GL_TEXTURE);
+					texture_state = false;
+				}
+			}
 		}
 		else{frog->stopMovement();}
 	
@@ -309,7 +329,7 @@ public:
 	void init(void){
 		/*  select clearing (background) color */
 		glClearColor(0.0, 0.0, 0.0, 0.0);
-		glEnable(GL_DEPTH_TEST);			// permite desenhar as coisas por ordem de profundidade
+		glEnable(GL_DEPTH_TEST);			// permite desenhar as coisas por ordem de profundidade 
 		glShadeModel(GL_SMOOTH);
 		glEnable(GL_LIGHT0);
 	}

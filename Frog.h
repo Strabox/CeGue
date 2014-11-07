@@ -50,6 +50,10 @@ public:
 		return _lives;
 	}
 
+	void setLives(int lives){
+		_lives = lives;
+	}
+
 	void setZRotation(double z){ _zRotation = z;}
 
 	void moveDown(){

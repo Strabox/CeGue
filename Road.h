@@ -14,6 +14,12 @@ public:
 
 	int answerToColision(){ return 4; }				// 4 = ground
 
+	int giveTextureID(GLint id){
+		textureID = id;
+		glBindTexture(GL_TEXTURE_2D, textureID);
+		return 0;
+	}//https://www.opengl.org/wiki/Common_Mistakes
+
 	void draw(){
 		Vector3 vector = getPosition();
 		GLfloat mat_specular[] = { 0.1, 0.1, 0.1, 1.0 };
