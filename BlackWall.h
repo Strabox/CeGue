@@ -18,12 +18,13 @@ public:
 		Vector3 vector = getPosition();
 		GLfloat mat_specular[] = { 0.0, 0.0, 0.0, 1.0 };
 		GLfloat mat_ambient[] = { 0.0, 0.0, 0.0, 1.0 };
-		GLfloat shininess = 0.50;
+		GLfloat shininess = 5;
 
 		glPushMatrix();
 		glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
 		glMaterialf(GL_FRONT, GL_SHININESS, shininess);
 		glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_ambient);
 		glTranslatef(vector.getX(), vector.getY(), vector.getZ());
 
 		glPushMatrix();

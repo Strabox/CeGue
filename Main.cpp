@@ -190,8 +190,7 @@ void spawnWorldObjects(){									// Map has 11 width and 13 height
 	globalIllumination->setPosition(vec);
 	globalIllumination->setSpecular(vec2);
 	globalIllumination->setCutOff(180);
-	globalIllumination->setDiffuse(vec2);
-	globalIllumination->setExponent(0.0);
+	globalIllumination->setDiffuse(Vector4(0.5, 0.5, 0.5, 1.0));
 	globalIllumination->setAmbient(Vector4(0.5, 0.5, 0.5, 1.0));
 	globalIllumination->setDirection(Vector3(0.0, 0.0, -1.0));
 	globalIllumination->setState(true);							//Day Mode.
@@ -204,7 +203,7 @@ void spawnWorldObjects(){									// Map has 11 width and 13 height
 	spotlight1->setDiffuse(Vector4(0.6, 0.6, 0.6, 1.0));
 	spotlight1->setExponent(20);
 	spotlight1->setAmbient(Vector4(0.1, 0.1, 0.1, 1.0));
-	spotlight1->setDirection(Vector3(0.0, -1, -1.0));
+	spotlight1->setDirection(Vector3(0.0, -0, -1.0));
 
 	LightSource* spotlight2 = new LightSource(GL_LIGHT2);
 	spotlight2->setCutOff(30.0);
@@ -213,7 +212,7 @@ void spawnWorldObjects(){									// Map has 11 width and 13 height
 	spotlight2->setDiffuse(Vector4(0.6, 0.6, 0.6, 1.0));
 	spotlight2->setExponent(20);
 	spotlight2->setAmbient(Vector4(0.1, 0.1, 0.1, 1.0));
-	spotlight2->setDirection(Vector3(0.0, -1, -1.0));
+	spotlight2->setDirection(Vector3(0.0, -0, -1.0));
 
 	LightSource* spotlight3 = new LightSource(GL_LIGHT3);
 	spotlight3->setCutOff(30.0);
@@ -222,7 +221,7 @@ void spawnWorldObjects(){									// Map has 11 width and 13 height
 	spotlight3->setDiffuse(Vector4(0.6, 0.6, 0.6, 1.0));
 	spotlight3->setExponent(20);
 	spotlight3->setAmbient(Vector4(0.1, 0.1, 0.1, 1.0));
-	spotlight3->setDirection(Vector3(0.0, 1, -1.0));
+	spotlight3->setDirection(Vector3(0.0, 0, -1.0));
 
 	LightSource* spotlight4 = new LightSource(GL_LIGHT4);
 	spotlight4->setPosition(Vector4(2.5, 12.0, 4.0, 1.0));
@@ -231,7 +230,7 @@ void spawnWorldObjects(){									// Map has 11 width and 13 height
 	spotlight4->setDiffuse(Vector4(0.6, 0.6, 0.6, 1.0));
 	spotlight4->setExponent(20);
 	spotlight4->setAmbient(Vector4(0.1, 0.1, 0.1, 1.0));
-	spotlight4->setDirection(Vector3(0.0, -1, -1.0));
+	spotlight4->setDirection(Vector3(0.0, -0, -1.0));
 
 	LightSource* spotlight5 = new LightSource(GL_LIGHT5);
 	spotlight5->setPosition(Vector4(2.5, 6.0, 4.0, 1.0));
@@ -240,7 +239,7 @@ void spawnWorldObjects(){									// Map has 11 width and 13 height
 	spotlight5->setDiffuse(Vector4(0.6, 0.6, 0.6, 1.0));
 	spotlight5->setExponent(20);
 	spotlight5->setAmbient(Vector4(0.1, 0.1, 0.1, 1.0));
-	spotlight5->setDirection(Vector3(0.0, 1, -1.0));
+	spotlight5->setDirection(Vector3(0.0, -0, -1.0));
 
 	LightSource* spotlight6 = new LightSource(GL_LIGHT6);
 	spotlight6->setPosition(Vector4(2.5, 1.0, 4.0, 1.0));
@@ -249,7 +248,7 @@ void spawnWorldObjects(){									// Map has 11 width and 13 height
 	spotlight6->setDiffuse(Vector4(0.6, 0.6, 0.6, 1.0));
 	spotlight6->setExponent(20);
 	spotlight6->setAmbient(Vector4(0.1, 0.1, 0.1, 1.0));
-	spotlight6->setDirection(Vector3(0.0, 1.0, -1.0));
+	spotlight6->setDirection(Vector3(0.0, 0, -1.0));
 
 	man->addLightSource(globalIllumination);
 	man->addLightSource(spotlight1);
@@ -268,6 +267,7 @@ int main(int argc, char** argv){
 	glutInitWindowPosition(100, 100);
 	glutCreateWindow("CG Frogger - grupo 18");
 	// GL functions binding.
+	
 	glutDisplayFunc(displayForward);
 	glutReshapeFunc(reshapeForward);
 	glutKeyboardFunc(regularKeys);

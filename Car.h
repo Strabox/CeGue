@@ -46,7 +46,7 @@ public:
 		glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular_corpo);
 		glMaterialf(GL_FRONT, GL_SHININESS, shininess_corpo);
 		glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient_corpo);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_ambient_corpo);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse_corpo);
 		
 		//roof
 		//top
@@ -222,7 +222,7 @@ public:
 		glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular_farois);
 		glMaterialf(GL_FRONT, GL_SHININESS, shininess_farois);
 		glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient_farois);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_ambient_farois);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse_farois);
 		
 		glColor3f(0.5, 0.0, 0.0);
 		//esquerdo
@@ -250,7 +250,7 @@ public:
 		glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular_vidros);
 		glMaterialf(GL_FRONT, GL_SHININESS, shininess_vidros);
 		glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient_vidros);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_ambient_vidros);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse_vidros);
 		
 		glColor3f(0.75, 0.75, 0.75);
 		//frente
@@ -323,7 +323,7 @@ public:
 		glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular_pneus);
 		glMaterialf(GL_FRONT, GL_SHININESS, shininess_pneus);
 		glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient_pneus);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_ambient_pneus);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse_pneus);
 		
 		class Pneu{					//FUNC-CEPTION
 		public:

@@ -175,6 +175,7 @@ public:
 		for (iterLight; iterLight != _light_sources.end(); iterLight++){
 				(*iterLight)->draw();
 		}
+	
 		walls->draw();
 		std::vector<GameObject* >::iterator iter = _game_objects.begin();
 		for (iter; iter != _game_objects.end(); iter++){
@@ -244,7 +245,7 @@ public:
 					_light_sources[0]->setState(true);
 					_light_sources[0]->setPosition(Vector4(0.0, 4.5, 10.0, 0.0));
 					_light_sources[0]->setSpecular(Vector4(0.4, 0.4, 0.4, 1.0));
-					_light_sources[0]->setDiffuse(Vector4(0.4, 0.4, 0.4, 1.0));
+					_light_sources[0]->setDiffuse(Vector4(0.5, 0.5, 0.5, 1.0));
 					_light_sources[0]->setAmbient(Vector4(0.5, 0.5, 0.5, 1.0));
 					_light_sources[0]->setDirection(Vector3(0.0, 0.0, -1.0));
 					_light_sources[0]->setCutOff(180);

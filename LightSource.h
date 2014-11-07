@@ -14,7 +14,7 @@ class LightSource{
 
 	private: Vector4 _position;
 
-	private: Vector3 _direction;
+	public: Vector3 _direction;
 
 	private: double _cut_off;
 
@@ -65,6 +65,7 @@ class LightSource{
 
 	public: void setDirection(const Vector3 &direction){
 		_direction = direction;
+		
 	}
 
 	public: void setCutOff(double cut_off){
@@ -81,14 +82,14 @@ class LightSource{
 		GLfloat	light_specular[] = { _specular.getX(), _specular.getY(), _specular.getZ(),_specular.getW()};
 		GLfloat	light_diffuse[] = { _diffuse.getX(), _diffuse.getY(), _diffuse.getZ(),_diffuse.getW() };
 		GLfloat light_ambient[] = { _ambient.getX(), _ambient.getY(), _ambient.getZ(), _ambient.getW() };
-		GLfloat light_direction[] = { _direction.getX(), _direction.getX(), _direction.getZ() };
-
+		GLfloat light_direction[] = { _direction.getX(), _direction.getY(), _direction.getZ() };
+		
+		glLightfv(_num, GL_AMBIENT, light_ambient);
+		glLightfv(_num, GL_DIFFUSE, light_diffuse);
+		glLightfv(_num, GL_SPECULAR, light_specular);
 		glLightfv(_num, GL_POSITION, light_position);
 		glLightf(_num, GL_SPOT_CUTOFF, _cut_off);
 		glLightfv(_num, GL_SPOT_DIRECTION, light_direction);
-		glLightfv(_num, GL_SPECULAR, light_specular);
-		glLightfv(_num, GL_AMBIENT, light_ambient);
-		glLightfv(_num, GL_DIFFUSE, light_diffuse);
 		glLightfv(_num, GL_SPOT_EXPONENT, &_exponent);
 	}
 

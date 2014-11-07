@@ -64,7 +64,7 @@ public:
 		this->setX(vec._x);
 		this->setY(vec._y);
 		this->setZ(vec._z);
-		return;
+		
 	}
 
 };
