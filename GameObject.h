@@ -13,6 +13,8 @@ private:
 
 	Box _hitBox;
 
+	char* texels;
+
 protected:
 
 	GLint textureID;

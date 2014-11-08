@@ -17,8 +17,9 @@ public:
 	int giveTextureID(GLint id){
 		textureID = id;
 		glBindTexture(GL_TEXTURE_2D, textureID);
+		
 		return 0;
-	}//https://www.opengl.org/wiki/Common_Mistakes
+	}
 
 	void draw(){
 		Vector3 vector = getPosition();
@@ -42,6 +43,13 @@ public:
 				glTranslatef(x, y, 0.0);
 				glScalef(0.5, 0.5, 1.0);
 				glColor3f(0.1, 0.1, 0.1);
+				/*
+				glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 4, 4, 0, GL_RGBA, GL_UNSIGNED_BYTE, texels);
+				glTexCoord(x, y);
+				glVertex(...
+				Desenhar quadrado
+				http://neerci.ist.utl.pt/~neerci.daemon/neerci_shelf/LEIC/3%20Ano/1%20Semestre/Computacao%20Grafica/Teoricas%20e%20Resumos/2012%20-%202013/19%20-%20Mapeamento%20de%20Texturas.pdf
+				*/
 				glutSolidCube(1.0);
 				glPopMatrix();
 			}
