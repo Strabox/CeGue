@@ -48,7 +48,7 @@ protected:
 
 	std::vector <Car *> _cars;
 
-	GLuint* textures;
+	GLuint textures[1];
 
 	bool texture_state;
 
@@ -87,7 +87,6 @@ public:
 		walls = new BlackWall();
 		score = 0;
 		fps = 0;
-		glGenTextures(1, textures);
 		texture_state = false;
 	}
 
@@ -116,13 +115,13 @@ public:
 		delta_time = glutGet(GLUT_ELAPSED_TIME) - total_time;
 		total_time += delta_time;
 
-		if ((total_time / 10000)> (int)tens_of_seconds_passed){
-			increase_speed=true;
+		if ((total_time / 10000) > (int)tens_of_seconds_passed){
+			increase_speed = true;
 			tens_of_seconds_passed++;
 		}
 
 		for (iter; iter != _dynamic_objects.end(); iter++){
-			if (increase_speed){ 
+			if (increase_speed){
 				(*iter)->setSpeed((*iter)->getSpeed() * SPEED_SCALE_INCREASE);
 			}
 			(*iter)->update(delta_time);
@@ -333,6 +332,9 @@ public:
 		glEnable(GL_DEPTH_TEST);			// permite desenhar as coisas por ordem de profundidade 
 		glShadeModel(GL_SMOOTH);
 		glEnable(GL_LIGHT0);
+		glGenTextures(1, textures);
+		printf("%d\n", textures[0]);
+
 	}
 
 };

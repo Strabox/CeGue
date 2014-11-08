@@ -13,11 +13,11 @@ private:
 
 	Box _hitBox;
 
-	char* texels;
-
 protected:
 
 	GLint textureID;
+
+	char* texels;
 
 public:
 
@@ -49,7 +49,7 @@ public:
 	
 	virtual int answerToColision(){ return -1; }
 
-	virtual int giveTextureID(GLint id){ return 0; }
+	virtual int giveTextureID(GLuint id){ return 0; }
 
 	virtual Vector3 getSpeed(){ return Vector3(0.0, 0.0, 0.0); }
 };
