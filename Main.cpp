@@ -186,6 +186,8 @@ void spawnWorldObjects(){									// Map has 11 width and 13 height
 	/* Global Ligth - Global direction illumination. */
 	Vector4 vec = Vector4(0.0, 4.5, 10.0,0.0);
 	Vector4 vec2 = Vector4(0.4, 0.4, 0.4, 1.0);
+	Vector4 vec3 = Vector4(0.5, 0.5, 0.3, 1.0);
+	
 	LightSource* globalIllumination = new LightSource(GL_LIGHT0);
 	globalIllumination->setPosition(vec);
 	globalIllumination->setSpecular(vec2);
@@ -250,6 +252,16 @@ void spawnWorldObjects(){									// Map has 11 width and 13 height
 	spotlight6->setAmbient(Vector4(0.1, 0.1, 0.1, 1.0));
 	spotlight6->setDirection(Vector3(0.0, 0, -1.0));
 
+	//Frog headlight
+	/*LightSource* spotlight7 = new LightSource(GL_LIGHT7);
+	spotlight6->setPosition( Vector4( frog->getPosition().getX(), frog->getPosition().getY(), frog->getPosition().getZ(), 1.0) );
+	spotlight6->setSpecular(vec3);
+	spotlight6->setCutOff(45.0);
+	spotlight6->setDiffuse(Vector4(0.75, 0.75, 0.3, 1.0));
+	spotlight6->setExponent(10);
+	spotlight6->setAmbient(Vector4(0.1, 0.1, 0.1, 1.0));
+	spotlight6->setDirection(Vector3(0.0, 1.0, 0.0));
+	*/
 	man->addLightSource(globalIllumination);
 	man->addLightSource(spotlight1);
 	man->addLightSource(spotlight2);
@@ -257,6 +269,7 @@ void spawnWorldObjects(){									// Map has 11 width and 13 height
 	man->addLightSource(spotlight4);
 	man->addLightSource(spotlight5);
 	man->addLightSource(spotlight6);
+	man->addLightSource(spotlight7);
 }
 
 int main(int argc, char** argv){
