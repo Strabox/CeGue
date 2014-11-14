@@ -253,15 +253,15 @@ void spawnWorldObjects(){									// Map has 11 width and 13 height
 	spotlight6->setDirection(Vector3(0.0, 0, -1.0));
 
 	//Frog headlight
-	/*LightSource* spotlight7 = new LightSource(GL_LIGHT7);
-	spotlight6->setPosition( Vector4( frog->getPosition().getX(), frog->getPosition().getY(), frog->getPosition().getZ(), 1.0) );
-	spotlight6->setSpecular(vec3);
-	spotlight6->setCutOff(45.0);
-	spotlight6->setDiffuse(Vector4(0.75, 0.75, 0.3, 1.0));
-	spotlight6->setExponent(10);
-	spotlight6->setAmbient(Vector4(0.1, 0.1, 0.1, 1.0));
-	spotlight6->setDirection(Vector3(0.0, 1.0, 0.0));
-	*/
+	LightSource* spotlight7 = new LightSource(GL_LIGHT7);
+	spotlight7->setPosition( Vector4( frog->getPosition().getX(), frog->getPosition().getY(), frog->getPosition().getZ(), 1.0) );
+	spotlight7->setSpecular(vec3);
+	spotlight7->setCutOff(45.0);
+	spotlight7->setDiffuse(Vector4(0.75, 0.75, 0.3, 1.0));
+	spotlight7->setExponent(10);
+	spotlight7->setAmbient(Vector4(0.1, 0.1, 0.1, 1.0));
+	spotlight7->setDirection(Vector3(0.0, 1.0, 0.0));
+	
 	man->addLightSource(globalIllumination);
 	man->addLightSource(spotlight1);
 	man->addLightSource(spotlight2);
@@ -270,6 +270,7 @@ void spawnWorldObjects(){									// Map has 11 width and 13 height
 	man->addLightSource(spotlight5);
 	man->addLightSource(spotlight6);
 	man->addLightSource(spotlight7);
+	man->setFrogLight(spotlight7);
 }
 
 int main(int argc, char** argv){

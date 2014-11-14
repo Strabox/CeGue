@@ -46,6 +46,8 @@ protected:
 
 	std::vector <LightSource*> _light_sources;
 
+	LightSource* froglight;
+
 	std::vector <Car *> _cars;
 
 	GLuint textures[1];
@@ -104,6 +106,8 @@ public:
 
 	/* addlightSource(source) - Adds a new LightSource to the gameManager. */
 	void addLightSource(LightSource* source){ _light_sources.push_back(source);}
+
+	void setFrogLight(LightSource* light){ froglight = light; }
 
 	void setFrog(Frog* f){ frog = f; }
 	
@@ -170,6 +174,8 @@ public:
 		
 		writeString(-5, 12, 1.0, 0.0, 0.0, GLUT_BITMAP_HELVETICA_12 , stringHUD1);
 		
+		froglight->setPosition(Vector4(frog->getPosition().getX(), frog->getPosition().getY(), frog->getPosition().getZ(), 1.0));
+
 		std::vector<LightSource* >::iterator iterLight = _light_sources.begin();
 		for (iterLight; iterLight != _light_sources.end(); iterLight++){
 				(*iterLight)->draw();
@@ -272,6 +278,7 @@ public:
 					glEnable(GL_LIGHT4);
 					glEnable(GL_LIGHT5);
 					glEnable(GL_LIGHT6);
+					glEnable(GL_LIGHT7);
 				}
 				else{
 					for (int i = 1; i <= 6; i++){
@@ -283,6 +290,7 @@ public:
 					glDisable(GL_LIGHT4);
 					glDisable(GL_LIGHT5);
 					glDisable(GL_LIGHT6);
+					glDisable(GL_LIGHT7);
 				}
 			}
 			else if (key == 'l')										//TESTS PURPOSE ONLY (Turns on/off light mode)
