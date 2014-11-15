@@ -54,6 +54,8 @@ protected:
 
 	bool texture_state;
 
+	bool game_running;
+
 	Frog* frog;					//Used in frog's movement.
 
 	int rotate_y;				//TESTS PURPOSE: rotate camera 1.
@@ -90,6 +92,7 @@ public:
 		score = 0;
 		fps = 0;
 		texture_state = false;
+		game_running = true;
 	}
 
 	~GameManager();
@@ -122,6 +125,11 @@ public:
 		if ((total_time / 10000) > (int)tens_of_seconds_passed){
 			increase_speed = true;
 			tens_of_seconds_passed++;
+		}
+
+		if (!game_running){
+			increase_speed = false;
+			delta_time = 0;
 		}
 
 		for (iter; iter != _dynamic_objects.end(); iter++){
@@ -171,10 +179,16 @@ public:
 		}
 		
 		
-		
 		writeString(-5, 12, 1.0, 0.0, 0.0, GLUT_BITMAP_HELVETICA_12 , stringHUD1);
 		
+
 		froglight->setPosition(Vector4(frog->getPosition().getX(), frog->getPosition().getY(), frog->getPosition().getZ(), 1.0));
+		double frogdir = frog->getZRotation();
+		if (frogdir == 0){ froglight->setDirection(Vector3(0.0, 1.0, -0.35)); }
+		else if (frogdir == 90){ froglight->setDirection(Vector3(-1.0, 0.0, -0.35)); }
+		else if (frogdir == 180){ froglight->setDirection(Vector3(0.0, -1.0, -0.35)); }
+		else if (frogdir == -90){ froglight->setDirection(Vector3(1.0, 0.0, -0.35)); }
+
 
 		std::vector<LightSource* >::iterator iterLight = _light_sources.begin();
 		for (iterLight; iterLight != _light_sources.end(); iterLight++){
@@ -220,20 +234,20 @@ public:
 	/* keyPressed(key,x,y,down) - Answer to key's event.*/
 	void keyPressed(unsigned char key, int x, int y, bool down){
 		if (down) {
-			if ((key == 'h')) movey += 0.5;
-			else if (key == 'g') movex -= 0.5;
-			else if (key == 'y') movey -= 0.5;
-			else if (key == 'j') movex += 0.5;
-			else if (key == 'q'){
+			if ((key == '5')) movey += 0.5;
+			else if (key == '4') movex -= 0.5;
+			else if (key == '8') movey -= 0.5;
+			else if (key == '6') movex += 0.5;
+			else if (game_running && key == 'q'){
 				frog->moveUp();
 			}
-			else if (key == 'a'){
+			else if (game_running && key == 'a'){
 				frog->moveDown();
 			}
-			else if (key == 'o'){
+			else if (game_running && key == 'o'){
 				frog->moveLeft();
 			}
-			else if (key == 'p'){
+			else if (game_running && key == 'p'){
 				frog->moveRight();
 			}
 			else if (key == '1'){
@@ -278,7 +292,6 @@ public:
 					glEnable(GL_LIGHT4);
 					glEnable(GL_LIGHT5);
 					glEnable(GL_LIGHT6);
-					glEnable(GL_LIGHT7);
 				}
 				else{
 					for (int i = 1; i <= 6; i++){
@@ -290,6 +303,15 @@ public:
 					glDisable(GL_LIGHT4);
 					glDisable(GL_LIGHT5);
 					glDisable(GL_LIGHT6);
+				}
+			}
+			else if (key == 'h'){
+				if (_light_sources[7]->getState() == false){
+					_light_sources[7]->setState(true);
+					glEnable(GL_LIGHT7);
+				}
+				else{
+					_light_sources[7]->setState(false);
 					glDisable(GL_LIGHT7);
 				}
 			}
@@ -313,6 +335,9 @@ public:
 					glDisable(GL_TEXTURE);
 					texture_state = false;
 				}
+			}
+			else if (key == 's'){
+				game_running = !(game_running);
 			}
 		}
 		else{frog->stopMovement();}

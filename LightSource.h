@@ -14,11 +14,13 @@ class LightSource{
 
 	private: Vector4 _position;
 
-	public: Vector3 _direction;
+	private: Vector3 _direction;
 
 	private: double _cut_off;
 
 	private: GLfloat _exponent;
+
+	private: Vector3 _attenuation;
 
 	private: GLenum _num;				//Number of the GL_LIGHTi
 
@@ -30,6 +32,7 @@ class LightSource{
 		_state = false;					//Off by default.
 		_exponent = 0.0;				//Default
 		_cut_off = 180;					//Default
+		_attenuation = Vector3(1.0, 0.0, 0.0);
 	}
 
 	public: ~LightSource(){}
@@ -76,6 +79,10 @@ class LightSource{
 		_exponent = exponent;
 	}
 
+	public: void setAttenuation(const Vector3 &attenuation){
+		_attenuation = attenuation;
+	}
+
 	/* draw() -  */
 	public: void draw(){
 		GLfloat	light_position[] = {_position.getX(),_position.getY(),_position.getZ(),_position.getW()};
@@ -88,6 +95,9 @@ class LightSource{
 		glLightfv(_num, GL_DIFFUSE, light_diffuse);
 		glLightfv(_num, GL_SPECULAR, light_specular);
 		glLightfv(_num, GL_POSITION, light_position);
+		glLightf(_num, GL_CONSTANT_ATTENUATION, _attenuation.getX());
+		glLightf(_num, GL_LINEAR_ATTENUATION, _attenuation.getY());
+		glLightf(_num, GL_QUADRATIC_ATTENUATION, _attenuation.getZ());
 		glLightf(_num, GL_SPOT_CUTOFF, _cut_off);
 		glLightfv(_num, GL_SPOT_DIRECTION, light_direction);
 		glLightfv(_num, GL_SPOT_EXPONENT, &_exponent);

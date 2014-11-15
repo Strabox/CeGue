@@ -255,13 +255,15 @@ void spawnWorldObjects(){									// Map has 11 width and 13 height
 	//Frog headlight
 	LightSource* spotlight7 = new LightSource(GL_LIGHT7);
 	spotlight7->setPosition( Vector4( frog->getPosition().getX(), frog->getPosition().getY(), frog->getPosition().getZ(), 1.0) );
-	spotlight7->setSpecular(vec3);
-	spotlight7->setCutOff(45.0);
-	spotlight7->setDiffuse(Vector4(0.75, 0.75, 0.3, 1.0));
+	spotlight7->setSpecular(Vector4(0.5, 0.5, 0.5, 1.0));
+	spotlight7->setCutOff(30.0);
+	spotlight7->setDiffuse(Vector4(0.95, 0.95, 0.95, 1.0));
 	spotlight7->setExponent(10);
+	spotlight7->setAttenuation(Vector3(1.0, 0.5, 0.0));
 	spotlight7->setAmbient(Vector4(0.1, 0.1, 0.1, 1.0));
-	spotlight7->setDirection(Vector3(0.0, 1.0, 0.0));
+	spotlight7->setDirection(Vector3(0.0, 1.0, -0.5));
 	
+
 	man->addLightSource(globalIllumination);
 	man->addLightSource(spotlight1);
 	man->addLightSource(spotlight2);

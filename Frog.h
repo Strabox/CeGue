@@ -56,6 +56,9 @@ public:
 
 	void setZRotation(double z){ _zRotation = z;}
 
+	double getZRotation(){ return _zRotation; }
+
+
 	void moveDown(){
 		setZRotation(180.0);
 		Vector3 new_speed;

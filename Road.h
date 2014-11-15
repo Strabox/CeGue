@@ -37,7 +37,7 @@ public:
 
 	void draw(){
 		Vector3 vector = getPosition();
-		GLfloat mat_specular[] = { 0.1, 0.1, 0.1, 1.0 };
+		GLfloat mat_specular[] = { 0.2, 0.2, 0.2, 1.0 };
 		GLfloat mat_ambient[] = { 0.2, 0.2, 0.2, 1.0 };
 		GLfloat mat_diffuse[] = { 0.2, 0.2, 0.2, 1.0 };
 		GLfloat shininess = 100;
