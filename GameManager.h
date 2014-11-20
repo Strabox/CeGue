@@ -56,6 +56,8 @@ protected:
 
 	bool game_running;
 
+	bool pauseWindow;
+
 	Frog* frog;					//Used in frog's movement.
 
 	int rotate_y;				//TESTS PURPOSE: rotate camera 1.
@@ -140,8 +142,7 @@ public:
 		}
 		score += frog->checkIfColided(_game_objects);
 		if (frog->getLives() <= 0){
-			score = 0;
-			frog->setLives(5);
+			game_running=false;
 		}
 
 		increase_speed=false;
@@ -200,8 +201,34 @@ public:
 		for (iter; iter != _game_objects.end(); iter++){
 			(*iter)->draw();
 		}
+		//glFlush();
+
+		/*
+		DRAW DE OBJECTOS FIXOS NO ECRÃ
+		*/
+		glDisable(GL_DEPTH_TEST);
+		glMatrixMode(GL_PROJECTION);
+		glPushMatrix();
+		glLoadIdentity();
+		glMatrixMode(GL_MODELVIEW);
+		glPushMatrix();
+		glLoadIdentity();
+
+
+		glBegin(GL_QUADS);
+		glColor3f(1.0, 1.0, 1.0);
+		glVertex3d( -0.25,-0.25, 0 );
+		glVertex3d(  0.25,-0.25, 0 );
+		glVertex3d(  0.25, 0.25, 0 );
+		glVertex3d( -0.25, 0.25, 0 );
+		glEnd();
+
+		glMatrixMode(GL_PROJECTION);
+		glPopMatrix();
+		glMatrixMode(GL_MODELVIEW);
+		glPopMatrix();
 		glFlush();
-	
+		glEnable(GL_DEPTH_TEST);
 	}
 
 	/* writeString() - */
@@ -337,7 +364,16 @@ public:
 				}
 			}
 			else if (key == 's'){
-				game_running = !(game_running);
+				if (frog->getLives()>0){
+					game_running = !(game_running);
+					pauseWindow = !(pauseWindow);
+				}
+			}
+			else if (key == 'r'){
+				if (frog->getLives()>0) return;
+				score = 0;
+				frog->setLives(5);
+				game_running = true;
 			}
 		}
 		else{frog->stopMovement();}
