@@ -42,6 +42,8 @@ protected:
 
 	std::vector <DynamicObject* > _dynamic_objects;
 
+	std::vector <GameObject*> _HUD_objects;
+
 	std::vector <Camera *> _cameras;
 
 	std::vector <LightSource*> _light_sources;
@@ -57,6 +59,8 @@ protected:
 	bool game_running;
 
 	bool pauseWindow;
+
+	bool deathWindow;
 
 	Frog* frog;					//Used in frog's movement.
 
@@ -95,6 +99,8 @@ public:
 		fps = 0;
 		texture_state = false;
 		game_running = true;
+		pauseWindow = false;
+		deathWindow = false;
 	}
 
 	~GameManager();
@@ -143,6 +149,7 @@ public:
 		score += frog->checkIfColided(_game_objects);
 		if (frog->getLives() <= 0){
 			game_running=false;
+			deathWindow = true;
 		}
 
 		increase_speed=false;
@@ -206,27 +213,30 @@ public:
 		/*
 		DRAW DE OBJECTOS FIXOS NO ECRÃ
 		*/
-		glDisable(GL_DEPTH_TEST);
-		glMatrixMode(GL_PROJECTION);
-		glPushMatrix();
-		glLoadIdentity();
-		glMatrixMode(GL_MODELVIEW);
-		glPushMatrix();
-		glLoadIdentity();
+		if (pauseWindow || deathWindow){
+			glDisable(GL_DEPTH_TEST);
+			glMatrixMode(GL_PROJECTION);
+			glPushMatrix();
+			glLoadIdentity();
+			glMatrixMode(GL_MODELVIEW);
+			glPushMatrix();
+			glLoadIdentity();
 
+			glColor3f(1.0, 0.5, 0.5);
 
-		glBegin(GL_QUADS);
-		glColor3f(1.0, 1.0, 1.0);
-		glVertex3d( -0.25,-0.25, 0 );
-		glVertex3d(  0.25,-0.25, 0 );
-		glVertex3d(  0.25, 0.25, 0 );
-		glVertex3d( -0.25, 0.25, 0 );
-		glEnd();
+			glBegin(GL_QUADS);
+			glVertex3d(-0.5, -0.25, 0);
+			glVertex3d(0.5, -0.25, 0);
+			glVertex3d(0.5, 0.25, 0);
+			glVertex3d(-0.5, 0.25, 0);
+			glEnd();
+			
 
-		glMatrixMode(GL_PROJECTION);
-		glPopMatrix();
-		glMatrixMode(GL_MODELVIEW);
-		glPopMatrix();
+			glMatrixMode(GL_PROJECTION);
+			glPopMatrix();
+			glMatrixMode(GL_MODELVIEW);
+			glPopMatrix();
+		}
 		glFlush();
 		glEnable(GL_DEPTH_TEST);
 	}
@@ -373,6 +383,7 @@ public:
 				if (frog->getLives()>0) return;
 				score = 0;
 				frog->setLives(5);
+				deathWindow = false;
 				game_running = true;
 			}
 		}
