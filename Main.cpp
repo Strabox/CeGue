@@ -259,7 +259,7 @@ void spawnWorldObjects(){									// Map has 11 width and 13 height
 	spotlight7->setCutOff(30.0);
 	spotlight7->setDiffuse(Vector4(0.9,0.9, 0.9, 1.0));
 	spotlight7->setExponent(1);
-	spotlight7->setAttenuation(Vector3(0.5, 0.5, 0.3));
+	spotlight7->setAttenuation(Vector3(0.7, 0.4, 0.3));
 	spotlight7->setAmbient(Vector4(0.6, 0.6, 0.6, 1.0));
 	spotlight7->setDirection(Vector3(0.0, 1.0, -0.1));
 	
