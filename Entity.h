@@ -11,7 +11,7 @@ protected:
 
 	Vector3 _position;
 
-	GLint textureID;
+	GLuint textureID;
 
 	char* texels;
 
@@ -31,6 +31,10 @@ public:
 
 	void setPosition(double x, double y, double z){ 
 		_position.set(x, y, z); 
+	}
+
+	virtual int loadSelfTexture(){
+		return 0;
 	}
 
 };

@@ -437,9 +437,8 @@ public:
 		glEnable(GL_DEPTH_TEST);			// permite desenhar as coisas por ordem de profundidade 
 		glShadeModel(GL_SMOOTH);
 		glEnable(GL_LIGHT0);
-		glGenTextures(1, textures);
-		printf("%d\n", textures[0]);
-
+		//glGenTextures(1, textures);
+		//printf("%d\n", textures[0]);
 	}
 
 };
