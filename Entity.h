@@ -11,6 +11,9 @@ protected:
 
 	Vector3 _position;
 
+	GLint textureID;
+
+	char* texels;
 
 public:
 

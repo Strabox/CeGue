@@ -18,6 +18,8 @@
 #include "Car.h"
 #include "LightSource.h"
 #include "BlackWall.h"
+#include "PauseWindow.h"
+#include "DeathWindow.h"
 
 #define DRAWRIGHT -5.5
 #define DRAWLEFT 5.5
@@ -58,9 +60,15 @@ protected:
 
 	bool game_running;
 
-	bool pauseWindow;
+	bool pauseWindowShow;
 
-	bool deathWindow;
+	bool deathWindowShow;
+
+	DeathWindow deathWindow;
+
+	PauseWindow pauseWindow;
+
+	Frog lives[5];
 
 	Frog* frog;					//Used in frog's movement.
 
@@ -99,8 +107,14 @@ public:
 		fps = 0;
 		texture_state = false;
 		game_running = true;
-		pauseWindow = false;
-		deathWindow = false;
+		pauseWindowShow = false;
+		deathWindowShow = false;
+		deathWindow = DeathWindow();
+		pauseWindow = PauseWindow();
+		for (int numberoflives = 0; numberoflives < 5; numberoflives++){
+			lives[numberoflives] = Frog();
+			lives[numberoflives].setPosition(5.5-(float)numberoflives, 6.5, 0);
+		}
 	}
 
 	~GameManager();
@@ -149,7 +163,7 @@ public:
 		score += frog->checkIfColided(_game_objects);
 		if (frog->getLives() <= 0){
 			game_running=false;
-			deathWindow = true;
+			deathWindowShow = true;
 		}
 
 		increase_speed=false;
@@ -213,30 +227,37 @@ public:
 		/*
 		DRAW DE OBJECTOS FIXOS NO ECRÃ
 		*/
-		if (pauseWindow || deathWindow){
-			glDisable(GL_DEPTH_TEST);
-			glMatrixMode(GL_PROJECTION);
-			glPushMatrix();
-			glLoadIdentity();
-			glMatrixMode(GL_MODELVIEW);
-			glPushMatrix();
-			glLoadIdentity();
+		
+		glDisable(GL_DEPTH_TEST);
+		glMatrixMode(GL_PROJECTION);
+		glPushMatrix();
+		glLoadIdentity();
+		glMatrixMode(GL_MODELVIEW);
+		glPushMatrix();
+		glLoadIdentity();
 
-			glColor3f(1.0, 0.5, 0.5);
-
-			glBegin(GL_QUADS);
-			glVertex3d(-0.5, -0.25, 0);
-			glVertex3d(0.5, -0.25, 0);
-			glVertex3d(0.5, 0.25, 0);
-			glVertex3d(-0.5, 0.25, 0);
-			glEnd();
-			
-
-			glMatrixMode(GL_PROJECTION);
-			glPopMatrix();
-			glMatrixMode(GL_MODELVIEW);
-			glPopMatrix();
+		if (pauseWindowShow){
+			pauseWindow.draw();
 		}
+			
+		if (deathWindowShow){
+			deathWindow.draw();
+		}
+
+		glPushMatrix();
+		glScalef(0.1, 0.1, 1.0);
+		int liv = frog->getLives();
+		printf("%d",liv);
+		for (int i = 0; i < liv; i++){
+			lives[i].draw();
+		}
+		glPopMatrix();
+
+		glMatrixMode(GL_PROJECTION);
+		glPopMatrix();
+		glMatrixMode(GL_MODELVIEW);
+		glPopMatrix();
+		
 		glFlush();
 		glEnable(GL_DEPTH_TEST);
 	}
@@ -376,14 +397,14 @@ public:
 			else if (key == 's'){
 				if (frog->getLives()>0){
 					game_running = !(game_running);
-					pauseWindow = !(pauseWindow);
+					pauseWindowShow = !(pauseWindowShow);
 				}
 			}
 			else if (key == 'r'){
 				if (frog->getLives()>0) return;
 				score = 0;
 				frog->setLives(5);
-				deathWindow = false;
+				deathWindowShow = false;
 				game_running = true;
 			}
 		}

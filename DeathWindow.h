@@ -4,7 +4,7 @@
 #include "glut.h"
 #include "GameObject.h"
 
-class DeathWindow : public GameObject {
+class DeathWindow : public Entity {
 
 public:
 

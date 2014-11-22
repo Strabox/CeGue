@@ -58,13 +58,9 @@ public:
 			for (double x = -5.25; x <= 5.25; x+=0.5){
 				glPushMatrix();
 				glTranslatef(x, y, 0.0);
-				//glScalef(0.5, 0.5, 1.0);
 				glColor3f(0.1, 0.1, 0.1);
 				/*
 				glTexCoord(x, y);
-				glVertex(...
-				Desenhar quadrado
-				http://neerci.ist.utl.pt/~neerci.daemon/neerci_shelf/LEIC/3%20Ano/1%20Semestre/Computacao%20Grafica/Teoricas%20e%20Resumos/2012%20-%202013/19%20-%20Mapeamento%20de%20Texturas.pdf
 				*/
 				glBegin(GL_QUADS);
 				glNormal3f(0.0, 0.0, 1.0);

@@ -35,6 +35,7 @@ private:
 
 public:
 
+
 	Frog() : DynamicObject(Box(FROG_DIMENSION_XMIN, FROG_DIMENSION_XMAX, FROG_DIMENSION_YMIN, FROG_DIMENSION_YMAX)) {
 		_lives = MAX_LIVES;
 		_zRotation=0;
@@ -145,6 +146,7 @@ public:
 
 	void win(){
 		setPosition(0.0, 0.0, 0.0);
+		_zRotation = 0;
 		_platformSpeed = Vector3(0.0, 0.0, 0.0);
 		setSpeed(0.0, 0.0, 0.0);
 		
@@ -153,6 +155,7 @@ public:
 	void die(char* message){
 		printf("%s\n",message);
 		setPosition(0.0, 0.0, 0.0);
+		_zRotation = 0;
 		_platformSpeed = Vector3(0.0, 0.0, 0.0);
 		setSpeed(0.0, 0.0, 0.0);
 		PlaySound((LPCWSTR)IDR_WAVE1, NULL, SND_RESOURCE | SND_ASYNC);

@@ -35,9 +35,43 @@ public:
 			for (double x = -5.25; x <= 5.25; x += 0.5){
 				glPushMatrix();
 				glTranslatef(x, y, 0.0);
-				glScalef(0.5, 0.5, 1.0);
 				glColor3f(1.0, 1.0, 0.5);
-				glutSolidCube(1.0);
+				glBegin(GL_QUADS);
+				glNormal3f(0.0, 0.0, 1.0);
+				glTexCoord2f(0, 0);
+				glVertex3f(-0.25, -0.25, 0.5);
+				glNormal3f(0.0, 0.0, 1.0);
+				glTexCoord2f(1, 0);
+				glVertex3f(0.25, -0.25, 0.5);
+				glNormal3f(0.0, 0.0, 1.0);
+				glTexCoord2f(1, 1);
+				glVertex3f(0.25, 0.25, 0.5);
+				glNormal3f(0.0, 0.0, 1.0);
+				glTexCoord2f(0, 1);
+				glVertex3f(-0.25, 0.25, 0.5);
+				glEnd();
+				glPopMatrix();
+			}
+		}
+		for (double z = -0.25; z <= 0.25; z += 0.5){
+			for (double x = -5.25; x <= 5.25; x += 0.5){
+				glPushMatrix();
+				glTranslatef(x, 0.0, z);
+				glColor3f(1.0, 1.0, 0.5);
+				glBegin(GL_QUADS);
+				glNormal3f(0.0, -1.0, 1.0);
+				glTexCoord2f(0, 0);
+				glVertex3f(-0.25, -0.5, -0.25);
+				glNormal3f(0.0, -1.0, 1.0);
+				glTexCoord2f(1, 0);
+				glVertex3f(0.25, -0.5, -0.25);
+				glNormal3f(0.0, -1.0, 1.0);
+				glTexCoord2f(1, 1);
+				glVertex3f(0.25, -0.5, 0.25);
+				glNormal3f(0.0, -1.0, 1.0);
+				glTexCoord2f(0, 1);
+				glVertex3f(-0.25, -0.5, 0.25);
+				glEnd();
 				glPopMatrix();
 			}
 		}

@@ -13,12 +13,6 @@ private:
 
 	Box _hitBox;
 
-protected:
-
-	GLint textureID;
-
-	char* texels;
-
 public:
 
 	GameObject(Box box) : Entity(){

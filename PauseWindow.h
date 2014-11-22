@@ -4,7 +4,7 @@
 #include "glut.h"
 #include "GameObject.h"
 
-class PauseWindow : public GameObject {
+class PauseWindow : public Entity {
 
 public:
 
@@ -26,15 +26,15 @@ public:
 		glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_ambient);
 
 		glPushMatrix();
-		glTranslatef(vector.getX(), vector.getY(), vector.getZ());
-		glColor3f(1.0, 1.0, 0.5);
+			glTranslatef(vector.getX(), vector.getY(), vector.getZ());
+			glColor3f(1.0, 1.0, 0.5);
 
-		glBegin(GL_QUADS);
-		glVertex3d(-0.5, -0.25, 0);
-		glVertex3d(0.5, -0.25, 0);
-		glVertex3d(0.5, 0.25, 0);
-		glVertex3d(-0.5, 0.25, 0);
-		glEnd();
+			glBegin(GL_QUADS);
+			glVertex3d(-0.5, -0.25, 0);
+			glVertex3d(0.5, -0.25, 0);
+			glVertex3d(0.5, 0.25, 0);
+			glVertex3d(-0.5, 0.25, 0);
+			glEnd();
 
 		glPopMatrix();
 	}
