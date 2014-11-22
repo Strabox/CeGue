@@ -47,7 +47,6 @@ public:
 
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, textureID);
-		printf("%d\n", textureID);
 
 		double tile_width = 0.25;
 		double texymin, texymax, texxmin, texxmax;
@@ -57,10 +56,10 @@ public:
 				glTranslatef(x, y, 0.0);
 				glColor3f(0.1, 0.1, 0.1);
 
-				texymin = (y - tile_width / 2.0)/5.0;
-				texymax = (y + tile_width / 2.0)/5.0;
-				texxmin = (x - tile_width / 2.0) / 11.0;
-				texxmax = (x + tile_width / 2.0) / 11.0;
+				texymin = (y - tile_width / 2.0 + 2.5)/5.0;
+				texymax = (y + tile_width / 2.0 + 2.5) / 5.0;
+				texxmin = (x - tile_width / 2.0 + 5.5) / 11.0;
+				texxmax = (x + tile_width / 2.0 + 5.5) / 11.0;
 
 				glBegin(GL_QUADS);
 				glNormal3f(0.0, 0.0, 1.0);

@@ -41,14 +41,19 @@ public:
 		glPushMatrix();
 			glTranslatef(vector.getX(), vector.getY(), vector.getZ());
 			glColor3f(1.0, 1.0, 0.5);
-
+			glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, textureID);
 			glBegin(GL_QUADS);
+			glTexCoord2f(0, 0);
 			glVertex3d(-3, -2, 0);
+			glTexCoord2f(1, 0);
 			glVertex3d(3, -2, 0);
+			glTexCoord2f(1, 1);
 			glVertex3d(3, 2, 0);
+			glTexCoord2f(0, 1);
 			glVertex3d(-3, 2, 0);
 			glEnd();
-
+			glDisable(GL_TEXTURE_2D);
 		glPopMatrix();
 	}
 };
