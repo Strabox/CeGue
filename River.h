@@ -2,6 +2,7 @@
 #define RIVER_H
 
 #include "glut.h"
+#include "SOIL.h"
 #include "StaticObject.h"
 
 class River : public StaticObject {

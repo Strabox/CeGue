@@ -54,19 +54,15 @@ protected:
 
 	std::vector <Car *> _cars;
 
-	GLuint textures[1];
-
-	bool texture_state;
-
 	bool game_running;
 
 	bool pauseWindowShow;
 
 	bool deathWindowShow;
 
-	DeathWindow deathWindow;
+	DeathWindow* deathWindow;
 
-	PauseWindow pauseWindow;
+	PauseWindow* pauseWindow;
 
 	Frog lives[5];
 
@@ -105,14 +101,9 @@ public:
 		walls = new BlackWall();
 		score = 0;
 		fps = 0;
-		texture_state = false;
 		game_running = true;
 		pauseWindowShow = false;
 		deathWindowShow = false;
-		deathWindow = DeathWindow();
-		deathWindow.setPosition(0.0, 5.0, 0.0);
-		pauseWindow = PauseWindow();
-		pauseWindow.setPosition(0.0, 5.0, 0.0);
 		for (int numberoflives = 0; numberoflives <5; numberoflives++){
 			lives[numberoflives] = Frog();
 			lives[numberoflives].setPosition(5-(float)numberoflives, 11.0, 0);
@@ -122,7 +113,10 @@ public:
 	~GameManager();
 
 	/* addGameObejct(obj) - adds a new Game object to the list.*/
-	void addGameObject(GameObject* obj){ _game_objects.push_back(obj); }
+	void addGameObject(GameObject* obj){
+		_game_objects.push_back(obj);
+		obj->loadSelfTexture();
+	}
 
 	void addDynamicObject(DynamicObject* obj){ _dynamic_objects.push_back(obj); }
 
@@ -137,6 +131,16 @@ public:
 	void setFrogLight(LightSource* light){ froglight = light; }
 
 	void setFrog(Frog* f){ frog = f; }
+
+	void setPauseWindow(PauseWindow* win){
+		pauseWindow = win;
+		win->loadSelfTexture();
+	}
+
+	void setDeathWindow(DeathWindow* win){
+		deathWindow = win;
+		win->loadSelfTexture();
+	}
 	
 	/* update() - Called before paint the scene to update Graphic Objects. */
 	void update(int useless) {
@@ -242,11 +246,11 @@ public:
 		writeString(-5, 11, 1.0, 0.0, 0.0, GLUT_BITMAP_HELVETICA_12, stringHUD1);
 		
 		if (pauseWindowShow){
-			pauseWindow.draw();
+			pauseWindow->draw();
 		}
 			
 		if (deathWindowShow){
-			deathWindow.draw();
+			deathWindow->draw();
 		}
 
 		glPushMatrix();
@@ -388,16 +392,6 @@ public:
 					light = false;
 				}
 			}
-			else if (key == 't'){
-				if (texture_state == false){
-					glEnable(GL_TEXTURE);
-					texture_state = true;
-				}
-				else{
-					glDisable(GL_TEXTURE);
-					texture_state = false;
-				}
-			}
 			else if (key == 's'){
 				if (frog->getLives()>0){
 					game_running = !(game_running);
@@ -437,8 +431,7 @@ public:
 		glEnable(GL_DEPTH_TEST);			// permite desenhar as coisas por ordem de profundidade 
 		glShadeModel(GL_SMOOTH);
 		glEnable(GL_LIGHT0);
-		//glGenTextures(1, textures);
-		//printf("%d\n", textures[0]);
+		
 	}
 
 };

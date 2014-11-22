@@ -13,6 +13,8 @@
 #include "Turtle.h"
 #include "PerspectiveCamera.h"
 #include "OrthogonalCamera.h"
+#include "DeathWindow.h"
+#include "PauseWindow.h"
 
 
 #define MILISECONDS 0					
@@ -273,6 +275,13 @@ void spawnWorldObjects(){									// Map has 11 width and 13 height
 	man->addLightSource(spotlight6);
 	man->addLightSource(spotlight7);
 	man->setFrogLight(spotlight7);
+
+	DeathWindow* deathWindow = new DeathWindow();
+	deathWindow->setPosition(Vector3(0.0, 5.0, 0.0));
+	man->setDeathWindow(deathWindow);
+	PauseWindow* pauseWindow = new PauseWindow();
+	pauseWindow->setPosition(Vector3(0.0, 5.0, 0.0));
+	man->setPauseWindow(pauseWindow);
 }
 
 int main(int argc, char** argv){

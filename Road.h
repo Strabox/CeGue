@@ -2,37 +2,31 @@
 #define ROAD_H
 
 #include "glut.h"
+#include "SOIL.h"
 #include "StaticObject.h"
 
 class Road : public StaticObject {
 
 public:
 
-	Road() :StaticObject(Box(-6.0, 6.0, -2.5, 2.5)){
-		FILE *fileptr;
-		long filelen;
-
-		fopen_s(&fileptr,"tex_road_big.bmp", "rb");  // Open the file in binary mode
-		fseek(fileptr, 0, SEEK_END);          // Jump to the end of the file
-		filelen = ftell(fileptr);             // Get the current byte offset in the file
-		rewind(fileptr);                      // Jump back to the beginning of the file
-
-		texels = (char *)malloc((filelen + 1)*sizeof(char)); // Enough memory for file + \0
-		fread(texels, filelen, 1, fileptr); // Read in the entire file
-		printf("%d\n%s\n", sizeof(texels), (char*)texels);
-		fclose(fileptr);
-		giveTextureID(1);
-	}
+	Road() :StaticObject(Box(-6.0, 6.0, -2.5, 2.5)){}
 
 	~Road(){}
 
 	int answerToColision(){ return 4; }				// 4 = ground
 
-	int giveTextureID(GLint id){
-		textureID = 1;//id;
-		glBindTexture(GL_TEXTURE_2D, textureID);
-		
-		return 0;
+	int loadSelfTexture(){
+		textureID = SOIL_load_OGL_texture(
+			"Road.png",
+			SOIL_LOAD_AUTO,
+			SOIL_CREATE_NEW_ID,
+			SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT
+			);
+		if (0 == textureID)
+		{
+			printf("SOIL loading error: '%s'\n", SOIL_last_result());
+		}
+		return 1;
 	}
 
 	void draw(){
@@ -48,37 +42,45 @@ public:
 		glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
 		glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_ambient);
 		
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 4, 4, 0, GL_RGB, GL_UNSIGNED_BYTE, texels);
-		//printf("%d\n%s\n", sizeof(texels), (char*)texels);
-
 		glPushMatrix();
 		glTranslatef(vector.getX(), vector.getY(), vector.getZ());
 
-		for (double y = -2.25; y <= 2.25; y+=0.5){
-			for (double x = -5.25; x <= 5.25; x+=0.5){
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, textureID);
+		printf("%d\n", textureID);
+
+		double tile_width = 0.25;
+		double texymin, texymax, texxmin, texxmax;
+		for (double y = -2.5 + tile_width / 2.0; y <= 2.5 - tile_width / 2.0; y += tile_width){
+			for (double x = -5.5 + tile_width / 2.0; x <= 5.5 - tile_width / 2.0; x += tile_width){
 				glPushMatrix();
 				glTranslatef(x, y, 0.0);
 				glColor3f(0.1, 0.1, 0.1);
-				/*
-				glTexCoord(x, y);
-				*/
+
+				texymin = (y - tile_width / 2.0)/5.0;
+				texymax = (y + tile_width / 2.0)/5.0;
+				texxmin = (x - tile_width / 2.0) / 11.0;
+				texxmax = (x + tile_width / 2.0) / 11.0;
+
 				glBegin(GL_QUADS);
 				glNormal3f(0.0, 0.0, 1.0);
-				glTexCoord2f(0, 0);
-				glVertex3f(-0.25, -0.25, 0.5);
+				glTexCoord2f(texxmin, texymin);
+				glVertex3f(-tile_width / 2.0, -tile_width / 2.0, 0.5);
 				glNormal3f(0.0, 0.0, 1.0);
-				glTexCoord2f(1, 0);
-				glVertex3f(0.25, -0.25, 0.5);
+				glTexCoord2f(texxmax, texymin);
+				glVertex3f(tile_width / 2.0, -tile_width / 2.0, 0.5);
 				glNormal3f(0.0, 0.0, 1.0);
-				glTexCoord2f(1, 1);
-				glVertex3f(0.25, 0.25, 0.5);
+				glTexCoord2f(texxmax, texymax);
+				glVertex3f(tile_width / 2.0, tile_width / 2.0, 0.5);
 				glNormal3f(0.0, 0.0, 1.0);
-				glTexCoord2f(0, 1);
-				glVertex3f(-0.25, 0.25, 0.5);
+				glTexCoord2f(texxmin, texymax);
+				glVertex3f(-tile_width / 2.0, tile_width / 2.0, 0.5);
 				glEnd();
 				glPopMatrix();
 			}
 		}
+		
+		glDisable(GL_TEXTURE_2D);
 
 		glPopMatrix();
 	}

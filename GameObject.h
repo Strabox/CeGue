@@ -37,13 +37,7 @@ public:
 			return 0;
 	}
 
-	/* http://www.gamedev.net/page/resources/_/technical/game-programming/swept-aabb-collision-detection-and-response-r3084
-	* ver Board-Phasing
-	*/
-	
 	virtual int answerToColision(){ return -1; }
-
-	virtual int giveTextureID(GLuint id){ return 0; }
 
 	virtual Vector3 getSpeed(){ return Vector3(0.0, 0.0, 0.0); }
 };
