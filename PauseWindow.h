@@ -8,9 +8,7 @@ class PauseWindow : public Entity {
 
 public:
 
-	PauseWindow(){
-		setPosition(0.0, 0.0, 0.0);
-	}
+	PauseWindow(){}
 
 	~PauseWindow(){}
 
@@ -30,10 +28,10 @@ public:
 			glColor3f(1.0, 1.0, 0.5);
 
 			glBegin(GL_QUADS);
-			glVertex3d(-0.5, -0.25, 0);
-			glVertex3d(0.5, -0.25, 0);
-			glVertex3d(0.5, 0.25, 0);
-			glVertex3d(-0.5, 0.25, 0);
+			glVertex3d(-3, -2, 0);
+			glVertex3d(3, -2, 0);
+			glVertex3d(3, 2, 0);
+			glVertex3d(-3, 2, 0);
 			glEnd();
 
 		glPopMatrix();

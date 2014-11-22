@@ -110,10 +110,12 @@ public:
 		pauseWindowShow = false;
 		deathWindowShow = false;
 		deathWindow = DeathWindow();
+		deathWindow.setPosition(0.0, 5.0, 0.0);
 		pauseWindow = PauseWindow();
-		for (int numberoflives = 0; numberoflives < 5; numberoflives++){
+		pauseWindow.setPosition(0.0, 5.0, 0.0);
+		for (int numberoflives = 0; numberoflives <5; numberoflives++){
 			lives[numberoflives] = Frog();
-			lives[numberoflives].setPosition(5.5-(float)numberoflives, 6.5, 0);
+			lives[numberoflives].setPosition(5-(float)numberoflives, 11.0, 0);
 		}
 	}
 
@@ -176,7 +178,7 @@ public:
 		memset(stringHUD1, '\0', 35);
 		//strcpy_s(stringHUD1, 20,"Vidas: ");
 		fps = 1000.0* ((double)frame) / ((double)total_time);
-		sprintf_s(stringHUD1 + 0, 35, "%d vidas | %d pontos | %.0ffps", frog->getLives(), score, fps);
+		sprintf_s(stringHUD1 + 0, 35, "%d pontos | %.0ffps", score, fps);
 		
 
 
@@ -201,7 +203,6 @@ public:
 		}
 		
 		
-		writeString(-5, 12, 1.0, 0.0, 0.0, GLUT_BITMAP_HELVETICA_12 , stringHUD1);
 		
 
 		froglight->setPosition(Vector4(frog->getPosition().getX(), frog->getPosition().getY(), frog->getPosition().getZ(), 1.0));
@@ -232,10 +233,14 @@ public:
 		glMatrixMode(GL_PROJECTION);
 		glPushMatrix();
 		glLoadIdentity();
+		glOrtho(DRAWRIGHT, DRAWLEFT, DRAWBOTTOM, DRAWTOP, DRAWNEAR, DRAWFAR);
+		
 		glMatrixMode(GL_MODELVIEW);
 		glPushMatrix();
 		glLoadIdentity();
-
+		
+		writeString(-5, 11, 1.0, 0.0, 0.0, GLUT_BITMAP_HELVETICA_12, stringHUD1);
+		
 		if (pauseWindowShow){
 			pauseWindow.draw();
 		}
@@ -245,9 +250,8 @@ public:
 		}
 
 		glPushMatrix();
-		glScalef(0.1, 0.1, 1.0);
+		//glScalef(11.0/100.0, 13.0/100.0, 1.0);
 		int liv = frog->getLives();
-		printf("%d",liv);
 		for (int i = 0; i < liv; i++){
 			lives[i].draw();
 		}

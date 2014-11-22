@@ -153,7 +153,7 @@ public:
 	}
 
 	void die(char* message){
-		printf("%s\n",message);
+		//printf("%s\n",message);
 		setPosition(0.0, 0.0, 0.0);
 		_zRotation = 0;
 		_platformSpeed = Vector3(0.0, 0.0, 0.0);
