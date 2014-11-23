@@ -209,12 +209,12 @@ public:
 		
 		
 
-		froglight->setPosition(Vector4(frog->getPosition().getX(), frog->getPosition().getY(), frog->getPosition().getZ(), 1.0));
+		froglight->setPosition(Vector4(frog->getPosition().getX(), frog->getPosition().getY(), frog->getPosition().getZ() + 2.5, 1.0));
 		double frogdir = frog->getZRotation();
-		if (frogdir == 0){ froglight->setDirection(Vector3(0.0, 1.0, -0.35)); }
-		else if (frogdir == 90){ froglight->setDirection(Vector3(-1.0, 0.0, -0.35)); }
-		else if (frogdir == 180){ froglight->setDirection(Vector3(0.0, -1.0, -0.35)); }
-		else if (frogdir == -90){ froglight->setDirection(Vector3(1.0, 0.0, -0.35)); }
+		if (frogdir == 0){ froglight->setDirection(Vector3(0.0, 0.6, -0.85)); }
+		else if (frogdir == 90){ froglight->setDirection(Vector3(-0.6, 0.0, -0.85)); }
+		else if (frogdir == 180){ froglight->setDirection(Vector3(0.0, -0.6, -0.85)); }
+		else if (frogdir == -90){ froglight->setDirection(Vector3(0.6, 0.0, -0.85)); }
 
 
 		std::vector<LightSource* >::iterator iterLight = _light_sources.begin();
@@ -404,6 +404,10 @@ public:
 				frog->setLives(5);
 				deathWindowShow = false;
 				game_running = true;
+				std::vector<DynamicObject* >::iterator iter = _dynamic_objects.begin();
+				for (iter; iter != _dynamic_objects.end(); iter++){
+					(*iter)->restartSpeed();
+				}
 			}
 		}
 		else{frog->stopMovement();}

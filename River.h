@@ -24,6 +24,7 @@ public:
 		{
 			printf("SOIL loading error: '%s'\n", SOIL_last_result());
 		}
+		printf("Texture loaded - River\n");
 		return 1;
 	}
 
@@ -32,7 +33,7 @@ public:
 	void draw(){
 		Vector3 vector = getPosition();
 		GLfloat mat_specular[] = {0.2, 0.2, 0.5, 1.0 };
-		GLfloat mat_ambient[] = { 0.1, 0.1, 0.25, 1.0 };
+		GLfloat mat_ambient[] = { 0.2, 0.2, 0.5, 1.0 };
 		GLfloat mat_diffuse[] = { 0.5, 0.5, 0.75, 1.0 };
 		GLfloat shininess = 1;
 
@@ -40,7 +41,7 @@ public:
 		glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
 		glMaterialf(GL_FRONT, GL_SHININESS, shininess);
 		glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_ambient);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
 		glTranslatef(vector.getX(), vector.getY(), vector.getZ());
 
 		glEnable(GL_TEXTURE_2D);

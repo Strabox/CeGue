@@ -81,87 +81,87 @@ void spawnWorldObjects(){									// Map has 11 width and 13 height
 	Timberlog* tronco;
 	tronco = new Timberlog();
 	tronco->setPosition(-1.0, 11.0, -1.0);
-	tronco->setSpeed(1.25, 0.0, 0.0);
+	tronco->setDefaultSpeed(1.25, 0.0, 0.0);
 	man->addGameObject(tronco);
 	man->addDynamicObject(tronco);
 	tronco = new Timberlog();
 	tronco->setPosition(-4.0, 9.0, -1.0);
-	tronco->setSpeed(1.5, 0.0, 0.0);
+	tronco->setDefaultSpeed(1.5, 0.0, 0.0);
 	man->addGameObject(tronco);
 	man->addDynamicObject(tronco);
 	tronco = new Timberlog();
 	tronco->setPosition(-1.0, 8.0, -1.0);
-	tronco->setSpeed(1.0, 0.0, 0.0); 
+	tronco->setDefaultSpeed(1.0, 0.0, 0.0);
 	man->addGameObject(tronco);
 	man->addDynamicObject(tronco);
 
 	tronco = new Timberlog();
 	tronco->setPosition(6.5, 11.0, -1.0);
-	tronco->setSpeed(1.25, 0.0, 0.0);
+	tronco->setDefaultSpeed(1.25, 0.0, 0.0);
 	man->addGameObject(tronco);
 	man->addDynamicObject(tronco);
 	tronco = new Timberlog();
 	tronco->setPosition(3.5, 9.0, -1.0);
-	tronco->setSpeed(1.5, 0.0, 0.0);
+	tronco->setDefaultSpeed(1.5, 0.0, 0.0);
 	man->addGameObject(tronco);
 	man->addDynamicObject(tronco);
 	tronco = new Timberlog();
 	tronco->setPosition(-6.5, 8.0, -1.0);
-	tronco->setSpeed(1.0, 0.0, 0.0); 
+	tronco->setDefaultSpeed(1.0, 0.0, 0.0);
 	man->addGameObject(tronco);
 	man->addDynamicObject(tronco);
 	
 	Bus* bus;
 	bus = new Bus();
 	bus->setPosition(-1.0, 2.0, 0.0);
-	bus->setSpeed(-1.75, 0.0, 0.0);
+	bus->setDefaultSpeed(-1.75, 0.0, 0.0);
 	man->addGameObject(bus);
 	man->addDynamicObject(bus);
 	bus = new Bus();
 	bus->setPosition(4.0, 4.0, 0.0);
-	bus->setSpeed(-2.0, 0.0, 0.0);
+	bus->setDefaultSpeed(-2.0, 0.0, 0.0);
 	man->addGameObject(bus);
 	man->addDynamicObject(bus);
 
 	Car* car;
 	car = new Car();
 	car->setPosition(2.0, 3.0, 0.0);
-	car->setSpeed(-4.0, 0.0, 0.0);
+	car->setDefaultSpeed(-4.0, 0.0, 0.0);
 	man->addGameObject(car);
 	man->addDynamicObject(car);
 	man->addCarsObject(car);
 	car = new Car();
 	car->setPosition(1.0, 1.0, 0.0);
-	car->setSpeed(-3.0, 0.0, 0.0);
+	car->setDefaultSpeed(-3.0, 0.0, 0.0);
 	man->addGameObject(car);
 	man->addDynamicObject(car);
 	man->addCarsObject(car);
 	car = new Car();
 	car->setPosition(7.0, 5.0, 0.0);
-	car->setSpeed(-2.5, 0.0, 0.0);
+	car->setDefaultSpeed(-2.5, 0.0, 0.0);
 	man->addGameObject(car);
 	man->addDynamicObject(car);
 	man->addCarsObject(car);
 	
 	Turtle* turtle = new Turtle();
 	turtle->setPosition(-2.0, 10.0, -1.0);
-	turtle->setSpeed(-1.0, 0.0, 0.0);
+	turtle->setDefaultSpeed(-1.0, 0.0, 0.0);
 	man->addGameObject(turtle);
 	man->addDynamicObject(turtle);
 	turtle = new Turtle();
 	turtle->setPosition(-2.0, 7.0, -1.0);
-	turtle->setSpeed(-1.25, 0.0, 0.0);
+	turtle->setDefaultSpeed(-1.25, 0.0, 0.0);
 	man->addGameObject(turtle);
 	man->addDynamicObject(turtle);
 
 	turtle = new Turtle();
 	turtle->setPosition(4.5, 10.0, -1.0);
-	turtle->setSpeed(-1.0, 0.0, 0.0);
+	turtle->setDefaultSpeed(-1.0, 0.0, 0.0);
 	man->addGameObject(turtle);
 	man->addDynamicObject(turtle);
 	turtle = new Turtle();
 	turtle->setPosition(4.5, 7.0, -1.0);
-	turtle->setSpeed(-1.25, 0.0, 0.0);
+	turtle->setDefaultSpeed(-1.25, 0.0, 0.0);
 	man->addGameObject(turtle);
 	man->addDynamicObject(turtle);
 
@@ -256,14 +256,14 @@ void spawnWorldObjects(){									// Map has 11 width and 13 height
 
 	//Frog headlight
 	LightSource* spotlight7 = new LightSource(GL_LIGHT7);
-	spotlight7->setPosition( Vector4( frog->getPosition().getX(), frog->getPosition().getY(), frog->getPosition().getZ(), 1.0) );
+	spotlight7->setPosition( Vector4( frog->getPosition().getX(), frog->getPosition().getY(), frog->getPosition().getZ() + 2.5, 1.0) );
 	spotlight7->setSpecular(Vector4(0.9, 0.9, 0.9, 1.0));
 	spotlight7->setCutOff(30.0);
 	spotlight7->setDiffuse(Vector4(0.9,0.9, 0.9, 1.0));
 	spotlight7->setExponent(1);
-	spotlight7->setAttenuation(Vector3(0.7, 0.4, 0.3));
+	spotlight7->setAttenuation(Vector3(0, 0.2, 0.4));//0.7, 0.4, 0.3));
 	spotlight7->setAmbient(Vector4(0.6, 0.6, 0.6, 1.0));
-	spotlight7->setDirection(Vector3(0.0, 1.0, -0.1));
+	spotlight7->setDirection(Vector3(0.0, 0.6, -0.85));
 	
 
 	man->addLightSource(globalIllumination);
@@ -285,7 +285,9 @@ void spawnWorldObjects(){									// Map has 11 width and 13 height
 }
 
 int main(int argc, char** argv){
+	printf("CG Frogger - grupo 18 - Setup\n");
 	man = new GameManager();
+	printf("Game manager created\n");
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glutInitWindowSize(440, 520);
@@ -299,8 +301,11 @@ int main(int argc, char** argv){
 	glutKeyboardUpFunc(regularUpKeys);
 	glutSpecialFunc(specialKeys);
 	man->init();
+	printf("Engine ready\n");
 	spawnWorldObjects();										// Initializes the World, creating necessary objects. 
+	printf("World objects created\n");
 	glutTimerFunc(17, updateForward, 0);						// Start the Update Cycle.
+	printf("Starting game\n");
 	glutMainLoop();
 	return 0;
 }

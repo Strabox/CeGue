@@ -30,7 +30,9 @@ public:
 		GLfloat mat_specular_farois[] = { 1.0, 0.0, 0.0, 1.0 };
 		GLfloat mat_ambient_farois[] = { 0.75, 0.2, 0.0, 1.0 };
 		GLfloat mat_diffuse_farois[] = { 0.75, 0.5, 0.5, 1.0 };
+		GLfloat mat_emission_farois[] = { 1.0, 0.0, 0.0, 1.0 };
 		GLfloat shininess_farois = 1;
+		GLfloat default_emission[] = { 0.0, 0.0, 0.0, 1.0 };
 		//pneus
 		GLfloat mat_specular_pneus[] = { 0.2, 0.2, 0.2, 1.0 };
 		GLfloat mat_ambient_pneus[] = { 0.2, 0.2, 0.2, 1.0 };
@@ -38,7 +40,7 @@ public:
 		GLfloat shininess_pneus = 10;
 
 
-		glEnable(GL_NORMALIZE);		
+		glEnable(GL_NORMALIZE);
 		glPushMatrix();
 		glTranslatef(vector.getX(), vector.getY(), vector.getZ() - 0.3);
 
@@ -47,7 +49,7 @@ public:
 		glMaterialf(GL_FRONT, GL_SHININESS, shininess_corpo);
 		glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient_corpo);
 		glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse_corpo);
-		
+
 		//roof
 		//top
 		glColor3f(0.0, 0.5, 1.0);
@@ -223,7 +225,8 @@ public:
 		glMaterialf(GL_FRONT, GL_SHININESS, shininess_farois);
 		glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient_farois);
 		glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse_farois);
-		
+		glMaterialfv(GL_FRONT, GL_EMISSION, mat_emission_farois);
+
 		glColor3f(0.5, 0.0, 0.0);
 		//esquerdo
 		glBegin(GL_TRIANGLES);
@@ -244,6 +247,7 @@ public:
 		glVertex3f(0.45, 0.3, 0.15);
 		glEnd();
 
+		glMaterialfv(GL_FRONT, GL_EMISSION, default_emission);
 
 
 		//vidros

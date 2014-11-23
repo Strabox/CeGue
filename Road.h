@@ -17,7 +17,7 @@ public:
 
 	int loadSelfTexture(){
 		textureID = SOIL_load_OGL_texture(
-			"Road.png",
+			"Road.jpg",
 			SOIL_LOAD_AUTO,
 			SOIL_CREATE_NEW_ID,
 			SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT
@@ -26,6 +26,7 @@ public:
 		{
 			printf("SOIL loading error: '%s'\n", SOIL_last_result());
 		}
+		printf("Texture loaded - Road\n");
 		return 1;
 	}
 
@@ -40,7 +41,7 @@ public:
 		glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
 		glMaterialf(GL_FRONT, GL_SHININESS, shininess);
 		glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_ambient);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
 		
 		glPushMatrix();
 		glTranslatef(vector.getX(), vector.getY(), vector.getZ());
@@ -54,7 +55,7 @@ public:
 			for (double x = -5.5 + tile_width / 2.0; x <= 5.5 - tile_width / 2.0; x += tile_width){
 				glPushMatrix();
 				glTranslatef(x, y, 0.0);
-				glColor3f(0.1, 0.1, 0.1);
+				glColor3f(0.5, 0.5, 0.5);
 
 				texymin = (y - tile_width / 2.0 + 2.5)/5.0;
 				texymax = (y + tile_width / 2.0 + 2.5) / 5.0;

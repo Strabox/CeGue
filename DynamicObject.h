@@ -14,6 +14,8 @@ protected:
 
 	Vector3 _speed;
 
+	Vector3 _default_speed;
+
 	double _speed_multiplier;
 
 public:
@@ -32,6 +34,15 @@ public:
 
 	void setSpeed(double x, double y, double z){ 
 		_speed.set(x, y, z);
+	}
+
+	void setDefaultSpeed(double x, double y, double z){
+		_default_speed.set(x, y, z);
+		_speed = _default_speed;
+	}
+
+	void restartSpeed(){
+		_speed = _default_speed;
 	}
 
 	public: double getSpeedMultiplier(){
