@@ -15,7 +15,7 @@ public:
 
 	int loadSelfTexture(){
 		textureID = SOIL_load_OGL_texture(
-			"PauseWindow.bmp",
+			"PauseWindow.png",
 			SOIL_LOAD_AUTO,
 			SOIL_CREATE_NEW_ID,
 			SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT
@@ -45,13 +45,13 @@ public:
 			glBindTexture(GL_TEXTURE_2D, textureID);
 			glBegin(GL_QUADS);
 			glTexCoord2f(0, 0);
-			glVertex3d(-3, -2, 0);
+			glVertex3d(-2, -2, 0);
 			glTexCoord2f(1, 0);
-			glVertex3d(3, -2, 0);
+			glVertex3d(2, -2, 0);
 			glTexCoord2f(1, 1);
-			glVertex3d(3, 2, 0);
+			glVertex3d(2, 2, 0);
 			glTexCoord2f(0, 1);
-			glVertex3d(-3, 2, 0);
+			glVertex3d(-2, 2, 0);
 			glEnd();
 			glDisable(GL_TEXTURE_2D);
 		glPopMatrix();
