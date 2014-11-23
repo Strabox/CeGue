@@ -24,6 +24,7 @@ public:
 		{
 			printf("SOIL loading error: '%s'\n", SOIL_last_result());
 		}
+		printf("Texture loaded - PauseWindow\n");
 		return 1;
 	}
 
