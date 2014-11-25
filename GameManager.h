@@ -20,6 +20,7 @@
 #include "BlackWall.h"
 #include "PauseWindow.h"
 #include "DeathWindow.h"
+#include "VictoryWindow.h"
 
 #define DRAWRIGHT -5.5
 #define DRAWLEFT 5.5
@@ -60,9 +61,13 @@ protected:
 
 	bool deathWindowShow;
 
+	bool victoryWindowShow;
+
 	DeathWindow* deathWindow;
 
 	PauseWindow* pauseWindow;
+
+	VictoryWindow* victoryWindow;
 
 	Frog lives[5];
 
@@ -84,7 +89,7 @@ protected:
 
 	BlackWall* walls;
 
-	int score;
+	int _frog_state;
 
 	double fps;
 
@@ -99,14 +104,14 @@ public:
 		light = false;
 		tens_of_seconds_passed=0.0;
 		walls = new BlackWall();
-		score = 0;
+		_frog_state = 0;
 		fps = 0;
 		game_running = true;
 		pauseWindowShow = false;
 		deathWindowShow = false;
 		for (int numberoflives = 0; numberoflives <5; numberoflives++){
 			lives[numberoflives] = Frog();
-			lives[numberoflives].setPosition(5-(float)numberoflives, 11.0, 0);
+			lives[numberoflives].setPosition(5-(float)numberoflives, 11.0, 5.0);
 		}
 	}
 
@@ -141,11 +146,17 @@ public:
 		deathWindow = win;
 		win->loadSelfTexture();
 	}
+
+	void setVictoryWindow(VictoryWindow* win){
+		victoryWindow = win;
+		win->loadSelfTexture();
+	}
 	
 	/* update() - Called before paint the scene to update Graphic Objects. */
 	void update(int useless) {
 		std::vector<DynamicObject* >::iterator iter = _dynamic_objects.begin();
 		bool increase_speed = false;
+		_frog_state = 0;
 
 		delta_time = glutGet(GLUT_ELAPSED_TIME) - total_time;
 		total_time += delta_time;
@@ -166,12 +177,18 @@ public:
 			}
 			(*iter)->update(delta_time);
 		}
-		score += frog->checkIfColided(_game_objects);
+		
+		_frog_state += frog->checkIfColided(_game_objects);
+		if (_frog_state == 1){				// WIN
+			game_running = false;
+			victoryWindowShow = true;
+		}
+		
 		if (frog->getLives() <= 0){
 			game_running=false;
 			deathWindowShow = true;
 		}
-
+		
 		increase_speed=false;
 	}
 
@@ -182,7 +199,7 @@ public:
 		memset(stringHUD1, '\0', 35);
 		//strcpy_s(stringHUD1, 20,"Vidas: ");
 		fps = 1000.0* ((double)frame) / ((double)total_time);
-		sprintf_s(stringHUD1 + 0, 35, "%d pontos | %.0ffps", score, fps);
+		sprintf_s(stringHUD1 + 0, 35, "%d pontos | %.0ffps", frog->getScore(), fps);
 		
 
 
@@ -242,6 +259,10 @@ public:
 		glMatrixMode(GL_MODELVIEW);
 		glPushMatrix();
 		glLoadIdentity();
+
+		GLfloat emissao_uniforme[] = { 0.2, 0.2, 0.2, 1.0 };
+		GLfloat emissao_default[] = { 0.0, 0.0, 0.0, 1.0 };
+		glMaterialfv(GL_FRONT, GL_EMISSION, emissao_uniforme);
 		
 		writeString(-5, 11, 1.0, 0.0, 0.0, GLUT_BITMAP_HELVETICA_12, stringHUD1);
 		
@@ -253,6 +274,10 @@ public:
 			deathWindow->draw();
 		}
 
+		if (victoryWindowShow){
+			victoryWindow->draw();
+		}
+
 		glPushMatrix();
 		//glScalef(11.0/100.0, 13.0/100.0, 1.0);
 		int liv = frog->getLives();
@@ -260,6 +285,8 @@ public:
 			lives[i].draw();
 		}
 		glPopMatrix();
+
+		glMaterialfv(GL_FRONT, GL_EMISSION, emissao_default);
 
 		glMatrixMode(GL_PROJECTION);
 		glPopMatrix();
@@ -393,20 +420,31 @@ public:
 				}
 			}
 			else if (key == 's'){
-				if (frog->getLives()>0){
+				if (deathWindowShow) return;
+				else if (victoryWindowShow){
+					game_running = true;
+					victoryWindowShow = !(victoryWindowShow);
+				}
+				else {											//Toggle pausewindow on or off
 					game_running = !(game_running);
 					pauseWindowShow = !(pauseWindowShow);
 				}
 			}
 			else if (key == 'r'){
-				if (frog->getLives()>0) return;
-				score = 0;
-				frog->setLives(5);
-				deathWindowShow = false;
-				game_running = true;
-				std::vector<DynamicObject* >::iterator iter = _dynamic_objects.begin();
-				for (iter; iter != _dynamic_objects.end(); iter++){
-					(*iter)->restartSpeed();
+				if (deathWindowShow){
+					frog->setScore(0);
+					frog->setLives(5);
+					deathWindowShow = false;
+					game_running = true;
+					std::vector<DynamicObject* >::iterator iter = _dynamic_objects.begin();
+					for (iter; iter != _dynamic_objects.end(); iter++){
+						(*iter)->restartSpeed();
+					}
+				}
+				else if (pauseWindowShow){ return; }
+				else if (victoryWindowShow){
+					game_running = true;
+					victoryWindowShow = !(victoryWindowShow);
 				}
 			}
 		}

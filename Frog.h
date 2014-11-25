@@ -33,6 +33,8 @@ private:
 
 	bool _logOrTurtle;
 
+	int _score;
+
 public:
 
 
@@ -43,6 +45,7 @@ public:
 		_ground = true;
 		_water = false;
 		_logOrTurtle = false;
+		_score = 0;
 	}
 
 	~Frog(){}
@@ -59,6 +62,9 @@ public:
 
 	double getZRotation(){ return _zRotation; }
 
+	int getScore(){ return _score; }
+
+	void setScore(int score){ _score = score; }
 
 	void moveDown(){
 		setZRotation(180.0);
@@ -99,7 +105,7 @@ public:
 		_ground = false;
 		_water = false;
 		_logOrTurtle = false;
-		int pointsToReturn = 0;								//Defines what kind of fate the frog had, so a score can be assigned.
+		int fate = 0;								//Defines what kind of fate the frog had, so a score can be assigned.
 
 		for (iter; iter != collidable.end(); iter++){
 			if ((int) this == (int)*iter) continue;			//Collision with itself.
@@ -109,39 +115,45 @@ public:
 			if (colision_type == 1){						//Crashed with a car/bus.	
 				die("Atropelado!");
 				_lives--;
-				pointsToReturn = -10;						//Points to earn (negative = lose) when the frog is run over
+				_score -= 10;						//Points to earn (negative = lose) when the frog is run over
+				fate = -1;
 				break;
 			}
 			else if (colision_type == 6){					//WIN 
 				win();
-				pointsToReturn = 50;						//Points to earn when you win the game
+				_score += 50;						//Points to earn when you win the game
+				fate = 1;
 				break;
 			}
 			else if (colision_type == 4) _ground = true;	//It is in the ground.
-			else if (colision_type == 5) _water = true;		//Fall in water.
+			else if (colision_type == 5){
+				_water = true;		//Fall in water.
+				fate = -1;
+			}
 			else if (colision_type == 2){					//Its is in a turtle or log.
 				_logOrTurtle = true;
+				fate = 0;
 				break;
 			}
 		}
 		
 		if (_ground){
 			_platformSpeed = Vector3(0.0, 0.0, 0.0);
-			return pointsToReturn;										 //ground keeps the frog safe from the water
+			return fate;										 //ground keeps the frog safe from the water - 1 is alive
 		}
 		else if (_water){
 			if (!_logOrTurtle){								//the frog will survive the water if there's a log or a turtle
 				die("Afogado!");
 				_lives--;
-				pointsToReturn = -10;
-				return -1;
+				_score -= 10;
+				return fate;									// -1 is dead
 			}
 			else{
 				_platformSpeed = (*iter)->getSpeed();
 			}
 		}
 
-		return pointsToReturn;
+		return fate;
 	}
 
 	void win(){

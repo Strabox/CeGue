@@ -15,9 +15,10 @@
 #include "OrthogonalCamera.h"
 #include "DeathWindow.h"
 #include "PauseWindow.h"
+#include "VictoryWindow.h"
 
 
-#define MILISECONDS 0					
+#define MILISECONDS 6					
 
 GameManager* man;
 
@@ -259,10 +260,10 @@ void spawnWorldObjects(){									// Map has 11 width and 13 height
 	spotlight7->setPosition( Vector4( frog->getPosition().getX(), frog->getPosition().getY(), frog->getPosition().getZ() + 2.5, 1.0) );
 	spotlight7->setSpecular(Vector4(0.9, 0.9, 0.9, 1.0));
 	spotlight7->setCutOff(30.0);
-	spotlight7->setDiffuse(Vector4(0.9,0.9, 0.9, 1.0));
-	spotlight7->setExponent(1);
+	spotlight7->setDiffuse(Vector4(1.0, 1.0, 1.0, 1.0));
+	spotlight7->setExponent(5);
 	spotlight7->setAttenuation(Vector3(0, 0.2, 0.4));//0.7, 0.4, 0.3));
-	spotlight7->setAmbient(Vector4(0.6, 0.6, 0.6, 1.0));
+	spotlight7->setAmbient(Vector4(1.0, 1.0, 1.0, 1.0));
 	spotlight7->setDirection(Vector3(0.0, 0.6, -0.85));
 	
 
@@ -277,11 +278,14 @@ void spawnWorldObjects(){									// Map has 11 width and 13 height
 	man->setFrogLight(spotlight7);
 
 	DeathWindow* deathWindow = new DeathWindow();
-	deathWindow->setPosition(Vector3(0.0, 5.0, 0.0));
+	deathWindow->setPosition(Vector3(0.0, 5.0, 5.0));
 	man->setDeathWindow(deathWindow);
 	PauseWindow* pauseWindow = new PauseWindow();
-	pauseWindow->setPosition(Vector3(0.0, 5.0, 0.0));
+	pauseWindow->setPosition(Vector3(0.0, 5.0, 5.0));
 	man->setPauseWindow(pauseWindow);
+	VictoryWindow* victoryWindow = new VictoryWindow();
+	victoryWindow->setPosition(Vector3(0.0, 5.0, 5.0));
+	man->setVictoryWindow(victoryWindow);
 }
 
 int main(int argc, char** argv){

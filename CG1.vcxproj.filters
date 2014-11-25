@@ -116,6 +116,9 @@
     <ClInclude Include="PauseWindow.h">
       <Filter>Header Files\Static Objects</Filter>
     </ClInclude>
+    <ClInclude Include="VictoryWindow.h">
+      <Filter>Header Files\Static Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="CG1.rc">
