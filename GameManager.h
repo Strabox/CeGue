@@ -109,6 +109,7 @@ public:
 		game_running = true;
 		pauseWindowShow = false;
 		deathWindowShow = false;
+		victoryWindowShow = false;
 		for (int numberoflives = 0; numberoflives <5; numberoflives++){
 			lives[numberoflives] = Frog();
 			lives[numberoflives].setPosition(5-(float)numberoflives, 11.0, 5.0);
