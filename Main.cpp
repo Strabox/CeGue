@@ -18,7 +18,7 @@
 #include "VictoryWindow.h"
 
 
-#define MILISECONDS 6					
+#define MILISECONDS 3					
 
 GameManager* man;
 

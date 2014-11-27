@@ -66,6 +66,10 @@ public:
 
 	void setScore(int score){ _score = score; }
 
+	void restartSpeed(){
+		return;
+	}
+
 	void moveDown(){
 		setZRotation(180.0);
 		Vector3 new_speed;
@@ -176,6 +180,10 @@ public:
 	void update(int delta_t){
 		double _x, _y;
 		Vector3 distance = getSpeed();
+		
+		if(distance.getX()>100.0 || distance.getX()<-100.0){             //arranja um problema que só existe nos PCs da RNL: a distance vem a infinito magicamente
+			distance = Vector3(0.0, 0.0, 0.0);
+		}
 
 		distance = distance * ((double)delta_t / 1000);
 		setPosition(getPosition() + distance);
@@ -201,7 +209,7 @@ public:
 		GLfloat mat_ambient[] = { 0.1, 0.5, 0.1, 1.0 };
 		GLfloat mat_diffuse[] = { 0.1, 0.5, 0.1, 1.0 };
 		GLfloat shininess = 5;
-
+					
 		glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
 		glMaterialf(GL_FRONT, GL_SHININESS, shininess);
 		glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);

@@ -435,6 +435,7 @@ public:
 				if (deathWindowShow){
 					frog->setScore(0);
 					frog->setLives(5);
+					frog->setPosition(0.0, 0.0, 0.0);
 					deathWindowShow = false;
 					game_running = true;
 					std::vector<DynamicObject* >::iterator iter = _dynamic_objects.begin();
