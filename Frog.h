@@ -116,8 +116,8 @@ public:
 			colision_type = (*iter)->checkColisions(getPosition(),getBox());
 			
 			if (colision_type == 1){						//Crashed with a car/bus.	
-				die("Atropelado!");
 				_lives--;
+				die("Atropelado!");
 				_score -= 10;						//Points to earn (negative = lose) when the frog is run over
 				fate = -1;
 				break;
@@ -146,8 +146,8 @@ public:
 		}
 		else if (_water){
 			if (!_logOrTurtle){								//the frog will survive the water if there's a log or a turtle
-				die("Afogado!");
 				_lives--;
+				die("Afogado!");
 				_score -= 10;
 				return fate;									// -1 is dead
 			}
@@ -169,8 +169,10 @@ public:
 
 	void die(char* message){
 		//printf("%s\n",message);
-		setPosition(0.0, 0.0, 0.0);
-		_zRotation = 0;
+		if (_lives > 0){
+			setPosition(0.0, 0.0, 0.0);
+			_zRotation = 0;
+		}
 		_platformSpeed = Vector3(0.0, 0.0, 0.0);
 		setSpeed(0.0, 0.0, 0.0);
 		PlaySound((LPCWSTR)IDR_WAVE1, NULL, SND_RESOURCE | SND_ASYNC);
