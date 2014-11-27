@@ -9,7 +9,6 @@
 #include "resource.h"
 
 #define FROG_SPEED_MODULE 4.0
-#define MAX_LIVES 5
 
 #define FROG_DIMENSION_YMIN -0.3
 #define FROG_DIMENSION_YMAX 0.3
@@ -21,7 +20,7 @@ class Frog : public DynamicObject {
 private:
 
 	int _lives;
-	
+
 	Vector3 _platformSpeed;
 
 	double _zRotation;
@@ -39,7 +38,7 @@ public:
 
 
 	Frog() : DynamicObject(Box(FROG_DIMENSION_XMIN, FROG_DIMENSION_XMAX, FROG_DIMENSION_YMIN, FROG_DIMENSION_YMAX)) {
-		_lives = MAX_LIVES;
+		_lives = 5;
 		_zRotation=0;
 		_platformSpeed = Vector3(0.0, 0.0, 0.0);
 		_ground = true;

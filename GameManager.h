@@ -29,6 +29,7 @@
 #define DRAWFAR -11.5
 #define DRAWNEAR 11.5
 #define SPEED_SCALE_INCREASE 1.05
+#define MAX_LIVES 10
 
 int frame = 0;					//Frame rate counter.
 
@@ -69,7 +70,7 @@ protected:
 
 	VictoryWindow* victoryWindow;
 
-	Frog lives[5];
+	Frog lives[MAX_LIVES];
 
 	Frog* frog;					//Used in frog's movement.
 
@@ -110,7 +111,7 @@ public:
 		pauseWindowShow = false;
 		deathWindowShow = false;
 		victoryWindowShow = false;
-		for (int numberoflives = 0; numberoflives <5; numberoflives++){
+		for (int numberoflives = 0; numberoflives < MAX_LIVES; numberoflives++){
 			lives[numberoflives] = Frog();
 			lives[numberoflives].setPosition(5-(float)numberoflives, 11.0, 5.0);
 		}
@@ -136,7 +137,10 @@ public:
 
 	void setFrogLight(LightSource* light){ froglight = light; }
 
-	void setFrog(Frog* f){ frog = f; }
+	void setFrog(Frog* f){
+		frog = f;
+		frog->setLives(MAX_LIVES);
+	}
 
 	void setPauseWindow(PauseWindow* win){
 		pauseWindow = win;
@@ -434,7 +438,7 @@ public:
 			else if (key == 'r'){
 				if (deathWindowShow){
 					frog->setScore(0);
-					frog->setLives(5);
+					frog->setLives(MAX_LIVES);
 					frog->setPosition(0.0, 0.0, 0.0);
 					deathWindowShow = false;
 					game_running = true;
