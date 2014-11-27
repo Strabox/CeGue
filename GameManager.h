@@ -29,7 +29,7 @@
 #define DRAWFAR -11.5
 #define DRAWNEAR 11.5
 #define SPEED_SCALE_INCREASE 1.05
-#define MAX_LIVES 10
+#define MAX_LIVES 5
 
 int frame = 0;					//Frame rate counter.
 
