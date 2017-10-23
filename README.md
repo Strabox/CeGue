@@ -5,3 +5,7 @@ Project to 2014/2015 Graphic Computing course of Masters Degree in Computer Scie
 ## Goals
 
 Develop a simple 3D version of the frogger game using OpenGL and C++.
+
+## Project Group
+
+- https://github.com/carboned4
